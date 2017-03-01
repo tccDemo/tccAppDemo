@@ -6,7 +6,31 @@ page-notification-list {
    margin-left: 43%; 
  }
  
- .typeIcon { 
+ .announcementIcon { 
+    color: #fff;
+    font-size: 40px;
+    background: #28bc82;
+    height: 48px;
+    width: 48px;
+    display: inline-block;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 48px;
+ } 
+ 
+ .othersIcon { 
+    color: #fff;
+    font-size: 40px;
+    background: #ff9f38;
+    height: 48px;
+    width: 48px;
+    display: inline-block;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 48px;
+ } 
+
+ .systemheadlineIcon { 
     color: #fff;
     font-size: 40px;
     background: blue;
@@ -16,7 +40,9 @@ page-notification-list {
     border-radius: 50%;
     text-align: center;
     line-height: 48px;
- } 
+ }  
+ 
+ 
  
  .item-md ion-thumbnail {
      min-width: 0px;

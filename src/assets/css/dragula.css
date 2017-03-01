@@ -3,6 +3,7 @@
   margin: 0 !important;
   z-index: 9999 !important;
   opacity: 0.8;
+  border: 7px solid #gold;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80);
 }
@@ -16,7 +17,8 @@
   user-select: none !important;
 }
 .gu-transit {
-  opacity: 0.2;
+  opacity: 0.3;
+  border:3px solid #44a6ff;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
   filter: alpha(opacity=20);
 }

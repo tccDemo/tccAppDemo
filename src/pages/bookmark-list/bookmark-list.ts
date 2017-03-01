@@ -149,8 +149,8 @@ export class BookmarkListPage {
     },  
     customButtons: [  
       {  
-             image: "favour",
-             imagePressed: 'press_favour',
+             image: "assets/images/favour",
+             imagePressed: 'assets/images/press_favour',
              align: 'right',
              'event': 'markFavour' 
       }  

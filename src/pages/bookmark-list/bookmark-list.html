@@ -1,0 +1,78 @@
+    <ion-toolbar>
+      <ion-buttons left>
+        <bookmark-filter (onRefreshBookmarks)="refreshBookmarks($event)"></bookmark-filter>
+      </ion-buttons> 
+  	
+	  <ion-searchbar
+	    animated="true"
+		 mode="ios"
+        (ionInput)="doSearch($event)">
+      </ion-searchbar>	
+	
+      <ion-buttons right>
+        <button ion-button icon-only (click)="switchView()"> 
+          <ion-icon name="list" *ngIf="isTileView" id="listIcon"></ion-icon>
+		  <ion-icon name="grid" *ngIf="!isTileView" id="gridIcon"></ion-icon>
+        </button>
+      </ion-buttons>		
+    </ion-toolbar>
+
+	
+	<ion-item *ngIf="bookmarks==null">
+	   <IMG src='images/loading3.gif' alt='loading' class="loadingImg">
+	</ion-item>	
+   	<ion-item *ngIf="bookmarks!=null&&bookmarks.length==0">
+	  No data found
+	</ion-item>
+
+	<div *ngIf="filter=='myFavour'">
+	<div *ngIf="!isTileView" [dragula]='"bag-one"' [dragulaModel]='bookmarks' class="dragContainer">
+    <ion-item *ngFor="let bookmark of bookmarks"
+	(click)="openDetailBookmark(bookmark.id)" bookmarkId="{{bookmark.id}}">
+      <h2><ion-icon name="folder-open"></ion-icon> <span class="ionLabel">{{bookmark.subject}}</span></h2>	  
+	  <p *ngIf="bookmark.description">{{bookmark.description}}</p>
+    </ion-item>
+	</div>
+
+	
+	<ion-row wrap *ngIf="isTileView" [dragula]='"bag-one"' [dragulaModel]='bookmarks'  class="dragContainer">
+      <ion-col width-50 *ngFor="let bookmark of bookmarks"
+	(click)="openDetailBookmark(bookmark.id)" class="bookmarkTile"  bookmarkId="{{bookmark.id}}">
+
+		<ion-card>
+			<ion-card-content>
+				<img [src]="bookmark.icon" class="bookmarkIcon">   
+				<div class="bookmarkCardLabel">{{bookmark.subject}}</div>
+			</ion-card-content>
+		</ion-card>
+      </ion-col>
+    </ion-row>	
+	</div>
+	
+	
+	<div *ngIf="filter!='myFavour'">
+	<div *ngIf="!isTileView">
+    <ion-item *ngFor="let bookmark of bookmarks"
+	(click)="openDetailBookmark(bookmark.id)" bookmarkId="{{bookmark.id}}">
+      <h2><ion-icon name="folder-open"></ion-icon> <span class="ionLabel">{{bookmark.subject}}</span></h2>	  
+	  <p *ngIf="bookmark.description">{{bookmark.description}}</p>
+    </ion-item>
+	</div>
+
+	
+	<ion-row wrap *ngIf="isTileView">
+      <ion-col width-33 *ngFor="let bookmark of bookmarks"
+	(click)="openDetailBookmark(bookmark.id)" class="bookmarkTile"  bookmarkId="{{bookmark.id}}">
+		<ion-card>
+			<ion-card-content>
+				<img [src]="bookmark.icon" class="bookmarkIcon">   
+				<div class="bookmarkCardLabel">{{bookmark.subject}}</div>
+			</ion-card-content>
+		</ion-card>
+      </ion-col>
+    </ion-row>	
+	
+	</div>
+	
+
+    

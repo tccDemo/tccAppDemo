@@ -1,0 +1,40 @@
+page-event-list {
+
+  $list-ios-margin-top: 0;
+  $list-ios-margin-bottom: 0;
+  $list-inset-ios-margin-bottom: 0;
+  $list-ios-header-border-bottom: 0;
+  
+  .bundleHeader {
+    font-size: large;
+	height: 3rem;
+	color: #7EC0EE;
+	margin-top: 0;
+	padding-top: 0;
+	border: 0px;
+  }
+  
+  .list-md .item-block .item-inner {
+    border-bottom: 0px;
+  }
+  
+  .eventRow {
+    height: 3rem;
+	min-height: 3.4rem;
+  }
+  
+  .eventTitle {
+    line-height:2rem;
+    font-size: 1.6rem;	
+	padding-left: 1rem;
+  }
+
+  #calendarIcon {
+    font-size: 3rem;
+  }
+  
+  ion-note {
+    font-size: 1.4rem;
+  }  
+
+}

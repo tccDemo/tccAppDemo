@@ -1,0 +1,24 @@
+    <ion-toolbar>
+  	
+	 <ion-searchbar
+	  mode="ios"
+      (ionInput)="doSearch($event)">
+     </ion-searchbar>		
+    </ion-toolbar>
+	
+	  <ion-item *ngIf="announcements==null">
+	     <IMG src='images/loading3.gif' alt='loading' class="loadingImg">
+	  </ion-item>	
+   	  <ion-item *ngIf="announcements!=null&&announcements.length==0">
+		 No data found
+	  </ion-item>
+
+    <ion-item *ngFor="let announcement of announcements"
+	(click)="openDetailModal({announcementId: announcement.id})">
+	  <ion-thumbnail item-left>
+        <ion-icon name="information-circle" class="typeIcon"></ion-icon>		
+      </ion-thumbnail>
+      <h2>{{announcement.title}}</h2>	  
+	  <p>{{announcement.postedBy}}</p>
+	  <p>{{announcement.detail | slice:0:20}}</p>
+    </ion-item>

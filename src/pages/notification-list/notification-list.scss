@@ -1,0 +1,26 @@
+page-notification-list {
+
+ .loadingImg {
+   display:inline-block;
+   margin-top: 25px;
+   margin-left: 43%; 
+ }
+ 
+ .typeIcon { 
+    color: #fff;
+    font-size: 40px;
+    background: blue;
+    height: 48px;
+    width: 48px;
+    display: inline-block;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 48px;
+ } 
+ 
+ .item-md ion-thumbnail {
+     min-width: 0px;
+     min-height: 0px;
+ } 
+
+}

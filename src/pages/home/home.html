@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar class="headToolBar">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="takePhoto()">        
+		<ion-icon name="contact" *ngIf="!base64Image" alt="profile" class="profileImg"></ion-icon>
+		<img [src]="base64Image" *ngIf="base64Image" alt="profile" class="profileImg"/>
+      </button>
+    </ion-buttons>  
+  
+    <ion-title>
+	  <img src="images/logo2.gif" alt="logo" class="logoImg">
+	</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+  
+  <div>
+  <ion-segment [(ngModel)]="tab" color="primary">
+    <ion-segment-button value="bookmark">
+      Campus Links
+    </ion-segment-button>
+    <ion-segment-button value="announcement">
+      Announcements
+    </ion-segment-button>
+    <ion-segment-button value="event">
+      Events
+    </ion-segment-button>
+  </ion-segment>
+  </div>
+  
+  <div [ngSwitch]="tab">
+  <ion-list *ngSwitchCase="'bookmark'">
+    <page-bookmark-list></page-bookmark-list>
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'announcement'">
+    <page-announcement-list></page-announcement-list>
+  </ion-list>
+  
+  <ion-list *ngSwitchCase="'event'">
+    <page-event-list></page-event-list>
+  </ion-list>
+</div>
+
+</ion-content>

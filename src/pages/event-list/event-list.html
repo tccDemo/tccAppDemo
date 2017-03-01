@@ -1,0 +1,32 @@
+    <ion-toolbar>
+  	
+	 <ion-searchbar
+	  mode="ios"
+      (ionInput)="doSearch($event)">
+     </ion-searchbar>
+	
+      <ion-buttons right>
+        <button ion-button icon-only (click)="openCalendarModal()"> 
+          <ion-icon name="calendar" id="calendarIcon"></ion-icon>
+        </button>
+      </ion-buttons>		
+    </ion-toolbar>
+	
+	  <ion-item *ngIf="bundleEvents==null">
+	     <IMG src='images/loading3.gif' alt='loading' class="loadingImg">
+	  </ion-item>	
+   	  <ion-item *ngIf="bundleEvents!=null&&bundleEvents.length==0">
+		 No data found
+	  </ion-item>
+
+  <ion-list *ngFor="let be of bundleEvents" mode="ios">
+    <ion-list-header class="bundleHeader">
+      {{be.date | date: 'mediumDate'}}
+    </ion-list-header>
+    <ion-item *ngFor="let ev of be.events" class="eventRow" 
+	 (click)="openDetailModal({eventId: ev.id})">
+	 <h2 class="eventTitle">{{ev.title}}</h2>
+	 <ion-note item-right *ngIf="ev.allDay">All Day</ion-note>
+	 <ion-note item-right *ngIf="!ev.allDay">{{ev.start | date:"HH:mm"}}</ion-note>
+	 </ion-item>
+  </ion-list>

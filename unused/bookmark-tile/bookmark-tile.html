@@ -1,0 +1,29 @@
+    <ion-toolbar>
+<ion-buttons left>
+<bookmark-filter (onRefreshBookmarks)="refreshBookmarks($event)"></bookmark-filter>
+</ion-buttons> 
+  
+	
+    <ion-buttons right>
+      <button ion-button icon-only (click)="switchView()">
+        <ion-icon name="apps"></ion-icon>
+      </button>
+    </ion-buttons>	
+	
+  </ion-toolbar>
+
+
+	  <ion-item *ngIf="bookmarks==null">
+	     <IMG src='images/loading3.gif' alt='loading' class="loadingImg">
+	  </ion-item>	
+   	  <ion-item *ngIf="bookmarks!=null&&bookmarks.length==0">
+		 No data found
+	  </ion-item>
+	  
+  
+ <ion-row wrap>
+    <ion-col width-33 *ngFor="let bookmark of bookmarks"
+	(click)="openDetailModal({bookmarkId: bookmark.id})" class="bookmarkTile">
+	  <img [src]="bookmark.icon" class="bookmarkIcon">      
+    </ion-col>
+ </ion-row>

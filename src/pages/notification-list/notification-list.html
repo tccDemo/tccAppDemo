@@ -1,0 +1,50 @@
+<!--
+  Generated template for the NotificationList page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar>
+    <ion-title>Notification</ion-title>
+    
+	<ion-buttons end>
+      <button ion-button outline round small (click)="clearAll()">Clear All</button>
+	</ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+ <ion-list>
+	  <ion-item *ngIf="notifications==null">
+	     <IMG src='images/loading3.gif' alt='loading' class="loadingImg">
+	  </ion-item>	
+   	  <ion-item *ngIf="notifications!=null&&notifications.length==0">
+		 No data found
+	  </ion-item>
+
+	<ion-item-sliding *ngFor="let notification of notifications">
+
+    <ion-item (click)="openDetailModal({notificationId: notification.id})">
+	  <ion-thumbnail item-left>
+        <ion-icon name="information-circle" class="typeIcon" *ngIf="notification.nType=='announcement'"></ion-icon>		
+		<ion-icon name="easel" class="typeIcon" *ngIf="notification.nType=='systemheadline'"></ion-icon>
+		<ion-icon name="albums" class="typeIcon" *ngIf="notification.nType=='others'"></ion-icon>		
+      </ion-thumbnail>
+      <h2><span class="ionLabel">{{notification.name}}</span></h2>	  
+	  <p>{{notification.publishedAt}} <span *ngIf="notification.description"> • {{notification.description}}</span></p>
+    </ion-item>
+    <ion-item-options>
+      <button ion-button color="primary" icon-left (click)="delete(notification.id)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+      </button>	  
+    </ion-item-options>					
+
+    </ion-item-sliding>		  
+	  
+	  
+ </ion-list>
+</ion-content>

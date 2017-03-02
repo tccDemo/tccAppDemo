@@ -35,14 +35,18 @@
 	</div>
 
 	
-	<ion-row wrap *ngIf="isTileView" [dragula]='"bag-one"' [dragulaModel]='bookmarks'  class="dragContainer">
+	<ion-row wrap *ngIf="isTileView" [dragula]='"bag-one"' [dragulaModel]='bookmarks'  class="ion-row-bookmark dragContainer">
       <ion-col width-33 *ngFor="let bookmark of bookmarks"
-	(click)="openDetailBookmark(bookmark.id)" class="bookmarkTile"  bookmarkId="{{bookmark.id}}">
+	(click)="openDetailBookmark(bookmark.id)" class="ion-col-bookmark"  bookmarkId="{{bookmark.id}}" >
 
-		<ion-card>
+		<ion-card color="bookmark">
 			<ion-card-content>
-				<img [src]="bookmark.icon" class="bookmarkIcon">   
-				<div class="bookmarkCardLabel">{{bookmark.subject}}</div>
+				<img [src]="bookmark.icon" class="bookmark-img">
+				<div class="bookmark-item-body">
+					<h3>
+						{{bookmark.subject}}
+					</h3>
+				</div>  
 			</ion-card-content>
 		</ion-card>
       </ion-col>
@@ -60,13 +64,17 @@
 	</div>
 
 	
-	<ion-row wrap *ngIf="isTileView">
+	<ion-row wrap *ngIf="isTileView" class="ion-row-bookmark">
       <ion-col width-33 *ngFor="let bookmark of bookmarks"
-	(click)="openDetailBookmark(bookmark.id)" class="bookmarkTile"  bookmarkId="{{bookmark.id}}">
-		<ion-card>
+	(click)="openDetailBookmark(bookmark.id)" class="ion-col-bookmark"  bookmarkId="{{bookmark.id}}">
+		<ion-card color="bookmark">
 			<ion-card-content>
-				<img [src]="bookmark.icon" class="bookmarkIcon">   
-				<div class="bookmarkCardLabel">{{bookmark.subject}}</div>
+				<img [src]="bookmark.icon" class="bookmark-img">
+				<div class="bookmark-item-body">
+					<h3>
+						{{bookmark.subject}}
+					</h3>
+				</div>  
 			</ion-card-content>
 		</ion-card>
       </ion-col>

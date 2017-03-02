@@ -3,7 +3,7 @@
       (ionInput)="doSearch($event)">
      </ion-searchbar>		
     </ion-toolbar>
-	
+	 <ion-content style="position:static">	
 	<ion-list class="dataContainer">
 	  <ion-item *ngIf="announcements==null">
 	     <IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg">
@@ -22,3 +22,4 @@
 	  <p>{{announcement.detail}}</p>
     </ion-item>
   </ion-list>
+</ion-content>

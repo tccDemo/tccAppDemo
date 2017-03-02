@@ -1,6 +1,6 @@
-$name-prefix: announcement !default;
+$prefix-announcement: announcement !default;
 
-page-#{$name-prefix}-list {
+page-#{$prefix-announcement}-list {
 
  .loadingImg {
    display:inline-block;

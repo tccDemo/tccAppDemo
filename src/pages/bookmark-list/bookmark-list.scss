@@ -1,33 +1,21 @@
-$name-prefix: bookmark !default;
+$prefix-bookmark: bookmark !default;
 
-/*.page-bookmark-list {
-    .loadingImg {
-        display: inline-block;
-        margin-top: 25px;
-        margin-left: 43%;
-    }
-    #listIcon,
-    #gridIcon {
-        font-size: 3rem;
-    }
-}
-*/
-
-.ion-row-#{$name-prefix} {
+.ion-row-#{$prefix-bookmark} {
     padding: 10px;
-    .ion-col-#{$name-prefix} {
+    .ion-col-#{$prefix-bookmark} {
         padding: 0;
     }
-    .card-md-#{$name-prefix} {
+    .card-md-bookmark {
         .card-content {
             position: relative;
             height: 150px;
+
             img {
-                &.#{$name-prefix}-img {
+                &.#{$prefix-bookmark}-img {
                     max-height: 70px;
                 }
             }
-            .#{$name-prefix}-item-body {
+            .#{$prefix-bookmark}-item-body {
                 background-color: $white;
                 position: absolute;
                 padding: .6rem;
@@ -48,3 +36,5 @@ $name-prefix: bookmark !default;
         }
     }
 }
+
+

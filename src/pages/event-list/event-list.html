@@ -12,6 +12,7 @@
       </ion-buttons>		
     </ion-toolbar>
 	
+	<div class="dataContainer">
 	  <ion-item *ngIf="bundleEvents==null">
 	     <IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg">
 	  </ion-item>	
@@ -30,3 +31,4 @@
 	 <ion-note item-right *ngIf="!ev.allDay">{{ev.start | date:"HH:mm"}}</ion-note>
 	 </ion-item>
   </ion-list>
+  </div>

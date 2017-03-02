@@ -1,13 +1,20 @@
-$searchbar-md-background-color:#B7B7B7 !default;
-$searchbar-md-input-line-height:  2rem !default;
+$name-prefix: announcement !default;
 
-page-announcement-list {
+page-#{$name-prefix}-list {
 
  .loadingImg {
    display:inline-block;
    margin-top: 25px;
    margin-left: 43%; 
  }
+ 
+  ion-toolbar {
+    position: fixed;
+  }
+
+  ion-list.dataContainer {
+    padding-top: 5rem;
+  }
  
  .announcementIcon { 
     color: #fff;

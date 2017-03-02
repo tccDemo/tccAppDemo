@@ -11,17 +11,7 @@
 	  Home
 	</ion-title>
   </ion-navbar>
-</ion-header>
-
-<ion-content>
-
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content refreshingSpinner="circles">
-    </ion-refresher-content>
-  </ion-refresher>
-  
-  <div>
-  <ion-segment [(ngModel)]="tab" color="primary">
+   <ion-segment [(ngModel)]="tab" color="primary">
     <ion-segment-button value="bookmark">
       Campus Links
     </ion-segment-button>
@@ -32,9 +22,17 @@
       Events
     </ion-segment-button>
   </ion-segment>
-  </div>
   
-  <div [ngSwitch]="tab">
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher> 
+  
+  <div [ngSwitch]="tab" >
   <ion-list *ngSwitchCase="'bookmark'">
     <page-bookmark-list></page-bookmark-list>
   </ion-list>

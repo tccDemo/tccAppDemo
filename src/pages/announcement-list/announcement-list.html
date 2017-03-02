@@ -1,11 +1,10 @@
-    <ion-toolbar>
-  	
-	 <ion-searchbar
-	  mode="ios"
+    <ion-toolbar>  	
+	 <ion-searchbar mode="ios"
       (ionInput)="doSearch($event)">
      </ion-searchbar>		
     </ion-toolbar>
 	
+	<ion-list class="dataContainer">
 	  <ion-item *ngIf="announcements==null">
 	     <IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg">
 	  </ion-item>	
@@ -22,3 +21,4 @@
 	  <p>{{announcement.postedBy}}</p>
 	  <p>{{announcement.detail}}</p>
     </ion-item>
+  </ion-list>

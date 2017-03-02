@@ -4,7 +4,7 @@
 
         <ion-row>
             <ion-col>
-                <img [@flyInBottomSlow]="logoState" src="assets/images/login.jpg" />
+                <div class="logoHeader">STRATA GO</div>
             </ion-col>
         </ion-row>
 
@@ -13,13 +13,13 @@
                 <ion-list inset [@bounceInBottom]="formState">
 
                     <ion-item>
-                        <ion-label>Login</ion-label>
-                        <ion-input type="text" formControlName="LoginID"></ion-input>
+                        <ion-label><ion-icon name="person" class="loginIcon"></ion-icon></ion-label>
+                        <ion-input type="text" formControlName="LoginID" placeholder="Login ID"></ion-input>
                     </ion-item>
 
                     <ion-item>
-                        <ion-label>Password</ion-label>
-                        <ion-input type="password" formControlName="LoginPwd"></ion-input>
+                        <ion-label> <ion-icon name="key" class="loginIcon"></ion-icon></ion-label>
+                        <ion-input type="password" formControlName="LoginPwd" placeholder="Password"></ion-input>
                     </ion-item>
 
                 </ion-list>
@@ -29,7 +29,7 @@
         <ion-row>
             <ion-col>
 			 <button class="login-button" [@fadeIn]="loginState" ion-button full 
-			 (click)="login(loginForm.value, $event)">Login</button>                
+			 (click)="login(loginForm.value, $event)">SIGN IN</button>                
             </ion-col>
         </ion-row>
 

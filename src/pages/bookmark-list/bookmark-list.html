@@ -36,7 +36,7 @@
 
 	
 	<ion-row wrap *ngIf="isTileView" [dragula]='"bag-one"' [dragulaModel]='bookmarks'  class="dragContainer">
-      <ion-col width-50 *ngFor="let bookmark of bookmarks"
+      <ion-col width-33 *ngFor="let bookmark of bookmarks"
 	(click)="openDetailBookmark(bookmark.id)" class="bookmarkTile"  bookmarkId="{{bookmark.id}}">
 
 		<ion-card>

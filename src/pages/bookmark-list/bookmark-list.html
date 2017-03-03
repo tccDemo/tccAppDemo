@@ -37,9 +37,12 @@
 	<div *ngIf="!isTileView" [dragula]='"bag-one"' [dragulaModel]='bookmarks' class="dragContainer">
     <ion-item *ngFor="let bookmark of bookmarks"
 	(click)="openDetailBookmark(bookmark.id)" bookmarkId="{{bookmark.id}}">
-      <h2><ion-icon name="folder-open"></ion-icon> <span class="ionLabel">{{bookmark.subject}}</span></h2>	  
-	  <p *ngIf="bookmark.description">{{bookmark.description}}</p>
-    </ion-item>
+      <ion-thumbnail item-left>
+	    <img [src]="bookmark.icon" class="bookmark-list-img">
+      </ion-thumbnail>
+      <h2>{{bookmark.subject}}</h2>
+      <p *ngIf="bookmark.description">{{bookmark.description}}</p>
+    </ion-item>	
 	</div>
 
 
@@ -65,9 +68,12 @@
 	<div *ngIf="!isTileView">
     <ion-item *ngFor="let bookmark of bookmarks"
 	(click)="openDetailBookmark(bookmark.id)" bookmarkId="{{bookmark.id}}">
-      <h2><ion-icon name="folder-open"></ion-icon> <span class="ionLabel">{{bookmark.subject}}</span></h2>	  
-	  <p *ngIf="bookmark.description">{{bookmark.description}}</p>
-    </ion-item>
+      <ion-thumbnail item-left>
+	    <img [src]="bookmark.icon" class="bookmark-list-img">
+      </ion-thumbnail>
+      <h2>{{bookmark.subject}}</h2>
+      <p *ngIf="bookmark.description">{{bookmark.description}}</p>
+    </ion-item>	
 	</div>
 
 

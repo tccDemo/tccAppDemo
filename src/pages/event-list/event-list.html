@@ -14,6 +14,12 @@
 	
 	<ion-content style="position:static">
 	<div class="dataContainer">
+	
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher> 	
+	
 	  <ion-item *ngIf="bundleEvents==null">
 	     <IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg">
 	  </ion-item>	

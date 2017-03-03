@@ -26,11 +26,6 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content refreshingSpinner="circles">
-    </ion-refresher-content>
-  </ion-refresher> 
   
   <div [ngSwitch]="tab" >
   <ion-list *ngSwitchCase="'bookmark'">

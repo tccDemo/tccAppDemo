@@ -82,12 +82,14 @@ export class EventListPage {
   }
 
   openDetailModal(eventId: string | number):void {
-    let modal = this.modalCtrl.create(EventDetailPage, eventId);
-    modal.present();
+    // let modal = this.modalCtrl.create(EventDetailPage, eventId);
+    // modal.present();
+    this.navCtrl.push(EventDetailPage, eventId);
   }
 
   openCalendarModal():void{
-    let modal = this.modalCtrl.create(EventCalendarPage);
-    modal.present();
+    // let modal = this.modalCtrl.create(EventCalendarPage);
+    // modal.present();
+    this.navCtrl.push(EventCalendarPage);  
   }
 }

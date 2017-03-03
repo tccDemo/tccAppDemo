@@ -1,5 +1,11 @@
 $prefix-bookmark: bookmark !default;
 
+page-#{$prefix-bookmark}-list {
+  .dataContainer {
+    padding-top: 5rem;
+  }
+}
+
 .ion-row-#{$prefix-bookmark} {
     padding: 10px;
     .ion-col-#{$prefix-bookmark} {

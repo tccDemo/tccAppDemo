@@ -12,6 +12,7 @@
       </ion-buttons>		
     </ion-toolbar>
 	
+	<ion-content style="position:static">
 	<div class="dataContainer">
 	  <ion-item *ngIf="bundleEvents==null">
 	     <IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg">
@@ -25,10 +26,13 @@
       {{be.date | date: 'mediumDate'}}
     </ion-list-header>
     <ion-item *ngFor="let ev of be.events" class="eventRow" 
-	 (click)="openDetailModal({eventId: ev.id})">
+	 (click)="openDetailModal({eventId: ev.id})">	 
 	 <h2 class="eventTitle">{{ev.title}}</h2>
 	 <ion-note item-right *ngIf="ev.allDay">All Day</ion-note>
 	 <ion-note item-right *ngIf="!ev.allDay">{{ev.start | date:"HH:mm"}}</ion-note>
+	 <ion-nav [root]="rootPage"></ion-nav>
+	 
 	 </ion-item>
   </ion-list>
   </div>
+  </ion-content>

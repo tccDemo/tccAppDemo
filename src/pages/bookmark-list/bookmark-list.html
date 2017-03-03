@@ -11,8 +11,11 @@
 	
       <ion-buttons right>
         <button ion-button icon-only (click)="switchView()"> 
-          <ion-icon name="list" *ngIf="isTileView" id="listIcon"></ion-icon>
-		  <ion-icon name="grid" *ngIf="!isTileView" id="gridIcon"></ion-icon>
+          <!-- <ion-icon name="list" ></ion-icon> -->
+          <!-- <ion-icon name="grid" *ngIf="!isTileView" id="gridIcon"></ion-icon> -->
+          <img src="/assets/icon/list.png" alt="" *ngIf="isTileView" id="listIcon">
+          <img src="/assets/icon/thumb.png" alt="" *ngIf="!isTileView" id="gridIcon">
+		  
         </button>
       </ion-buttons>		
     </ion-toolbar>

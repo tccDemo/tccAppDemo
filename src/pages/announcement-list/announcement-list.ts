@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import {Component} from '@angular/core';
+//import {NavController, NavParams, ModalController} from 'ionic-angular';
+import {ModalController, NavController, NavParams} from 'ionic-angular';
 
-import { Announcement } from '../../providers/announcement';
-import { AnnouncementService } from '../../providers/announcement.service';
+import {Announcement} from '../../providers/announcement';
+import {AnnouncementService} from '../../providers/announcement.service';
 
-import { AnnouncementDetailPage } from '../announcement-detail/announcement-detail';
+import {AnnouncementDetailPage} from '../announcement-detail/announcement-detail';
 
 @Component({
   selector: 'page-announcement-list',
@@ -12,21 +13,25 @@ import { AnnouncementDetailPage } from '../announcement-detail/announcement-deta
 })
 export class AnnouncementListPage {
 
- 
+
   announcements: Announcement[];
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, 
-  	private announcementService: AnnouncementService, private modalCtrl: ModalController){}
+  constructor(private modalCtrl: ModalController,
+              private  navParams: NavParams,
+              public  navCtrl: NavController,
+              private announcementService: AnnouncementService) {
+
+  }
 
   ionViewDidLoad() {
   }
-  
+
   ngOnInit(): void {
     this.getAnnouncements();
   }
 
   doRefresh(refresher) {
-    console.log('Begin async operation', refresher);    
+    console.log('Begin async operation', refresher);
     setTimeout(() => {
       this.announcements = [];
       this.getAnnouncements();
@@ -36,7 +41,7 @@ export class AnnouncementListPage {
   }
 
   getAnnouncements(): void {
-    this.announcementService.getAnnouncements().then( (announcements:Announcement[]) => this.announcements = announcements);
+    this.announcementService.getAnnouncements().then((announcements: Announcement[]) => this.announcements = announcements);
   }
 
   doSearch(ev): void {
@@ -50,9 +55,15 @@ export class AnnouncementListPage {
     }
   }
 
-  openDetailModal(announcementId: string | number):void {
-    let modal = this.modalCtrl.create(AnnouncementDetailPage, announcementId);
-    modal.present();
+  // 调用模态框组件
+  viewDetailModal(announcementId: string | number): void {
+    let announceModal = this.modalCtrl.create(AnnouncementDetailPage, announcementId)
+    announceModal.present();
+  }
+
+//调用Push方法
+  goToOtherPage(id) {
+    this.navCtrl.push(AnnouncementDetailPage, id);
   }
 
 }

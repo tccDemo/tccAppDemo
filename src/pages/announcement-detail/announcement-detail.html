@@ -1,6 +1,10 @@
 <ion-header>
-
   <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-left (click)="goBack()">
+        <ion-icon name="md-arrow-round-back"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>
       <span *ngIf="announcement!=null">{{announcement.title}}</span>
     </ion-title>
@@ -14,9 +18,9 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding style="background:#fff">
 
-    <div *ngIf="announcement==null"><IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg"></div>
-    <div *ngIf="announcement!=null">{{announcement.detail}}</div> 
+  <div *ngIf="announcement==null"><IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg"></div>
+  <div *ngIf="announcement!=null">{{announcement.detail}}</div>
 
 </ion-content>

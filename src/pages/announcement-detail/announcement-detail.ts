@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams,ViewController } from 'ionic-angular';
+import { NavParams,ViewController,NavController } from 'ionic-angular';
 
 import { Announcement } from '../../providers/announcement';
 import { AnnouncementService } from '../../providers/announcement.service';
@@ -7,12 +7,14 @@ import { AnnouncementService } from '../../providers/announcement.service';
 @Component({
   selector: 'page-announcement-detail',
   templateUrl: 'announcement-detail.html'
+
 })
 export class AnnouncementDetailPage {
 
   announcement:Announcement;
 
   constructor(
+    public navCtrl: NavController,
     public params: NavParams,
     public viewCtrl: ViewController,
     public announcementService: AnnouncementService
@@ -29,5 +31,7 @@ export class AnnouncementDetailPage {
   dismiss():void {
     this.viewCtrl.dismiss();
   }
-
+  goBack() {
+    this.navCtrl.pop();
+  }
 }

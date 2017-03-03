@@ -1,25 +1,34 @@
-    <ion-toolbar>  	
-	 <ion-searchbar mode="ios"
-      (ionInput)="doSearch($event)">
-     </ion-searchbar>		
-    </ion-toolbar>
-	 <ion-content style="position:static">	
-	<ion-list class="dataContainer">
-	  <ion-item *ngIf="announcements==null">
-	     <IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg">
-	  </ion-item>	
-   	  <ion-item *ngIf="announcements!=null&&announcements.length==0">
-		 No data found
-	  </ion-item>
+<ion-toolbar>
+  <ion-searchbar mode="ios"
+                 (ionInput)="doSearch($event)">
+  </ion-searchbar>
+</ion-toolbar>
+<ion-content style="position:static">
+  <ion-list class="dataContainer">
+    <ion-item *ngIf="announcements==null">
+      <IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg">
+    </ion-item>
+    <ion-item *ngIf="announcements!=null&&announcements.length==0">
+      No data found
+    </ion-item>
 
-    <ion-item *ngFor="let announcement of announcements"
-	(click)="openDetailModal({announcementId: announcement.id})">
-	  <ion-thumbnail item-left>
-        <ion-icon name="information-circle" class="announcementIcon"></ion-icon>		
+   <!-- <ion-item *ngFor="let announcement of announcements"
+              (click)="viewDetailModal({announcementId: announcement.id})">
+      <ion-thumbnail item-left>
+        <ion-icon name="information-circle" class="announcementIcon"></ion-icon>
       </ion-thumbnail>
-      <h2>{{announcement.title}}</h2>	  
-	  <p>{{announcement.postedBy}}</p>
-	  <p>{{announcement.detail}}</p>
+      <h2>{{announcement.title}}</h2>
+      <p>{{announcement.postedBy}}</p>
+      <p>{{announcement.detail}}</p>
+    </ion-item>-->
+    <ion-item *ngFor="let announcement of announcements"
+              (click)="goToOtherPage({announcementId: announcement.id})">
+      <ion-thumbnail item-left>
+        <ion-icon name="information-circle" class="announcementIcon"></ion-icon>
+      </ion-thumbnail>
+      <h2>{{announcement.title}}</h2>
+      <p>{{announcement.postedBy}}</p>
+      <p>{{announcement.detail}}</p>
     </ion-item>
   </ion-list>
 </ion-content>

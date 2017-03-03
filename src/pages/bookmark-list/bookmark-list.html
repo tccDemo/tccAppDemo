@@ -43,9 +43,9 @@
 	</div>
 
 
-	<ion-row wrap *ngIf="isTileView" [dragula]='"bag-one"' [dragulaModel]='bookmarks'  class="ion-row-bookmark dragContainer">
+	<ion-row wrap *ngIf="isTileView" [dragula]='"bag-one"' [dragulaModel]='bookmarks'  class="ion-row-bookmark dragContainer responsive-media">
       <ion-col width-50 *ngFor="let bookmark of bookmarks"
-	(click)="openDetailBookmark(bookmark.id)" class="ion-col-bookmark"  bookmarkId="{{bookmark.id}}" >
+	(click)="openDetailBookmark(bookmark.id)" class="ion-col-bookmark cc-width-grid"  bookmarkId="{{bookmark.id}}" >
 
 		<ion-card color="bookmark">
 			<ion-card-content>
@@ -71,9 +71,9 @@
 	</div>
 
 
-	<ion-row wrap *ngIf="isTileView" class="ion-row-bookmark">
-      <ion-col width-50 *ngFor="let bookmark of bookmarks"
-	(click)="openDetailBookmark(bookmark.id)" class="ion-col-bookmark"  bookmarkId="{{bookmark.id}}">
+	<ion-row wrap *ngIf="isTileView" class="ion-row-bookmark responsive-media">
+      <ion-col *ngFor="let bookmark of bookmarks"
+	(click)="openDetailBookmark(bookmark.id)" class="ion-col-bookmark cc-width-grid"  bookmarkId="{{bookmark.id}}">
 		<ion-card color="bookmark">
 			<ion-card-content>
 				<img [src]="bookmark.icon" class="bookmark-img">

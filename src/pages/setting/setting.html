@@ -6,19 +6,38 @@
 
 <ion-content>
 
-<ion-list>
-  <button ion-item>
-   <ion-icon name="ios-contact-outline" class="settingIcon"></ion-icon> <span class="settingLabel">User Profile</span>
-  </button>  
-  <button ion-item>
-   <ion-icon name="ios-card" class="settingIcon"></ion-icon> <span class="settingLabel">Change Password</span>
-  </button>
-  <button ion-item>
-    <ion-icon name="cog" class="settingIcon"></ion-icon> <span class="settingLabel">Notification Options</span>
-  </button>
-  <button ion-item>
-    <ion-icon name="ios-calendar" class="settingIcon"></ion-icon> <span class="settingLabel">Calendar Subscription</span>
-  </button>
+
+  <div class="bgWall">
+	<ion-icon name="contact" *ngIf="!base64Image" alt="profile" class="userProfileImg"></ion-icon>
+	<img [src]="base64Image" *ngIf="base64Image" alt="profile" class="userProfileImg"/>
+	<div class="userNameLabel">Cherry Louis</div>
+  </div>
+
+  <ion-list>
   
-</ion-list>
+    <ion-item>
+      <ion-thumbnail item-left>
+        <ion-icon name="ios-contact-outline" class="settingIcon"></ion-icon>
+      </ion-thumbnail>
+      <span class="settingLabel">User Profile</span>
+    </ion-item>  
+    <ion-item>
+      <ion-thumbnail item-left>
+        <ion-icon name="ios-card" class="settingIcon changePwdIcon"></ion-icon>
+      </ion-thumbnail>
+      <span class="settingLabel">Change Password</span>
+    </ion-item>  
+	    <ion-item>
+      <ion-thumbnail item-left>
+        <ion-icon name="cog" class="settingIcon notificationIcon"></ion-icon>
+      </ion-thumbnail>
+      <span class="settingLabel">Notification Options</span>
+    </ion-item>  
+    <ion-item>
+      <ion-thumbnail item-left>
+        <ion-icon name="ios-calendar" class="settingIcon calendarIcon"></ion-icon>
+      </ion-thumbnail>
+      <span class="settingLabel">Calendar Subscription</span>
+    </ion-item>
+  </ion-list>
 </ion-content>

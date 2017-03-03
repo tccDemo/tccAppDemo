@@ -27,7 +27,7 @@
 		 No data found
 	  </ion-item>
 
-  <ion-list *ngFor="let be of bundleEvents" mode="ios">
+  <ion-list *ngFor="let be of bundleEvents" mode="ios" no-lines>
     <ion-list-header class="bundleHeader">
       {{be.date | date: 'mediumDate'}}
     </ion-list-header>

@@ -1,13 +1,61 @@
 page-setting {
 
-  .settingIcon {
-    font-size: 2.4rem;	
-  }  
+  .bgWall {
+    background-image: url(/assets/images/setting_bg.jpg);
+    filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+    -moz-background-size:100% 100%;
+    background-size:100% 100%;
+    height: 30rem;
+    text-align:center; 
+    padding-top:8rem;
+  }
   
+  .userNameLabel {
+    font-size: 2rem;
+	margin: auto;
+	color: #fff;
+  }
+  
+  .userProfileImg {
+    margin: auto;
+	font-size: 9rem;
+  }
+  
+ .settingIcon { 
+    color: #fff;
+    font-size: 40px;
+    background: #28bc82;
+    height: 48px;
+    width: 48px;
+    display: inline-block;
+    text-align: center;
+    line-height: 48px;
+ }
+ 
+ .changePwdIcon {
+   background: #53ADFF;
+ }
+ 
+ .notificationIcon {
+   background: #FEA137;
+ }
+ 
+ .calendarIcon {
+   background: #3EB26B;
+ }
+ 
+ .item-md ion-thumbnail {
+     min-width: 0px;
+     min-height: 0px;
+ }  
+ 
   .settingLabel {
 	text-align: center;
-	font-size: 1.8rem;
+	font-size: 1.7rem;
 	margin-left: 0.5rem;
+	test-align: left;
+	color: #333333;
+	margin-left:0;
   }
   
 }

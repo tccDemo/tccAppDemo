@@ -29,7 +29,7 @@
 	  <p>{{notification.publishedAt}} <span *ngIf="notification.description"> • {{notification.description}}</span></p>
     </ion-item>
     <ion-item-options>
-      <button ion-button color="primary" icon-left (click)="delete(notification.id)">
+      <button ion-button color="danger" icon-left (click)="delete(notification.id)">
           <ion-icon name="trash"></ion-icon>
           Delete
       </button>	  

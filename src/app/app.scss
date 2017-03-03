@@ -1,48 +1,68 @@
-// http://ionicframework.com/docs/v2/theming/
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
-
 @import "../scss/variables";
 @import "../scss/global";
+
 .toolbar-md-heading {
-    .toolbar-background-md {
-        background: $blue !important;
-    }
-    .toolbar-title-md{
-    	color: $white;
-    }
+  .toolbar-background-md {
+    background: $blue !important;
+  }
+  .toolbar-title-md {
+    color: $white;
+  }
 }
-
+.toolbar-ios-heading {
+  .toolbar-background-ios {
+    background: $blue !important;
+  }
+  .toolbar-title-ios {
+    color: $white;
+  }
+}
 .segment-md-primary .segment-button {
-    color: $black;
+  color: $black;
 }
-.segment-button.segment-activated {
-    color: $blue;
-    opacity: 1;
-    border-bottom: 4px solid #2b9bff;
-}
-.item-block{
-	border-bottom: 1px solid #dedede;
-}
-.list-md .item-block .item-inner{
-	border-bottom: none;
-}
-.content-md {
-    color: $black;
-    background-color: #f5f5f5;
-}
-.searchbar-input {
-    border-radius: 2px !important;
 
+.segment-button.segment-activated {
+  color: $blue;
+  opacity: 1;
+  border-bottom: 4px solid #2b9bff;
+}
+
+.item-block {
+  border-bottom: 1px solid #dedede;
+}
+
+.list-md .item-block .item-inner {
+  border-bottom: none;
+}
+
+.content-md {
+  color: $black;
+  background-color: #f5f5f5;
+}
+
+.searchbar-input {
+  border-radius: 2px !important;
+
+}
+
+@media (max-width: $screen-xs-max) {
+  .responsive-media {
+    .cc-width-grid {
+      -webkit-flex: 0 0 50%;
+      -ms-flex: 0 0 50%;
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+}
+
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+  .responsive-media {
+    .cc-width-grid {
+      -webkit-flex: 0 0 33.3%;
+      -ms-flex: 0 0 33.3%;
+      flex: 0 0 33.3%;
+      max-width: 33.3%;
+    }
+  }
 }

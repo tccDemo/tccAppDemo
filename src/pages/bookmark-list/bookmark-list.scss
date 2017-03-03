@@ -41,6 +41,36 @@ page-#{$prefix-bookmark}-list {
             }
         }
     }
+    .card-ios-bookmark {
+        .card-content {
+            position: relative;
+            height: 150px;
+
+            img {
+                &.#{$prefix-bookmark}-img {
+                    max-height: 70px;
+                }
+            }
+            .#{$prefix-bookmark}-item-body {
+                background-color: $white;
+                position: absolute;
+                padding: .6rem;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 60px;
+                @extend .border-none;
+                h3 {
+                    font-size: .7rem;
+                    line-height: 1.1rem;
+                    padding-bottom: .3rem;
+                    font-weight: bold;
+                    color: $black;
+                    @extend .text-ellipsis;
+                }
+            }
+        }
+    }
 }
 
 

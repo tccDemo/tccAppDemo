@@ -34,7 +34,7 @@
     </ion-item>
 	</div>
 
-	
+
 	<ion-row wrap *ngIf="isTileView" [dragula]='"bag-one"' [dragulaModel]='bookmarks'  class="ion-row-bookmark dragContainer">
       <ion-col width-50 *ngFor="let bookmark of bookmarks"
 	(click)="openDetailBookmark(bookmark.id)" class="ion-col-bookmark"  bookmarkId="{{bookmark.id}}" >
@@ -46,13 +46,13 @@
 					<h3>
 						{{bookmark.subject}}
 					</h3>
-				</div>  
+				</div>
 			</ion-card-content>
 		</ion-card>
       </ion-col>
-    </ion-row>	
+    </ion-row>
 	</div>
-	
+
 	<div *ngIf="filter!='myFavour'">
 	<div *ngIf="!isTileView">
     <ion-item *ngFor="let bookmark of bookmarks"
@@ -62,7 +62,7 @@
     </ion-item>
 	</div>
 
-	
+
 	<ion-row wrap *ngIf="isTileView" class="ion-row-bookmark">
       <ion-col width-50 *ngFor="let bookmark of bookmarks"
 	(click)="openDetailBookmark(bookmark.id)" class="ion-col-bookmark"  bookmarkId="{{bookmark.id}}">
@@ -78,7 +78,7 @@
 		</ion-card>
       </ion-col>
     </ion-row>	
-	
+
 	</div>
 	</div>
 		 </ion-content>	

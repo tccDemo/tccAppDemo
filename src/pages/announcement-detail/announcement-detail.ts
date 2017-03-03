@@ -14,10 +14,10 @@ export class AnnouncementDetailPage {
   announcement:Announcement;
 
   constructor(
-    public navCtrl: NavController,
-    public params: NavParams,
-    public viewCtrl: ViewController,
-    public announcementService: AnnouncementService
+    private navCtrl: NavController,
+    private params: NavParams,
+    private viewCtrl: ViewController,
+    private announcementService: AnnouncementService
   	){}
 
   ngOnInit(): void {
@@ -26,12 +26,5 @@ export class AnnouncementDetailPage {
 
   getAnnouncement(announcementId: number): void {
     this.announcementService.getAnnouncement(announcementId).then( (announcement: Announcement) => this.announcement = announcement );
-  }
-
-  dismiss():void {
-    this.viewCtrl.dismiss();
-  }
-  goBack() {
-    this.navCtrl.pop();
   }
 }

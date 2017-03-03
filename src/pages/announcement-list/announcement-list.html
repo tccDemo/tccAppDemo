@@ -5,24 +5,20 @@
 </ion-toolbar>
 <ion-content style="position:static">
   <ion-list class="dataContainer">
+  
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>   
+  
     <ion-item *ngIf="announcements==null">
       <IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg">
     </ion-item>
     <ion-item *ngIf="announcements!=null&&announcements.length==0">
       No data found
     </ion-item>
-
-   <!-- <ion-item *ngFor="let announcement of announcements"
-              (click)="viewDetailModal({announcementId: announcement.id})">
-      <ion-thumbnail item-left>
-        <ion-icon name="information-circle" class="announcementIcon"></ion-icon>
-      </ion-thumbnail>
-      <h2>{{announcement.title}}</h2>
-      <p>{{announcement.postedBy}}</p>
-      <p>{{announcement.detail}}</p>
-    </ion-item>-->
     <ion-item *ngFor="let announcement of announcements"
-              (click)="goToDetail({announcementId: announcement.id})">
+              (click)="openDetailPage({announcementId: announcement.id})">
       <ion-thumbnail item-left>
         <ion-icon name="information-circle" class="announcementIcon"></ion-icon>
       </ion-thumbnail>

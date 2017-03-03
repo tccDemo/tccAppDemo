@@ -29,18 +29,6 @@ export class HomePage {
 
   }
 
-  doRefresh(refresher) {
-    if(this.tab=="bookmark") {
-      this.bookmarkListPage.doRefresh(refresher);	
-    } else if(this.tab=="announcement") {
-      this.announcementListPage.doRefresh(refresher);	
-    } else if(this.tab=="event") {
-      this.eventListPage.doRefresh(refresher);	
-    }
-      
-  }
-
-
   takePhoto(){
   	let options = {
   		saveToPhotoAlbum: false,

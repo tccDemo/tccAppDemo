@@ -44,7 +44,7 @@
 
 
 	<ion-row wrap *ngIf="isTileView" [dragula]='"bag-one"' [dragulaModel]='bookmarks'  class="ion-row-bookmark dragContainer responsive-media">
-      <ion-col width-50 *ngFor="let bookmark of bookmarks"
+      <ion-col *ngFor="let bookmark of bookmarks"
 	(click)="openDetailBookmark(bookmark.id)" class="ion-col-bookmark cc-width-grid"  bookmarkId="{{bookmark.id}}" >
 
 		<ion-card color="bookmark">

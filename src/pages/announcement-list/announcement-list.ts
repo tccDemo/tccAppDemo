@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-//import {NavController, NavParams, ModalController} from 'ionic-angular';
 import {ModalController, NavController, NavParams} from 'ionic-angular';
 
 import {Announcement} from '../../providers/announcement';
@@ -62,7 +61,7 @@ export class AnnouncementListPage {
   }
 
 //调用Push方法
-  goToOtherPage(id) {
+  goToDetail(id) {
     this.navCtrl.push(AnnouncementDetailPage, id);
   }
 

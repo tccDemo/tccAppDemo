@@ -38,10 +38,6 @@ export class EventDetailPage {
     this.end = new Date(this.ev.endDate.getTime()+this.ev.endTime*1000*3600);
   }
 
-  dismiss():void {
-    this.viewCtrl.dismiss();
-  }
-
   download():void { 
     Calendar.createEvent(this.ev.title, this.ev.location, this.ev.detail, this.start, this.end).then(()=>this.showDLSucMsg());
   }

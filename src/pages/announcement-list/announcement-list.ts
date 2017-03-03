@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ModalController, NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 
 import {Announcement} from '../../providers/announcement';
 import {AnnouncementService} from '../../providers/announcement.service';
@@ -15,9 +15,8 @@ export class AnnouncementListPage {
 
   announcements: Announcement[];
 
-  constructor(private modalCtrl: ModalController,
-              private  navParams: NavParams,
-              public  navCtrl: NavController,
+  constructor(private  navParams: NavParams,
+              private  navCtrl: NavController,
               private announcementService: AnnouncementService) {
 
   }
@@ -54,15 +53,7 @@ export class AnnouncementListPage {
     }
   }
 
-  // 调用模态框组件
-  viewDetailModal(announcementId: string | number): void {
-    let announceModal = this.modalCtrl.create(AnnouncementDetailPage, announcementId)
-    announceModal.present();
+  openDetailPage(announcementId: string | number): void {
+    this.navCtrl.push(AnnouncementDetailPage, announcementId);
   }
-
-//调用Push方法
-  goToDetail(id) {
-    this.navCtrl.push(AnnouncementDetailPage, id);
-  }
-
 }

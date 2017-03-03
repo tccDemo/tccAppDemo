@@ -1,26 +1,17 @@
 <ion-header>
-
-  <ion-toolbar>
+  <ion-navbar class="headToolBar" color="heading">
     <ion-title>
       <span *ngIf="ev!=null">{{ev.title}}</span>
     </ion-title>
-    <ion-buttons end>
-      <button ion-button (click)="download()">
-        <ion-icon name="download"></ion-icon>
+    <ion-buttons right>
+      <button ion-button (click)="download()" icon-only icon-right>
+        <ion-icon name="download" class="downloadIcon"></ion-icon>
       </button>
-	  <button ion-button (click)="dismiss()">
-        <span ion-text color="primary" showWhen="ios">Cancel</span>
-        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
+    </ion-buttons>	
+  </ion-navbar>
 </ion-header>
-
-
 <ion-content>
-
   <div *ngIf="ev==null"><IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg"></div>
-
   <ion-list *ngIf="ev!=null">
       <ion-item>
         <ion-avatar item-left>

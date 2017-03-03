@@ -81,15 +81,11 @@ export class EventListPage {
   	console.log(this.bundleEvents);
   }
 
-  openDetailModal(eventId: string | number):void {
-    // let modal = this.modalCtrl.create(EventDetailPage, eventId);
-    // modal.present();
+  openDetailPage(eventId: string | number):void {
     this.navCtrl.push(EventDetailPage, eventId);
   }
 
-  openCalendarModal():void{
-    // let modal = this.modalCtrl.create(EventCalendarPage);
-    // modal.present();
+  openCalendarPage():void{
     this.navCtrl.push(EventCalendarPage);  
   }
 }

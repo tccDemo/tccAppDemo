@@ -12,7 +12,6 @@ import { NotificationDetailPage } from '../notification-detail/notification-deta
 })
 export class NotificationListPage {
 
-
   notifications: Notification[];
 
   constructor(private navCtrl: NavController, private navParams: NavParams, 
@@ -42,6 +41,10 @@ export class NotificationListPage {
   openDetailModal(notificationId: string | number):void {
     let modal = this.modalCtrl.create(NotificationDetailPage, notificationId);
     modal.present();
+  }
+
+  openDetailPage(notificationId: string | number):void {
+     this.navCtrl.push(NotificationDetailPage, notificationId);
   }
 
 }

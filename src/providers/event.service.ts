@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Event } from './event';
-import { EVENTS } from './mock-event';
+import { EVENTS } from './event-mock';
 
 declare var $:any;
 

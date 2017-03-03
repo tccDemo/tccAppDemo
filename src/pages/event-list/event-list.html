@@ -6,7 +6,7 @@
      </ion-searchbar>
 	
       <ion-buttons right>
-        <button ion-button icon-only (click)="openCalendarModal()"> 
+        <button ion-button icon-only (click)="openCalendarPage()"> 
           <ion-icon name="calendar" id="calendarIcon"></ion-icon>
         </button>
       </ion-buttons>		
@@ -26,7 +26,7 @@
       {{be.date | date: 'mediumDate'}}
     </ion-list-header>
     <ion-item *ngFor="let ev of be.events" class="eventRow" 
-	 (click)="openDetailModal({eventId: ev.id})">	 
+	 (click)="openDetailPage({eventId: ev.id})">	 
 	 <h2 class="eventTitle">{{ev.title}}</h2>
 	 <ion-note item-right *ngIf="ev.allDay">All Day</ion-note>
 	 <ion-note item-right *ngIf="!ev.allDay">{{ev.start | date:"HH:mm"}}</ion-note>

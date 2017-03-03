@@ -11,18 +11,8 @@
     <ion-item *ngIf="announcements!=null&&announcements.length==0">
       No data found
     </ion-item>
-
-   <!-- <ion-item *ngFor="let announcement of announcements"
-              (click)="viewDetailModal({announcementId: announcement.id})">
-      <ion-thumbnail item-left>
-        <ion-icon name="information-circle" class="announcementIcon"></ion-icon>
-      </ion-thumbnail>
-      <h2>{{announcement.title}}</h2>
-      <p>{{announcement.postedBy}}</p>
-      <p>{{announcement.detail}}</p>
-    </ion-item>-->
     <ion-item *ngFor="let announcement of announcements"
-              (click)="goToDetail({announcementId: announcement.id})">
+              (click)="openDetailPage({announcementId: announcement.id})">
       <ion-thumbnail item-left>
         <ion-icon name="information-circle" class="announcementIcon"></ion-icon>
       </ion-thumbnail>

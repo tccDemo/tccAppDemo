@@ -9,7 +9,8 @@ import {SettingPage}                     from '../setting/setting';
 })
 
 export class FooterPage {
-
+    // this tells the tabs component which Pages
+    // should be each tab's root Page
     navRoot1: any = HomePage;
     navRoot2: any = NotificationListPage;
     navRoot3: any = SettingPage;

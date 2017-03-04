@@ -12,7 +12,7 @@ import { EventCalendarPage } from '../pages/event-calendar/event-calendar';
 
 import { SettingPage } from '../pages/setting/setting';
 import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import { FooterPage } from '../pages/footer/footer';
 import { LoginPage } from '../pages/login/login';
 
 import { BookmarkFilterComponent } from '../components/bookmark-filter/bookmark-filter';
@@ -38,7 +38,7 @@ import { DragulaService,DragulaModule } from 'ng2-dragula';
     EventCalendarPage,
     SettingPage,
     HomePage,
-    TabsPage,
+    FooterPage,
     LoginPage,
     BookmarkFilterComponent
   ],
@@ -60,7 +60,7 @@ import { DragulaService,DragulaModule } from 'ng2-dragula';
     EventCalendarPage,
     SettingPage,
     HomePage,
-    TabsPage,
+    FooterPage,
     LoginPage,
     BookmarkFilterComponent
   ],

@@ -14,4 +14,8 @@ export class FooterPage {
     navRoot1: any = HomePage;
     navRoot2: any = NotificationListPage;
     navRoot3: any = SettingPage;
+
+    constructor() {
+
+    }
 }

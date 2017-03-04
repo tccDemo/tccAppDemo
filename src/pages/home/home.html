@@ -1,17 +1,18 @@
 <ion-header>
   <ion-navbar class="headToolBar" color="heading">
     <ion-buttons left>
-      <button ion-button icon-only (click)="takePhoto()">        
-		<ion-icon name="contact" *ngIf="!base64Image" alt="profile" class="profileImg"></ion-icon>
-		<img [src]="base64Image" *ngIf="base64Image" alt="profile" class="profileImg"/>
+      <button ion-button icon-only (click)="takePhoto()">
+        <!--<ion-icon name="contact" *ngIf="!base64Image" alt="profile" class="profileImg"></ion-icon>-->
+        <img [src]="userAvatar"  alt="profile" class="profileImg"/>
       </button>
-    </ion-buttons>  
-  
+    </ion-buttons>
+
     <ion-title class="title title-ios">
-	  Home
-	</ion-title>
+      Home
+    </ion-title>
   </ion-navbar>
-   <ion-segment [(ngModel)]="tab" color="primary">
+
+  <ion-segment [(ngModel)]="tab" color="primary">
     <ion-segment-button value="bookmark">
       Campus Links
     </ion-segment-button>
@@ -22,23 +23,24 @@
       Events
     </ion-segment-button>
   </ion-segment>
-  
+
 </ion-header>
 
 <ion-content>
-  
-  <div [ngSwitch]="tab" >
-  <ion-list *ngSwitchCase="'bookmark'">
-    <page-bookmark-list></page-bookmark-list>
-  </ion-list>
 
-  <ion-list *ngSwitchCase="'announcement'">
-    <page-announcement-list></page-announcement-list>
-  </ion-list>
-  
-  <ion-list *ngSwitchCase="'event'">
-    <page-event-list></page-event-list>
-  </ion-list>
-</div>
+  <div [ngSwitch]="tab">
+    <ion-list *ngSwitchCase="'bookmark'">
+      <page-bookmark-list></page-bookmark-list>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'announcement'">
+      <page-announcement-list></page-announcement-list>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'event'">
+      <page-event-list></page-event-list>
+    </ion-list>
+
+  </div>
 
 </ion-content>

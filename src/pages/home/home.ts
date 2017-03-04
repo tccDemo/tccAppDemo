@@ -15,6 +15,9 @@ export class HomePage {
 
   tab: string = "bookmark";
   public base64Image: string = null;
+  public avatarPath;
+  public userAvatar : any = "assets/images/avatar/default.jpg";
+
 
   @ViewChild(BookmarkListPage)
   bookmarkListPage: BookmarkListPage;
@@ -29,20 +32,42 @@ export class HomePage {
 
   }
 
-  takePhoto(){
-  	let options = {
-  		saveToPhotoAlbum: false,
-  		cameraDirection: 1,
-  		targetWidth: 50,
-  		targetHeight: 50,
-		destinationType: Camera.DestinationType.DATA_URL
-  	};
+  // takePhoto(){
+  // 	let options = {
+  // 		saveToPhotoAlbum: false,
+  // 		cameraDirection: 1,
+  // 		targetWidth: 50,
+  // 		targetHeight: 50,
+	// 	destinationType: Camera.DestinationType.DATA_URL
+  // 	};
+  //
+  //   Camera.getPicture(options).then((imageData) => {
+  //       this.base64Image = "data:image/jpeg;base64," + imageData;
+  //   }, (err) => {
+  //       console.log(err);
+  //   });
+  // }
 
-    Camera.getPicture(options).then((imageData) => {
-        this.base64Image = "data:image/jpeg;base64," + imageData;
-    }, (err) => {
-        console.log(err);
-    });	
-  }
+    //Call camera
+    takePhoto() {
+        let options = {
+            targetWidth: 50,
+            targetHeight: 50,
+            destinationType: Camera.DestinationType.FILE_URI,
+            encodingType: Camera.EncodingType.JPEG,
+            mediaType: Camera.MediaType.PICTURE,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            correctOrientation: true,
+            saveToPhotoAlbum: true
+        };
+
+        Camera.getPicture(options).then((imageData) => {
+            let base64Image = imageData;
+            this.avatarPath = base64Image;
+            this.userAvatar = base64Image;
+        }, (err) => {
+            alert(err.toString());
+        });
+    }
 
 }

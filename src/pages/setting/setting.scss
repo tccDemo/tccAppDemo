@@ -6,17 +6,17 @@ page-setting {
         background-size: 100% 100%;
         height: 30rem;
         text-align: center;
-        padding-top: 8rem;
+        padding-top: 12rem;
     }
     .userNameLabel {
-        font-size: 2rem;
+        font-size: 1.4rem;
         margin: auto;
         color: #fff;
     }
     .userProfileImg {
         color: #fff;
         margin: auto;
-        font-size: 8rem;
+        font-size: 5rem;
     }
     .settingIcon {
         color: #fff;
@@ -48,5 +48,11 @@ page-setting {
         test-align: left;
         color: #333333;
         margin-left: 0;
+    }
+    .profileImg{
+        color:#fff;
+        height: 48px;
+        width: 48px;
+        border-radius: 50%;
     }
 }

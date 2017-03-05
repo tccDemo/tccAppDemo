@@ -17,7 +17,8 @@ export class SettingPage {
     @ViewChild(UserAvatarComponent)
     userAvatar: UserAvatarComponent;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController,
+                public navParams: NavParams) {
     }
 
     ionViewDidLoad() {

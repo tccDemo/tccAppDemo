@@ -12,7 +12,7 @@ export class UserAvatarComponent implements OnInit {
     @Input()
     public base64Image: string = null;
     public avatarPath;
-    public userAvatar: any = "assets/images/avatar/default.jpg";
+    public userAvatar: any = "assets/images/avatar/default.png";
 
     // call camera API
     takePhoto() {

@@ -25,5 +25,13 @@ export class AnnouncementService {
   getAnnouncement(id: number): Promise<Announcement> {
     return Promise.resolve(ANNOUNCEMENTS).then(announcements => announcements.find(announcement => announcement.id == +id));   
   }
- 
+  getAnnouncementNumber(): number {
+    var ret = 0;
+    for (var i = 0; i < ANNOUNCEMENTS.length; i++) {
+      if (ANNOUNCEMENTS[i].isNew) {
+        ret++;
+      }
+    }
+    return ret;
+  }
 }

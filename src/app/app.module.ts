@@ -3,7 +3,6 @@ import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
 import { UserAvatarComponent } from '../components/user-avatar/user-avatar';
 import {NotificationListPage} from '../pages/notification-list/notification-list';
-import {NotificationPage} from '../pages/notification/notification';
 import {NotificationDetailPage} from '../pages/notification-detail/notification-detail';
 import {AnnouncementListPage} from '../pages/announcement-list/announcement-list';
 import {AnnouncementDetailPage} from '../pages/announcement-detail/announcement-detail';

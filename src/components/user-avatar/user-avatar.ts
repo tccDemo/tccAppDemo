@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit, Input, Output} from '@angular/core';
 
 import {Camera} from 'ionic-native';
 
@@ -7,11 +7,14 @@ import {Camera} from 'ionic-native';
     templateUrl: 'user-avatar.html'
 })
 
-export class UserAvatarComponent {
+export class UserAvatarComponent implements OnInit {
+
+    @Input()
     public base64Image: string = null;
     public avatarPath;
     public userAvatar: any = "assets/images/avatar/default.jpg";
 
+    // call camera API
     takePhoto() {
         let options = {
             targetWidth: 50,
@@ -31,5 +34,9 @@ export class UserAvatarComponent {
         }, (err) => {
             alert(err.toString());
         });
+    }
+
+    ngOnInit() {
+        console.log('user avatar');
     }
 }

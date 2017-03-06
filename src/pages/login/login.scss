@@ -40,7 +40,6 @@ page-login {
 
     ion-item {
       border-radius: 3px !important;
-      padding-left: 10px !important;
       margin-bottom: 1px;
       background-color: rgba(255,255,255,0.1);
       font-size: 0.9em;
@@ -68,6 +67,9 @@ page-login {
     }
 
   }
+  .text-input-md{
+    color: #fff;
+  }
 }
 
 .form-input{
@@ -93,4 +95,8 @@ page-login {
 }
 .text-input-md:-ms-input-placeholder, textarea:-ms-input-placeholder {
   color: rgba(255,255,255,0.7);
+}
+.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+  border-bottom: none;
+ box-shadow: none
 }

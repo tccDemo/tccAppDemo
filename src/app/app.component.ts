@@ -5,12 +5,11 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { FooterPage } from '../pages/footer/footer';
 import { LoginPage } from '../pages/login/login';
 
-
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = LoginPage;
+  rootPage = FooterPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {

@@ -19,6 +19,7 @@ export class BookmarkListPage {
   bookmarks: Bookmark[];
   isTileView: boolean = true;
   filter: string = "myFavour";
+  isSortable: boolean = false;
 
   constructor(public plt: Platform,
               private navCtrl: NavController,
@@ -28,10 +29,8 @@ export class BookmarkListPage {
               private dragulaService: DragulaService,
               private zone: NgZone) {
 
-    dragulaService.drop.subscribe((value: any) => {
+    this.dragulaService.drop.subscribe((value: any) => {
       this.doSort(value.slice(1));
-
-
     });
 
   }
@@ -65,6 +64,10 @@ export class BookmarkListPage {
   }
 
   refreshBookmarks(bookmarkFilter: string): void {
+    if (this.filter != bookmarkFilter) {
+      this.isSortable = false;
+    }
+
     this.filter = bookmarkFilter || this.filter;
     if (this.filter == "all") {
       this.getAllBookmarks();
@@ -201,7 +204,12 @@ export class BookmarkListPage {
   }
 
   enableSort (): void {
-  	console.log("kkk");
-  	alert("hello")
+    if (this.filter=='myFavour') {
+      this.isSortable = true;  
+    }    
+  }
+
+  disableSort ():void {
+   this.isSortable = false; 
   }
 }

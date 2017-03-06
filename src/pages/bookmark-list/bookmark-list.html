@@ -1,4 +1,4 @@
-<ion-toolbar>
+<ion-toolbar *ngIf="!isSortable">
   <ion-buttons left>
     <bookmark-filter (onRefreshBookmarks)="refreshBookmarks($event)"></bookmark-filter>
   </ion-buttons>
@@ -19,10 +19,18 @@
   </ion-buttons>
 </ion-toolbar>
 
+<ion-toolbar *ngIf="isSortable">
+  <ion-buttons right>
+    <button ion-button (click)="disableSort()" round outline>
+      Save Order
+    </button>
+  </ion-buttons>
+</ion-toolbar>
+
 <ion-content style="position:static">
   <div class="dataContainer">
 
-    <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher (ionRefresh)="doRefresh($event)" *ngIf="!isSortable">
       <ion-refresher-content refreshingSpinner="circles">
       </ion-refresher-content>
     </ion-refresher>
@@ -35,10 +43,10 @@
       No data found
     </ion-item>
 
-    <div *ngIf="filter=='myFavour'">
+    <div *ngIf="filter=='myFavour' && isSortable">
       <div *ngIf="!isTileView" [dragula]='"bag-one"' [dragulaModel]='bookmarks' class="dragContainer">
         <ion-item *ngFor="let bookmark of bookmarks"
-                  (click)="openDetailBookmark(bookmark.id)" bookmarkId="{{bookmark.id}}">
+                  bookmarkId="{{bookmark.id}}">
           <ion-thumbnail item-left>
             <img [src]="bookmark.icon" class="bookmark-list-img">
           </ion-thumbnail>
@@ -51,7 +59,7 @@
       <ion-row wrap *ngIf="isTileView" [dragula]='"bag-one"' [dragulaModel]='bookmarks'
                class="ion-row-bookmark dragContainer responsive-media">
         <ion-col *ngFor="let bookmark of bookmarks"
-                 (click)="openDetailBookmark(bookmark.id)" class="ion-col-bookmark cc-width-grid"
+                 class="ion-col-bookmark cc-width-grid"
                  bookmarkId="{{bookmark.id}}">
 
           <ion-card color="bookmark">
@@ -68,9 +76,9 @@
       </ion-row>
     </div>
 
-    <div *ngIf="filter!='myFavour'">
+    <div *ngIf="filter!='myFavour' || !isSortable">
       <div *ngIf="!isTileView">
-        <ion-item *ngFor="let bookmark of bookmarks"
+        <ion-item *ngFor="let bookmark of bookmarks"  (press)="enableSort()"
                   (click)="openDetailBookmark(bookmark.id)" bookmarkId="{{bookmark.id}}">
           <ion-thumbnail item-left>
             <img [src]="bookmark.icon" class="bookmark-list-img">
@@ -85,7 +93,7 @@
         <ion-col *ngFor="let bookmark of bookmarks"
                  (click)="openDetailBookmark(bookmark.id)" class="ion-col-bookmark cc-width-grid"
                  bookmarkId="{{bookmark.id}}">
-          <ion-card color="bookmark">
+          <ion-card color="bookmark"  (press)="enableSort()">
             <ion-card-content>
               <img [src]="bookmark.icon" class="bookmark-img">
               <div class="bookmark-item-body">

@@ -27,8 +27,18 @@ export class HomePage {
     @ViewChild(EventListPage)
     eventListPage: EventListPage;
 
+    hasNewAnnouncements: boolean = true;
+    hasNewEvents: boolean = true;
+
     constructor(public navCtrl: NavController) {
 
     }
 
+    clearNewAnnouncements(): void {
+        this.hasNewAnnouncements = false;
+    }
+
+    clearNewEvents(): void {
+        this.hasNewEvents = false;
+    }
 }

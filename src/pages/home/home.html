@@ -13,11 +13,11 @@
     <ion-segment-button value="bookmark">
       Campus Links
     </ion-segment-button>
-    <ion-segment-button value="announcement">
-      Announcements <span class="segment-badge"></span>
+    <ion-segment-button value="announcement" (ionSelect)="clearNewAnnouncements()">
+      Announcements <span class="segment-badge" *ngIf="hasNewAnnouncements"></span>
     </ion-segment-button>
-    <ion-segment-button value="event">
-      Events <span class="segment-badge"></span>
+    <ion-segment-button value="event" (ionSelect)="clearNewEvents()">
+      Events <span class="segment-badge" *ngIf="hasNewEvents"></span>
     </ion-segment-button>
   </ion-segment>
 

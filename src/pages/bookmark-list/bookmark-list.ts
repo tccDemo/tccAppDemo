@@ -199,4 +199,9 @@ export class BookmarkListPage {
         console.error('onError');
       });
   }
+
+  enableSort (): void {
+  	console.log("kkk");
+  	alert("hello")
+  }
 }

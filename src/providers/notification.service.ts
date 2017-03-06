@@ -22,6 +22,24 @@ export class NotificationService {
     return Promise.resolve(NOTIFICATIONS);
   }
 
+  getNotificationNumber(): number {
+    var ret = 0;
+    for (var i = 0; i < NOTIFICATIONS.length; i++) {
+      if (NOTIFICATIONS[i].isNew) {
+        ret++;
+      }
+    }
+    return ret;
+  }
+
+  markRead(id: string | number): void {
+    for (var i = 0; i < NOTIFICATIONS.length; i++) {
+      if (NOTIFICATIONS[i].id == id) {
+        NOTIFICATIONS[i].isNew = false;
+      }
+    }
+  }
+
   getNotification(id: number): Promise<Notification> {
     return Promise.resolve(NOTIFICATIONS).then(notifications => notifications.find(notification => notification.id == +id));   
   }

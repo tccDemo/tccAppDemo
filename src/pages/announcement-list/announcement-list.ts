@@ -56,4 +56,10 @@ export class AnnouncementListPage {
   openDetailPage(announcementId: string | number): void {
     this.navCtrl.push(AnnouncementDetailPage, announcementId);
   }
+
+  onHold():void{
+
+    console.log("cckd");
+    window.alert("ckc")
+  }
 }

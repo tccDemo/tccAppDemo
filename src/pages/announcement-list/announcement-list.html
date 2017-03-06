@@ -18,13 +18,14 @@
       No data found
     </ion-item>
     <ion-item *ngFor="let announcement of announcements"
-              (click)="openDetailPage({announcementId: announcement.id})">
+              (hold)="onHold()">
       <ion-thumbnail item-left>
         <ion-icon name="information-circle" class="announcementIcon"></ion-icon>
       </ion-thumbnail>
       <h2>{{announcement.title}}</h2>
       <p>{{announcement.postedBy}}</p>
       <p>{{announcement.detail}}</p>
+	  <button on-hold="onHold()" class="button" >Test</button>
     </ion-item>
   </ion-list>
 </ion-content>

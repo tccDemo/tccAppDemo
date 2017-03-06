@@ -24,7 +24,9 @@ export class NotificationDetailPage {
   }
 
   ngOnInit(): void {
-    this.getNotification(this.params.get('notificationId'));
+    let notificationId = this.params.get('notificationId');
+    this.getNotification(notificationId);
+    this.notificationService.markRead(notificationId);
   }
 
   getNotification(notificationId: number): void {

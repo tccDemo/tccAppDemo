@@ -12,39 +12,44 @@ import { NotificationDetailPage } from '../notification-detail/notification-deta
 })
 export class NotificationListPage {
 
-  notifications: Notification[];
+  public notifications: Notification[];
 
   constructor(private navCtrl: NavController, private navParams: NavParams, 
-  	private notificationService: NotificationService, private modalCtrl: ModalController){}
+  	private notificationService: NotificationService, private modalCtrl: ModalController){
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NotificationListPage');
   }
 
+  ionViewDidLeave(){
+    this.navParams.data.size = this.notificationService.getNotificationNumber();
+  }
   
   ngOnInit(): void {
     this.getNotifications();
   }
 
   getNotifications(): void {
-    this.notificationService.getNotifications().then( (notifications:Notification[]) => this.notifications = notifications);
+    this.notificationService.getNotifications().then( (notifications:Notification[]) => this.load(notifications));
   }
 
-  delete(notificationId: string | number):void {
-  	this.notificationService.delete(notificationId).then( (notifications:Notification[]) => this.notifications = notifications);
+  delete(notificationId: string | number):void {    
+  	this.notificationService.delete(notificationId).then( (notifications:Notification[]) => this.load(notifications));
  }
 
+  load(notifications:Notification[]){
+    console.log("load");
+    this.notifications = notifications;
+    this.navParams.data.size = this.notificationService.getNotificationNumber();
+  }
+
   clearAll():void{
-  	this.notificationService.clearAll().then( (notifications:Notification[]) => this.notifications = notifications);
+  	this.notificationService.clearAll().then( (notifications:Notification[]) => this.load(notifications));
   }
 
-  openDetailModal(notificationId: string | number):void {
-    let modal = this.modalCtrl.create(NotificationDetailPage, notificationId);
-    modal.present();
-  }
-
-  openDetailPage(notificationId: string | number):void {
-     this.navCtrl.push(NotificationDetailPage, notificationId);
+  openDetailPage(notificationId: string | number):void {     
+     this.navCtrl.push(NotificationDetailPage, notificationId);     
   }
 
 }

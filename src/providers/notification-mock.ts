@@ -8,7 +8,8 @@ export const NOTIFICATIONS: Notification[] = [
         detail: "Hello World",
         nType: "announcement",
         publishedBy: "Peter",
-        publishedAt: "Today"
+        publishedAt: "Today",
+        isNew: true
     },
     {
         id: 112,
@@ -17,7 +18,8 @@ export const NOTIFICATIONS: Notification[] = [
         detail: "Hello World",
         nType: "announcement",
         publishedBy: "Mary",
-        publishedAt: "Yesterday"
+        publishedAt: "Yesterday",
+        isNew: true
     },
     {
         id: 113,
@@ -26,7 +28,8 @@ export const NOTIFICATIONS: Notification[] = [
         detail: "Hello World",
         nType: "systemheadline",
         publishedBy: "Chris",
-        publishedAt: "Dec 20, 2016"
+        publishedAt: "Dec 20, 2016",
+        isNew: true
     },
     {
         id: 114,
@@ -35,7 +38,8 @@ export const NOTIFICATIONS: Notification[] = [
         detail: "Hello World",
         nType: "systemheadline",
         publishedBy: "Sherry",
-        publishedAt: "Dec 14, 2016"
+        publishedAt: "Dec 14, 2016",
+        isNew: true
     },
     {
         id: 115,
@@ -44,7 +48,8 @@ export const NOTIFICATIONS: Notification[] = [
         detail: "Hello World",
         nType: "others",
         publishedBy: "Louis",
-        publishedAt: "Today"
+        publishedAt: "Today",
+        isNew: true
     },
     {
         id: 116,
@@ -53,6 +58,7 @@ export const NOTIFICATIONS: Notification[] = [
         detail: "Hello World",
         nType: "others",
         publishedBy: "Fred",
-        publishedAt: "Yesterday"
+        publishedAt: "Yesterday",
+        isNew: true
     }
 ];

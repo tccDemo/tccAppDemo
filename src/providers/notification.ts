@@ -6,4 +6,5 @@ export class Notification {
   nType: string;
   publishedBy: string;
   publishedAt: string;
+  isNew:boolean;
 }

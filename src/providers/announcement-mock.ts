@@ -4,7 +4,30 @@ export const ANNOUNCEMENTS: Announcement[] = [
     id: 301,
     title: 'Announcement 1',
     postedFrom: 'Class 1',
-    detail: "Hello World Hello World ",
+    detail: "Hello WOrld! This is an announcment!!!",
+//     detail: `
+// <p style="text-align: center; line-height: normal;">
+// <span style="font-family: 'Arial','sans-serif'; mso-bidi-font-size: 12.0pt; mso-fareast-font-family: 'Times New Roman';">
+// On Sunday, March19th, the
+// <strong>Widener University Recital Series</strong>
+// concludes with our own Artist-in-Residence.
+// </span>
+// </p>
+// <p style="text-align: center; line-height: normal;">
+// <span style="font-family: 'Arial','sans-serif'; mso-bidi-font-size: 12.0pt; mso-fareast-font-family: 'Times New Roman';">
+// <font face="Arial">
+// <span style="color: #ff0000;">
+// will perform selections from their current discography.
+// </font>
+// </span>
+// </p>
+// <p style="text-align: center; line-height: normal;">
+// <img src="assets/images/announcement/ann.jpg" title="Culture Cover-resize.jpg" style="width: 100%">
+// </p>
+// <p style="text-align: center; line-height: normal;">
+// <span style="font-family: 'Arial','sans-serif'; mso-bidi-font-size: 12.0pt; mso-fareast-font-family: 'Times New Roman';">The program begins at 3:00 p.m. in the Kapelski Recital Hall. </span>
+// </p>
+//     `,
     postedBy: "Peter",
     postedAt: "Today",
     isNew:true

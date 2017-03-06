@@ -57,9 +57,4 @@ export class AnnouncementListPage {
     this.navCtrl.push(AnnouncementDetailPage, announcementId);
   }
 
-  onHold():void{
-
-    console.log("cckd");
-    window.alert("ckc")
-  }
 }

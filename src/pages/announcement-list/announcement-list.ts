@@ -13,7 +13,7 @@ import {AnnouncementDetailPage} from '../announcement-detail/announcement-detail
 export class AnnouncementListPage {
 
 
-  announcements: Announcement[];
+  public announcements: Announcement[];
 
   constructor(private  navParams: NavParams,
               private  navCtrl: NavController,

@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild,Input} from '@angular/core';
 
 import {NavController} from 'ionic-angular';
 import {UserAvatarComponent} from '../../components/user-avatar/user-avatar';
@@ -30,22 +30,5 @@ export class HomePage {
     constructor(public navCtrl: NavController) {
 
     }
-
-    // takePhoto(){
-    // 	let options = {
-    // 		saveToPhotoAlbum: false,
-    // 		cameraDirection: 1,
-    // 		targetWidth: 50,
-    // 		targetHeight: 50,
-    // 	destinationType: Camera.DestinationType.DATA_URL
-    // 	};
-    //
-    //   Camera.getPicture(options).then((imageData) => {
-    //       this.base64Image = "data:image/jpeg;base64," + imageData;
-    //   }, (err) => {
-    //       console.log(err);
-    //   });
-    // }
-
 
 }

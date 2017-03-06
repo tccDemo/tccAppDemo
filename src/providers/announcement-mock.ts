@@ -16,7 +16,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
     detail: "Hello World Hello World ",
     postedBy: "Linda",
     postedAt: "Today",
-    isNew:true
+    isNew:false
   },
   {
     id: 303,
@@ -25,7 +25,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
     detail: "Hello World Hello World ",
     postedBy: "Marry",
     postedAt: "Dec 19, 2016",
-    isNew:true
+    isNew:false
   },
   {
     id: 304,
@@ -34,7 +34,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
     detail: "Hello World Hello World ",
     postedBy: "John",
     postedAt: "Nov 10, 2016",
-    isNew:true
+    isNew:false
   },
   {
     id: 305,
@@ -43,7 +43,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
     detail: "Hello World Hello World ",
     postedBy: "Peter",
     postedAt: "Aug 8, 2016",
-    isNew:true
+    isNew:false
   },
   {
     id: 306,
@@ -52,7 +52,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
     detail: "Hello World Hello World ",
     postedBy: "Peter",
     postedAt: "Today",
-    isNew:true
+    isNew:false
   },
   {
     id: 307,
@@ -61,7 +61,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
     detail: "Hello World Hello World ",
     postedBy: "Linda",
     postedAt: "Today",
-    isNew:true
+    isNew:false
   },
   {
     id: 308,
@@ -70,7 +70,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
     detail: "Hello World Hello World ",
     postedBy: "Marry",
     postedAt: "Dec 19, 2016",
-    isNew:true
+    isNew:false
   },
   {
     id: 309,
@@ -79,7 +79,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
     detail: "Hello World Hello World ",
     postedBy: "John",
     postedAt: "Nov 10, 2016",
-    isNew:true
+    isNew:false
   },
   {
     id: 310,
@@ -88,7 +88,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
     detail: "Hello World Hello World ",
     postedBy: "Peter",
     postedAt: "Aug 8, 2016",
-    isNew:true
+    isNew:false
   },
   {
     id: 311,
@@ -97,7 +97,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
     detail: "Hello World Hello World ",
     postedBy: "Peter",
     postedAt: "Today",
-    isNew:true
+    isNew:false
   },
   {
     id: 312,
@@ -106,7 +106,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
     detail: "Hello World Hello World ",
     postedBy: "Linda",
     postedAt: "Today",
-    isNew:true
+    isNew:false
   },
   {
     id: 313,
@@ -115,7 +115,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
     detail: "Hello World Hello World ",
     postedBy: "Marry",
     postedAt: "Dec 19, 2016",
-    isNew:true
+    isNew:false
   },
   {
     id: 314,
@@ -124,7 +124,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
     detail: "Hello World Hello World ",
     postedBy: "John",
     postedAt: "Nov 10, 2016",
-    isNew:true
+    isNew:false
   },
   {
     id: 315,
@@ -133,7 +133,6 @@ export const ANNOUNCEMENTS: Announcement[] = [
     detail: "Hello World Hello World ",
     postedBy: "Peter",
     postedAt: "Aug 8, 2016",
-    isNew:true
+    isNew:false
   }
-]  
-  
+]

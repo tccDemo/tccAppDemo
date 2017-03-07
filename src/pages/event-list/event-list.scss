@@ -3,51 +3,50 @@ page-event-list {
   .dataContainer {
     padding-top: 5rem;
   }
- 
+
   .bundleHeader {
     font-size: large;
-	height: 3rem;
-	color: #7EC0EE;
-	margin: 0 1rem;
-	padding: 0;
-	border: 0px;
+    height: 3rem;
+    color: #7EC0EE;
+    padding: 0 1rem;
+    border: 0px;
   }
-  
-.list-md .item-block .item-inner {
-    border-bottom: 0px solid #dedede;
-}
 
-.list-ios .item-block .item-inner {
+  .list-md .item-block .item-inner {
+    border-bottom: 0px solid #dedede;
+  }
+
+  .list-ios .item-block .item-inner {
     border-bottom: 0px solid #c8c7cc;
-}
-  
+  }
+
   ion-list {
     list-style-type: circle;
   }
-  
+
   .list-ios:not([inset]) + .list-ios:not([inset]) ion-list-header {
     margin-top: -30px;
     padding-top: 0;
   }
-  
+
   .eventRow {
     height: 3.6rem;
-	min-height: 3.4rem;	
+    min-height: 3.4rem;
   }
-  
+
   .eventTitle {
-    line-height:2rem;
-    font-size: 1.6rem;	
-	padding-left: 1rem;
-	padding-top:0;
+    line-height: 2rem;
+    font-size: 1.6rem;
+    padding-left: 1rem;
+    padding-top: 0;
   }
 
   #calendarIcon {
     font-size: 3rem;
   }
-  
+
   ion-note {
     font-size: 1.4rem;
-  }  
+  }
 
 }

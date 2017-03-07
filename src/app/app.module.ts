@@ -28,7 +28,7 @@ import {DragulaService, DragulaModule} from 'ng2-dragula';
 
 @NgModule({
     imports: [
-        IonicModule.forRoot(MyApp),
+        IonicModule.forRoot(MyApp), //, {passThruUnknownUrl: true}
         NgCalendarModule,
         DragulaModule
     ],

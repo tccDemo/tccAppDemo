@@ -58,4 +58,20 @@ export class NotificationService {
     NOTIFICATIONS.splice(0, NOTIFICATIONS.length);
     return this.getNotifications();
   }
+
+  getScheduleNotifications(): Promise<Notification[]>{
+    var msgs = new Array();
+    for (var i = 0; i < NOTIFICATIONS.length; i++) {
+      if (NOTIFICATIONS[i].isNew) {
+        msgs.push({
+        	id: NOTIFICATIONS[i].id,
+        	title: "TCC Notification",
+        	text: NOTIFICATIONS[i].name,
+        	icon: "",
+        	data: {}
+        });
+      }
+    }
+    return Promise.resolve(msgs);
+  }
 }

@@ -80,8 +80,12 @@
       <div *ngIf="!isTileView">
         <ion-item *ngFor="let bookmark of bookmarks"  (press)="enableSort()"
                   (click)="openDetailBookmark(bookmark.id)" bookmarkId="{{bookmark.id}}">
+          <!--<ion-thumbnail item-left>-->
+            <!--<img [src]="bookmark.icon" class="bookmark-list-img">-->
+          <!--</ion-thumbnail>-->
           <ion-thumbnail item-left>
-            <img [src]="bookmark.icon" class="bookmark-list-img" class="bookmarkIcon">
+            <img [src]="bookmark.icon" class="bookmark-list-img">
+
           </ion-thumbnail>
           <h2>{{bookmark.subject}}</h2>
           <p *ngIf="bookmark.description">{{bookmark.description}}</p>

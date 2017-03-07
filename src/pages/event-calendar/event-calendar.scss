@@ -1,9 +1,19 @@
 page-event-calendar {
 
   .input-wrapper {
-    margin-top: 1rem;
+    margin-top: 0rem;
 	font-size: 2rem;
 	font-color: #4D4D4D;
   }
-
+  .monthview-current {
+    background-color: #ff9900 !important;
+    color: #fff;
+  }
+  .monthview-primary-with-event[_ngcontent-osa-40] {
+    background-color: #aaa;
+    color: #333;
+  }
+  .bar-button-default-md {
+    color: #fff;
+  }
 }

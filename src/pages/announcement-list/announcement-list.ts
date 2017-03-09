@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, Keyboard, ModalController} from 'ionic-angular';
 
 import {Announcement} from '../../providers/announcement';
 import {AnnouncementService} from '../../providers/announcement.service';
@@ -12,13 +12,18 @@ import {AnnouncementDetailPage} from '../announcement-detail/announcement-detail
 })
 export class AnnouncementListPage {
 
-
   public announcements: Announcement[];
 
-  constructor(private  navParams: NavParams,
-              private  navCtrl: NavController,
+  constructor(private navParams: NavParams,
+              private navCtrl: NavController,
+              private modalCtrl: ModalController,
+              private keyboard: Keyboard,
               private announcementService: AnnouncementService) {
 
+  }
+
+  keyboardCheck() {
+    console.log('The keyboard is open:', this.keyboard.isOpen());
   }
 
   ionViewDidLoad() {
@@ -57,4 +62,7 @@ export class AnnouncementListPage {
     this.navCtrl.push(AnnouncementDetailPage, announcementId);
   }
 
+  openSearch() {
+    console.log('begin search')
+  }
 }

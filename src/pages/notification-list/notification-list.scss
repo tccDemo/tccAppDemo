@@ -5,10 +5,10 @@ page-notification-list {
  .loadingImg {
    display:inline-block;
    margin-top: 25px;
-   margin-left: 43%; 
+   margin-left: 43%;
  }
- 
- .announcementIcon { 
+
+ .announcementIcon {
     color: #fff;
     font-size: 40px;
     background: #28bc82;
@@ -18,9 +18,9 @@ page-notification-list {
     /*border-radius: 50%;*/
     text-align: center;
     line-height: 48px;
- } 
- 
- .othersIcon { 
+ }
+
+ .othersIcon {
     color: #fff;
     font-size: 40px;
     background: #ff9f38;
@@ -30,9 +30,9 @@ page-notification-list {
     /*border-radius: 50%;*/
     text-align: center;
     line-height: 48px;
- } 
+ }
 
- .systemheadlineIcon { 
+ .systemheadlineIcon {
     color: #fff;
     font-size: 40px;
     background: #53ADFF;
@@ -42,13 +42,15 @@ page-notification-list {
     /*border-radius: 50%;*/
     text-align: center;
     line-height: 48px;
- }  
- 
- 
- 
+ }
+
+
+
  .item-md ion-thumbnail {
      min-width: 0px;
      min-height: 0px;
- } 
-
+ }
+  .scroll-content{
+    margin-bottom: 0 !important;
+  }
 }

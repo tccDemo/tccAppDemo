@@ -1,16 +1,16 @@
 <ion-toolbar>
   <ion-searchbar
-                 (ionInput)="doSearch($event)">
+    (ionInput)="doSearch($event)" (ionFocus)="openSearch()">
   </ion-searchbar>
 </ion-toolbar>
 <ion-content style="position:static">
   <ion-list class="dataContainer">
-  
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content refreshingSpinner="circles">
-    </ion-refresher-content>
-  </ion-refresher>   
-  
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content refreshingSpinner="circles">
+      </ion-refresher-content>
+    </ion-refresher>
+
     <ion-item *ngIf="announcements==null">
       <IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg">
     </ion-item>
@@ -23,7 +23,7 @@
       </ion-thumbnail>
       <h2>{{announcement.title}}</h2>
       <p>{{announcement.postedBy}}</p>
-      <p>{{announcement.detail}}</p>
+      <p class="data-summary">{{announcement.detail}}</p>
     </ion-item>
   </ion-list>
 </ion-content>

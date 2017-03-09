@@ -5,9 +5,9 @@ page-#{$prefix-announcement}-list {
  .loadingImg {
    display:inline-block;
    margin-top: 25px;
-   margin-left: 43%; 
+   margin-left: 43%;
  }
- 
+
 /*   ion-toolbar {
   position: fixed;
 } */
@@ -15,8 +15,8 @@ page-#{$prefix-announcement}-list {
   ion-list.dataContainer {
     padding-top: 5rem;
   }
- 
- .announcementIcon { 
+
+ .announcementIcon {
     color: #fff;
     font-size: 40px;
     background: #28bc82;
@@ -25,14 +25,25 @@ page-#{$prefix-announcement}-list {
     display: inline-block;
     text-align: center;
     line-height: 48px;
- } 
- 
+ }
+
  .item-md ion-thumbnail {
      min-width: 0px;
      min-height: 0px;
  }
   .bar-button-default-md {
     color: #fff;
+  }
+  .scroll-content{
+    margin-bottom: 0 !important;
+  }
+  .item-block{
+    align-items: inherit;
+
+  }
+  .data-summary{
+    white-space: nowrap;
+    margin-top: 3px;
   }
 }
 

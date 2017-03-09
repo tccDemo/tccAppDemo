@@ -1,7 +1,10 @@
 page-setting {
+  body{
+    background: #fff;
+  }
   .bgWall {
-    background-image: url(../assets/images/setting-bg.jpg);
-    filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+    background:#fff url(../assets/images/setting-bg.png);
+    /*filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";*/
     background-size: 100% 100%;
     height: 30rem;
     text-align: center;
@@ -50,8 +53,9 @@ page-setting {
   }
   .profileImg {
     color: #fff;
-    height: 70px;
-    width: 70px;
+    height: 90px;
+    width: 90px;
     border-radius: 50%;
+    border: 8px solid rgba(255,255,255,0.3);
   }
 }

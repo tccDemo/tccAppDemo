@@ -18,20 +18,20 @@ export class AnnouncementService {
   private headers = new Headers({'Content-Type': 'application/json'});
 
   getAnnouncementsByName(term: string): Promise<Announcement[]> {
-    return this.getAnnouncements().then(announcements => 
-      announcements.find(announcement => announcement.title.indexOf(term)!=-1));   
+    return this.getAnnouncements().then(announcements =>
+      announcements.find(announcement => announcement.title.indexOf(term)!=-1));
   }
 
   getAnnouncements(): Promise<Announcement[]> {
-    // return Promise.resolve(ANNOUNCEMENTS);
+     return Promise.resolve(ANNOUNCEMENTS);
 
-    let url = "http://ccstage.campuscruiser.com/DataServlet?pg=gb-ajax-data-test&login=xuzp&cx=22.1&cmd=getCampusAnnouncements";
-    let options = new RequestOptions({headers: this.headers});
-    return this.http.get(url, options).toPromise().then(res => res.json())
-    	.catch(err => this.handleError(err));
+    // let url = "http://ccstage.campuscruiser.com/DataServlet?pg=gb-ajax-data-test&login=xuzp&cx=22.1&cmd=getCampusAnnouncements";
+    // let options = new RequestOptions({headers: this.headers});
+    // return this.http.get(url, options).toPromise().then(res => res.json())
+    // 	.catch(err => this.handleError(err));
 
 
-     
+
     // let prams = JSON.stringify({"login": "xuzp", "cx": "22.1", "cmd": "getCampusAnnouncements"});
     // return  this.http
     //        // .get(this.url)
@@ -45,7 +45,7 @@ export class AnnouncementService {
   }
 
   getAnnouncement(id: number): Promise<Announcement> {
-    return this.getAnnouncements().then(announcements => announcements.find(announcement => announcement.id == +id));   
+    return this.getAnnouncements().then(announcements => announcements.find(announcement => announcement.id == +id));
   }
 
   private handleError(error: any): Promise<any> {

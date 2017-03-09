@@ -5,6 +5,7 @@ import { UserAvatarComponent } from '../components/user-avatar/user-avatar';
 import {NotificationListPage} from '../pages/notification-list/notification-list';
 import {NotificationDetailPage} from '../pages/notification-detail/notification-detail';
 import {AnnouncementListPage} from '../pages/announcement-list/announcement-list';
+import {announcementSearchPage} from '../pages/search/annnouncement/search';
 import {AnnouncementDetailPage} from '../pages/announcement-detail/announcement-detail';
 import {BookmarkListPage} from '../pages/bookmark-list/bookmark-list';
 import {EventListPage} from '../pages/event-list/event-list';
@@ -28,7 +29,7 @@ import {DragulaService, DragulaModule} from 'ng2-dragula';
 
 @NgModule({
     imports: [
-        IonicModule.forRoot(MyApp), //, {passThruUnknownUrl: true}
+        IonicModule.forRoot(MyApp), //{passThruUnknownUrl: true}
         NgCalendarModule,
         DragulaModule
     ],
@@ -38,6 +39,7 @@ import {DragulaService, DragulaModule} from 'ng2-dragula';
         NotificationListPage,
         NotificationDetailPage,
         AnnouncementListPage,
+        announcementSearchPage,
         AnnouncementDetailPage,
         BookmarkListPage,
         EventListPage,
@@ -55,6 +57,7 @@ import {DragulaService, DragulaModule} from 'ng2-dragula';
         NotificationListPage,
         NotificationDetailPage,
         AnnouncementListPage,
+        announcementSearchPage,
         AnnouncementDetailPage,
         BookmarkListPage,
         EventListPage,

@@ -3,6 +3,7 @@ import {NavController, NavParams} from 'ionic-angular';
 import {Announcement} from '../../../providers/announcement';
 import {AnnouncementService} from '../../../providers/announcement.service';
 import {AnnouncementDetailPage} from '../../announcement-detail/announcement-detail';
+import { appToolBar } from '../../../utils/appToolbar';
 
 @Component({
   selector: 'page-search-announcement',
@@ -23,8 +24,11 @@ export class announcementSearchPage {
 
   ngOnInit(): void {
     this.getAnnouncements();
+    appToolBar.hideTabsBar();
   }
-
+  ionViewWillLeave() {
+    appToolBar.showTabsBar();
+  }
   getAnnouncements(): void {
     this.announcementService.getAnnouncements().then((announcements: Announcement[]) => this.announcements = announcements);
   }

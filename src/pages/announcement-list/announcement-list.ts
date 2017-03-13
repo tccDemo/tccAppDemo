@@ -20,11 +20,6 @@ export class AnnouncementListPage {
   constructor(private navParams: NavParams,
     private navCtrl: NavController,
     private announcementService: AnnouncementService) {
-
-  }
-
-
-  ionViewDidLoad() {
   }
 
   ngOnInit(): void {
@@ -42,17 +37,6 @@ export class AnnouncementListPage {
   getAnnouncements(): void {
     this.announcementService.getAnnouncements().then((announcements: Announcement[]) => this.announcements = announcements);
   }
-
-  // doSearch(ev): void {
-  //   var val = ev.target.value;
-  //   if (val && val.trim() != '') {
-  //     this.announcements = this.announcements.filter((item) => {
-  //       return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
-  //     })
-  //   } else {
-  //     this.getAnnouncements();
-  //   }
-  // }
 
   openDetailPage(announcementId: string | number): void {
     this.navCtrl.push(AnnouncementDetailPage, announcementId);

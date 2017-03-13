@@ -42,9 +42,10 @@ export class AnnouncementSearchPage {
       })
       this.initListData = true
     } else {
-      this.getAnnouncements();
+      this.doClear();
     }
   }
+
   doClear(): void {
     this.initListData = false;
   }

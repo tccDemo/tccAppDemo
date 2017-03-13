@@ -1,8 +1,13 @@
-import {Component, trigger, state, style, transition, animate, keyframes} from '@angular/core';
-import {NavController, NavParams, AlertController, ToastController} from 'ionic-angular';
-import {FormBuilder, Validators, FormGroup} from '@angular/forms';
-import {FooterPage} from '../footer/footer';
+import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FooterPage } from '../footer/footer';
 
+import { CampusInfo } from '../../providers/campusInfo';
+import { UserInfo } from '../../providers/userInfo';
+import { UserInfoService } from '../../providers/userInfo.service';
+import { CampusInfoService } from '../../providers/campusInfo.service';
+import { StorageService } from '../../providers/storage.service';
 
 @Component({
     selector: 'page-login',
@@ -15,7 +20,7 @@ import {FooterPage} from '../footer/footer';
                 transform: 'translate3d(0,0,0)'
             })),
             transition('void => *', [
-                style({transform: 'translate3d(0,2000px,0'}),
+                style({ transform: 'translate3d(0,2000px,0' }),
                 animate('2000ms ease-in-out')
             ])
         ]),
@@ -26,7 +31,7 @@ import {FooterPage} from '../footer/footer';
                 transform: 'translate3d(0,0,0)'
             })),
             transition('void => *', [
-                style({transform: 'translate3d(0,2000px,0)'}),
+                style({ transform: 'translate3d(0,2000px,0)' }),
                 animate('1000ms ease-in-out')
             ])
         ]),
@@ -38,9 +43,9 @@ import {FooterPage} from '../footer/footer';
             })),
             transition('void => *', [
                 animate('2000ms 200ms ease-in', keyframes([
-                    style({transform: 'translate3d(0,2000px,0)', offset: 0}),
-                    style({transform: 'translate3d(0,-20px,0)', offset: 0.9}),
-                    style({transform: 'translate3d(0,0,0)', offset: 1})
+                    style({ transform: 'translate3d(0,2000px,0)', offset: 0 }),
+                    style({ transform: 'translate3d(0,-20px,0)', offset: 0.9 }),
+                    style({ transform: 'translate3d(0,0,0)', offset: 1 })
                 ]))
             ])
         ]),
@@ -51,7 +56,7 @@ import {FooterPage} from '../footer/footer';
                 opacity: 1
             })),
             transition('void => *', [
-                style({opacity: 0}),
+                style({ opacity: 0 }),
                 animate('1000ms 2000ms ease-in')
             ])
         ])
@@ -65,37 +70,34 @@ export class LoginPage {
     formState: any = "in";
     loginForm: FormGroup;
 
+    campusId: number = 1;
 
     constructor(public navController: NavController,
-                public navParams: NavParams,
-                public alertCtrl: AlertController,
-                public formBuilder: FormBuilder,
-                public toastCtrl: ToastController) {
+        public navParams: NavParams,
+        public formBuilder: FormBuilder,
+        public toastCtrl: ToastController,
+        public userInfoService: UserInfoService,
+        public campusInfoService: CampusInfoService,
+        public storageService: StorageService) {
 
         this.loginForm = this.formBuilder.group({
-            'LoginID': ['', [Validators.required, Validators.minLength(4)]],
-            'LoginPwd': ['', [Validators.required, Validators.minLength(4)]]
+            'UserName': ['', [Validators.required, Validators.minLength(4)]],
+            'Password': ['', [Validators.required, Validators.minLength(4)]]
         });
-    }
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad LoginPage');
+       this.campusInfoService.getCampusInfo(this.campusId).then(res => {  
+            this.storageService.set('campusInfo', res);
+        })
     }
 
     login(value, _event) {
         _event.preventDefault();
-        console.log(value)
-        if (value.LoginID == "test" && value.LoginPwd == "test") {
+        this.userInfoService.login(value.UserName, value.Password, this.campusId).then(res => {
+            this.storageService.set('userInfo', res);  
             this.navController.push(FooterPage);
-        } else {
-            // let alert = this.alertCtrl.create({
-            //  		title: 'WRONG!',
-            //  		subTitle: 'Login or Password is wrong, please try again!',
-            //  		buttons: ['OK']
-            // });
-            // alert.present();
-
-            let toast = this.toastCtrl.create({
+        })
+      .catch(err => 
+      {
+           let toast = this.toastCtrl.create({
                 message: 'Login or Password is wrong, please try again!',
                 duration: 3000,
                 position: 'top',
@@ -103,9 +105,6 @@ export class LoginPage {
                 closeButtonText: 'Close'
             });
             toast.present();
-        }
-
+      });
     }
-
-
 }

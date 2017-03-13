@@ -7,7 +7,6 @@ import { BookmarkService } from '../../providers/bookmark.service';
 import { CampusInfo } from '../../providers/campusInfo';
 import { UserInfo } from '../../providers/userInfo';
 import { StorageService } from '../../providers/storage.service';
-import { IS_USING_REAL_DATA } from '../../providers/tcc.service';
 
 import { DragulaService } from 'ng2-dragula';
 import { Dragula } from 'dragula';
@@ -26,7 +25,6 @@ export class BookmarkListPage {
   isSortable: boolean = false;
   campusInfo: CampusInfo;
   userInfo: UserInfo;
-  isUsingRealData: boolean = IS_USING_REAL_DATA;
 
   constructor(public plt: Platform,
     private navCtrl: NavController,

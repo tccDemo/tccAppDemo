@@ -48,8 +48,8 @@
         <ion-item *ngFor="let bookmark of bookmarks"
                   bookmarkId="{{bookmark.id}}">
           <ion-thumbnail item-left>
-            <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-list-img" *ngIf="bookmark.iconType==102 && isUsingRealData">
-            <img [src]="bookmark.imgIcon" class="bookmark-list-img" *ngIf="!isUsingRealData">
+            <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-list-img" *ngIf="bookmark.iconType==102">
+            <img [src]="bookmark.imgIcon" class="bookmark-list-img" *ngIf="bookmark.iconType!=102">
           </ion-thumbnail>
           <h2>{{bookmark.subject}}</h2>
           <p *ngIf="bookmark.description">{{bookmark.description}}</p>
@@ -65,8 +65,8 @@
 
           <ion-card color="bookmark">
             <ion-card-content>
-              <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-img" *ngIf="bookmark.iconType==102 && isUsingRealData">
-              <img [src]="bookmark.imgIcon" class="bookmark-img" *ngIf="!isUsingRealData">
+              <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-img" *ngIf="bookmark.iconType==102">
+              <img [src]="bookmark.imgIcon" class="bookmark-img" *ngIf="bookmark.iconType!=102">
               <div class="bookmark-item-body">
                 <h3>
                   {{bookmark.subject}}
@@ -83,8 +83,8 @@
         <ion-item *ngFor="let bookmark of bookmarks"  (press)="enableSort()"
                   (click)="openDetailBookmark(bookmark.id)" bookmarkId="{{bookmark.id}}">
           <ion-thumbnail item-left>
-            <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-list-img" *ngIf="bookmark.iconType==102 && isUsingRealData">
-            <img [src]="bookmark.imgIcon" class="bookmark-list-img" *ngIf="!isUsingRealData">
+            <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-list-img" *ngIf="bookmark.iconType==102">
+            <img [src]="bookmark.imgIcon" class="bookmark-list-img" *ngIf="bookmark.iconType!=102">
           </ion-thumbnail>
           <h2>{{bookmark.subject}}</h2>
           <p *ngIf="bookmark.description">{{bookmark.description}}</p>
@@ -98,8 +98,8 @@
                  bookmarkId="{{bookmark.id}}">
           <ion-card color="bookmark"  (press)="enableSort()">
             <ion-card-content>
-              <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-img" *ngIf="bookmark.iconType==102 && isUsingRealData">
-              <img [src]="bookmark.imgIcon" class="bookmark-img" *ngIf="!isUsingRealData">
+              <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-img" *ngIf="bookmark.iconType==102">
+              <img [src]="bookmark.imgIcon" class="bookmark-img" *ngIf="bookmark.iconType!=102">
               <div class="bookmark-item-body">
                 <h3>
                   {{bookmark.subject}}

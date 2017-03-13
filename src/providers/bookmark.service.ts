@@ -95,7 +95,6 @@ export class BookmarkService {
             bookmark.seq = seq;
           }
         });
-        // this.bookmarkService.updateSeq(target.children[i].bookmarkId, seq++);
       }
     }
   }

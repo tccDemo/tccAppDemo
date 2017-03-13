@@ -1,20 +1,21 @@
-import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
-import {Announcement} from '../../../providers/announcement';
-import {AnnouncementService} from '../../../providers/announcement.service';
-import {AnnouncementDetailPage} from '../../announcement-detail/announcement-detail';
-import { appToolBar } from '../../../utils/appToolbar';
+import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
+import { Announcement } from '../../providers/announcement';
+import { AnnouncementService } from '../../providers/announcement.service';
+import { AnnouncementDetailPage } from '../announcement-detail/announcement-detail';
+import { appToolBar } from '../../utils/appToolbar';
 
 @Component({
-  selector: 'page-search-announcement',
-  templateUrl: 'search.html'
+  selector: 'page-announcement-search',
+  templateUrl: 'announcement-search.html'
 })
-export class announcementSearchPage {
+export class AnnouncementSearchPage {
   public announcements: Announcement[];
   initListData: boolean = false;
+
   constructor(private navParams: NavParams,
-              private navCtrl: NavController,
-              private announcementService: AnnouncementService) {
+    private navCtrl: NavController,
+    private announcementService: AnnouncementService) {
 
   }
 

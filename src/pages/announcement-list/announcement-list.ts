@@ -7,7 +7,7 @@ import { CampusInfo } from '../../providers/campusInfo';
 import { UserInfo } from '../../providers/userInfo';
 
 import { AnnouncementDetailPage } from '../announcement-detail/announcement-detail';
-import { announcementSearchPage } from '../search/annnouncement/search'
+import { AnnouncementSearchPage } from '../announcement-search/announcement-search';
 
 @Component({
   selector: 'page-announcement-list',
@@ -59,6 +59,6 @@ export class AnnouncementListPage {
   }
 
   openSearch() {
-    this.navCtrl.push(announcementSearchPage);
+    this.navCtrl.push(AnnouncementSearchPage);
   }
 }

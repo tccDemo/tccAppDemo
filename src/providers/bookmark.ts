@@ -3,9 +3,14 @@ export class Bookmark {
   subject: string;
   description: string;
   link: string;
-  icon: string;
+  imgIcon: string;
+
+  iconType: number;
+  iconCode: string;
+  iconBg: string;
+  iconFg: string;
+  
   isMyFavour: boolean;
-  isPopular: boolean;
-  isRecent: boolean;
+
   seq: number;
 }

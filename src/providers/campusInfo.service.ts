@@ -17,7 +17,7 @@ export class CampusInfoService {
   getCampusInfo(campusId:number): Promise<CampusInfo> {
     let cx = "22." + campusId;
     let url = `${BASE_URL}&cmd=getCampusInfo&cx=${cx}`;
-    return this.http.post(url, REQUEST_OPTIONS).toPromise().then(res => res.json())
+    return this.http.get(url).toPromise().then(res => res.json())
       .catch(err => handleError(err));
   }
 }

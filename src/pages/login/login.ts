@@ -7,7 +7,7 @@ import { CampusInfo } from '../../providers/campusInfo';
 import { UserInfo } from '../../providers/userInfo';
 import { UserInfoService } from '../../providers/userInfo.service';
 import { CampusInfoService } from '../../providers/campusInfo.service';
-import { StorageService } from '../../providers/storage.service';
+import { StorageService, USER_INFO, CAMPUS_INFO } from '../../providers/storage.service';
 
 @Component({
     selector: 'page-login',
@@ -85,18 +85,19 @@ export class LoginPage {
             'Password': ['', [Validators.required, Validators.minLength(4)]]
         });
        this.campusInfoService.getCampusInfo(this.campusId).then(res => {  
-            this.storageService.set('campusInfo', res);
+            this.storageService.set(CAMPUS_INFO, res);
         })
     }
 
     login(value, _event) {
         _event.preventDefault();
         this.userInfoService.login(value.UserName, value.Password, this.campusId).then(res => {
-            this.storageService.set('userInfo', res);  
+            this.storageService.set(USER_INFO, res);  
             this.navController.push(FooterPage);
         })
       .catch(err => 
-      {
+      {   
+           console.log(err);
            let toast = this.toastCtrl.create({
                 message: 'Login or Password is wrong, please try again!',
                 duration: 3000,

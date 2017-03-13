@@ -9,8 +9,10 @@ export class Bookmark {
   iconCode: string;
   iconBg: string;
   iconFg: string;
-  
+
   isMyFavour: boolean;
+  isRecent: boolean;
+  isPopular: boolean;
 
   seq: number;
 }

@@ -26,6 +26,7 @@ import { EventService } from '../providers/event.service';
 import { UserInfoService } from '../providers/userInfo.service';
 import { CampusInfoService } from '../providers/campusInfo.service';
 import { StorageService } from '../providers/storage.service';
+import { TCCData } from '../providers/tcc.service';
 
 import { NgCalendarModule } from 'ionic2-calendar';
 import { DragulaService, DragulaModule } from 'ng2-dragula';
@@ -74,7 +75,7 @@ import { DragulaService, DragulaModule } from 'ng2-dragula';
     ],
     providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, NotificationService,
         AnnouncementService, BookmarkService, EventService, DragulaService, UserInfoService,
-        CampusInfoService, StorageService],
+        CampusInfoService, StorageService, TCCData],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [IonicApp]
 })

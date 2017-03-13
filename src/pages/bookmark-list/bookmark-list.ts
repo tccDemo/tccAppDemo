@@ -1,12 +1,16 @@
-import {Component, NgZone} from '@angular/core';
-import {NavController, NavParams, ViewController, ModalController, Platform} from 'ionic-angular';
-import {ThemeableBrowser} from "ionic-native";
+import { Component, NgZone } from '@angular/core';
+import { NavController, NavParams, ViewController, Platform } from 'ionic-angular';
+import { ThemeableBrowser } from "ionic-native";
 
-import {Bookmark} from '../../providers/bookmark';
-import {BookmarkService} from '../../providers/bookmark.service';
+import { Bookmark } from '../../providers/bookmark';
+import { BookmarkService } from '../../providers/bookmark.service';
+import { CampusInfo } from '../../providers/campusInfo';
+import { UserInfo } from '../../providers/userInfo';
+import { StorageService } from '../../providers/storage.service';
+import { IS_USING_REAL_DATA } from '../../providers/tcc.service';
 
-import {DragulaService} from 'ng2-dragula';
-import {Dragula} from 'dragula';
+import { DragulaService } from 'ng2-dragula';
+import { Dragula } from 'dragula';
 
 declare var $: any;
 
@@ -20,45 +24,43 @@ export class BookmarkListPage {
   isTileView: boolean = true;
   filter: string = "myFavour";
   isSortable: boolean = false;
+  campusInfo: CampusInfo;
+  userInfo: UserInfo;
+  isUsingRealData: boolean = IS_USING_REAL_DATA;
 
   constructor(public plt: Platform,
-              private navCtrl: NavController,
-              private navParams: NavParams,
-              private bookmarkService: BookmarkService,
-              private modalCtrl: ModalController,
-              private dragulaService: DragulaService,
-              private zone: NgZone) {
-
-    this.dragulaService.drop.subscribe((value: any) => {
-      this.doSort(value.slice(1));
-    });
-
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private bookmarkService: BookmarkService,
+    private dragulaService: DragulaService,
+    private zone: NgZone,
+    private storageService: StorageService) {
   }
 
   private doSort(args: any): void {
-    var seq = 0;
     let [el, target, source] = args;
-
-    for (var i = 0; i < target.children.length; i++) {
-      this.bookmarkService.updateSeq(target.children[i].bookmarkId, seq++);
-    }
+    this.bookmarkService.updateSeqs(target.children);
     this.refreshBookmarks(this.filter);
   }
 
-  ionViewDidLoad() {
+  loadInfo(): void {
+    this.campusInfo = this.storageService.get('campusInfo');
+    this.userInfo = this.storageService.get('userInfo');
   }
 
-
   ngOnInit(): void {
-    this.refreshBookmarks("myFavour");
+    this.loadInfo();
+    var self = this;
+    self.refreshBookmarks("myFavour");
+    self.dragulaService.drop.subscribe((value: any) => {
+      self.doSort(value.slice(1));
+    });
   }
 
   doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
     setTimeout(() => {
       this.bookmarks = [];
       this.refreshBookmarks(this.filter);
-      console.log('Async operation has ended');
       refresher.complete();
     }, 500);
   }
@@ -114,12 +116,9 @@ export class BookmarkListPage {
     this.isTileView = !this.isTileView;
   }
 
-  focusSearch(ev): void {
-    console.log(ev)
-  }
-
   openDetailBookmark(bookmarkId: number) {
-    this.bookmarkService.getBookmark(bookmarkId).then((bookmark: Bookmark) => this.launchFromThemeableBrowser(bookmark));
+    let bookmark = this.bookmarks.find(function (bookmark) { return bookmark.id == bookmarkId });
+    this.launchFromThemeableBrowser(bookmark);
   }
 
   launchFromThemeableBrowser(bookmark: Bookmark) {
@@ -187,13 +186,6 @@ export class BookmarkListPage {
           }
 
           if (self.filter == "myFavour") {
-            // var bookmarks:Bookmark[] = new Array();
-            // for(var i=0; i<self.bookmarks.length; i++) {
-            //   if(self.bookmarks[i].id != bookmark.id) {
-            //     bookmarks.push(self.bookmarks[i]);
-            //   }       
-            // }
-            // self.zone.run(() => self.bookmarks = bookmarks);            
             self.zone.run(() => self.refreshBookmarks(self.filter));
           }
         }
@@ -203,13 +195,13 @@ export class BookmarkListPage {
       });
   }
 
-  enableSort (): void {
-    if (this.filter=='myFavour') {
-      this.isSortable = true;  
-    }    
+  enableSort(): void {
+    if (this.filter == 'myFavour') {
+      this.isSortable = true;
+    }
   }
 
-  disableSort ():void {
-   this.isSortable = false; 
+  disableSort(): void {
+    this.isSortable = false;
   }
 }

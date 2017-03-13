@@ -1,11 +1,13 @@
-import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
 
-import {Announcement} from '../../providers/announcement';
-import {AnnouncementService} from '../../providers/announcement.service';
+import { Announcement } from '../../providers/announcement';
+import { AnnouncementService } from '../../providers/announcement.service';
+import { CampusInfo } from '../../providers/campusInfo';
+import { UserInfo } from '../../providers/userInfo';
 
-import {AnnouncementDetailPage} from '../announcement-detail/announcement-detail';
-import {announcementSearchPage} from '../search/annnouncement/search'
+import { AnnouncementDetailPage } from '../announcement-detail/announcement-detail';
+import { announcementSearchPage } from '../search/annnouncement/search'
 
 @Component({
   selector: 'page-announcement-list',
@@ -16,8 +18,8 @@ export class AnnouncementListPage {
   public announcements: Announcement[];
 
   constructor(private navParams: NavParams,
-              private navCtrl: NavController,
-              private announcementService: AnnouncementService) {
+    private navCtrl: NavController,
+    private announcementService: AnnouncementService) {
 
   }
 
@@ -30,11 +32,9 @@ export class AnnouncementListPage {
   }
 
   doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
     setTimeout(() => {
       this.announcements = [];
       this.getAnnouncements();
-      console.log('Async operation has ended');
       refresher.complete();
     }, 500);
   }

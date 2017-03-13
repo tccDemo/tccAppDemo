@@ -1,5 +1,9 @@
 import { Injectable  } from '@angular/core';
 
+export const USER_INFO: string = "userInfo";
+export const CAMPUS_INFO: string = "campusInfo";
+
+
 @Injectable()
 export class StorageService {
   constructor() {

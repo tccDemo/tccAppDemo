@@ -35,10 +35,15 @@ export class AnnouncementService {
     } else {
       return Promise.resolve(ANNOUNCEMENTS);
     }
-
   }
 
   getAnnouncement(id: number): Promise<Announcement> {
-    return this.getAnnouncements().then(announcements => announcements.find(announcement => announcement.id == +id));
+    if (IS_USING_REAL_DATA) {
+      let url = `${BASE_URL}&cmd=getAnnouncement&cx=${this.cx}&token=${this.token}&id=${id}`;
+      return this.http.get(url).toPromise().then(res => res.json())
+        .catch(err => handleError(err));
+    } else {
+      return this.getAnnouncements().then(announcements => announcements.find(announcement => announcement.id == +id));
+    }
   }
 }

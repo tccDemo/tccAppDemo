@@ -71,7 +71,13 @@ export class BookmarkService {
   }
 
   getBookmark(id: number): Promise<Bookmark> {
-    return Promise.resolve(this.getSortedBookmarks()).then(bookmarks => bookmarks.find(bookmark => bookmark.id == +id));
+    if (IS_USING_REAL_DATA) {
+      let url = `${BASE_URL}&cmd=getCampusLink&cx=${this.cx}&token=${this.token}&id=${id}`;
+      return this.http.get(url).toPromise().then(res => res.json())
+        .catch(err => handleError(err));
+    } else {
+      return Promise.resolve(this.getSortedBookmarks()).then(bookmarks => bookmarks.find(bookmark => bookmark.id == +id));
+    }
   }
 
   updateSeqs(bookmarks: any): void {

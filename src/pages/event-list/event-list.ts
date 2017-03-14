@@ -7,6 +7,7 @@ import { EventService } from '../../providers/event.service';
 
 import { EventDetailPage } from '../event-detail/event-detail';
 import { EventCalendarPage } from '../event-calendar/event-calendar';
+import { EventSearchPage } from '../event-search/event-search';
 
 @Component({
   selector: 'page-event-list',
@@ -40,19 +41,6 @@ export class EventListPage {
     this.eventService.getEvents().then( (events:Event[]) => this.orderEvents(events));
   }
 
-  doSearch(ev): void {
-    var val = ev.target.value;
-    if (val && val.trim() != '') {
-      this.bundleEvents.forEach(function(be){
-      		be.events = be.events.filter((item) => {
-        		return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      		})
-      	});     
-    } else {
-      this.getEvents();
-    }
-  }
-
   orderEvents(events: Event[]): void {
   	var self = this;
   	this.bundleEvents = new Array();
@@ -77,8 +65,6 @@ export class EventListPage {
   			self.bundleEvents[self.bundleEvents.length-1].events.push(ev);    		
     	}
   	});
-  	console.log(events);
-  	console.log(this.bundleEvents);
   }
 
   openDetailPage(eventId: string | number):void {
@@ -88,4 +74,8 @@ export class EventListPage {
   openCalendarPage():void{
     this.navCtrl.push(EventCalendarPage);  
   }
+
+  openSearch() {
+    this.navCtrl.push(EventSearchPage, {bundleEvents: this.bundleEvents, openDetailPage: this.openDetailPage});
+  }   
 }

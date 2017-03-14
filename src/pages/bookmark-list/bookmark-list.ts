@@ -6,7 +6,7 @@ import { Bookmark } from '../../providers/bookmark';
 import { BookmarkService } from '../../providers/bookmark.service';
 import { CampusInfo } from '../../providers/campusInfo';
 import { UserInfo } from '../../providers/userInfo';
-import { StorageService } from '../../providers/storage.service';
+import { StorageService, USER_INFO, CAMPUS_INFO } from '../../providers/storage.service';
 import { BookmarkSearchPage } from '../bookmark-search/bookmark-search';
 import { DragulaService } from 'ng2-dragula';
 import { Dragula } from 'dragula';
@@ -42,8 +42,8 @@ export class BookmarkListPage {
   }
 
   loadInfo(): void {
-    this.campusInfo = this.storageService.get('campusInfo');
-    this.userInfo = this.storageService.get('userInfo');
+    this.campusInfo = this.storageService.get(CAMPUS_INFO);
+    this.userInfo = this.storageService.get(USER_INFO);
   }
 
   ngOnInit(): void {
@@ -155,8 +155,6 @@ export class BookmarkListPage {
     };
 
     let browser: ThemeableBrowser = new ThemeableBrowser(bookmark.link, '_self', options);
-    var isDelete = false;
-
     browser.on('markFavour').subscribe(
       (data) => {
 
@@ -191,10 +189,12 @@ export class BookmarkListPage {
   disableSort(): void {
     this.isSortable = false;
   }
-  
+
   openSearch() {
-    this.navCtrl.push(BookmarkSearchPage, {bookmarks: this.bookmarks, isTileView: this.isTileView, 
-      filter: this.filter, campusInfo: this.campusInfo, userInfo: this.userInfo, 
-      openDetailBookmark: this.openDetailBookmark, launchFromThemeableBrowser: this.launchFromThemeableBrowser});
-  }  
+    this.navCtrl.push(BookmarkSearchPage, {
+      bookmarks: this.bookmarks, isTileView: this.isTileView,
+      filter: this.filter, campusInfo: this.campusInfo,
+      openDetailBookmark: this.openDetailBookmark, launchFromThemeableBrowser: this.launchFromThemeableBrowser
+    });
+  }
 }

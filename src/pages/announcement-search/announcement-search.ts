@@ -4,6 +4,7 @@ import { Announcement } from '../../providers/announcement';
 import { AnnouncementService } from '../../providers/announcement.service';
 import { AnnouncementDetailPage } from '../announcement-detail/announcement-detail';
 import { appToolBar } from '../../utils/appToolbar';
+import { Keyboard } from 'ionic-native';
 
 @Component({
   selector: 'page-announcement-search',
@@ -22,10 +23,13 @@ export class AnnouncementSearchPage {
   ngOnInit(): void {
     this.getAnnouncements();
     appToolBar.hideTabsBar();
+    Keyboard.show();
   }
+  
   ionViewWillLeave() {
     appToolBar.showTabsBar();
   }
+
   getAnnouncements(): void {
     this.announcementService.getAnnouncements().then((announcements: Announcement[]) => this.announcements = announcements);
   }

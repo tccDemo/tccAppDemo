@@ -14,6 +14,7 @@ import {UserAvatarComponent} from '../../components/user-avatar/user-avatar';
     templateUrl: 'setting.html'
 })
 export class SettingPage {
+    
     @ViewChild(UserAvatarComponent)
     userAvatar: UserAvatarComponent;
 

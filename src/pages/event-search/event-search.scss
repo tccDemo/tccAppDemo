@@ -18,4 +18,57 @@ page-event-search {
     display: none;
     opacity: 0 !important;
   }
+
+
+  .dataContainer {
+    padding-top: 2rem;
+  }
+
+  .bundleHeader {
+    font-size: large;
+    height: 3rem;
+    color: #7EC0EE;
+    padding: 0 1rem;
+    border: 0px;
+  }
+
+  .list-md .item-block .item-inner {
+    border-bottom: 0px solid #dedede;
+  }
+
+  .list-ios .item-block .item-inner {
+    border-bottom: 0px solid #c8c7cc;
+  }
+
+  ion-list {
+    list-style-type: circle;
+  }
+
+  .list-ios:not([inset]) + .list-ios:not([inset]) ion-list-header {
+    margin-top: -30px;
+    padding-top: 0;
+  }
+
+  .eventRow {
+    height: 3.6rem;
+    min-height: 3.4rem;
+  }
+
+  .eventTitle {
+    line-height: 2rem;
+    font-size: 1.6rem;
+    padding-left: 1rem;
+    padding-top: 0;
+  }
+
+  #calendarIcon {
+    font-size: 3rem;
+  }
+
+  ion-note {
+    font-size: 1.4rem;
+  }
+  .scroll-content{
+    margin-bottom: 0 !important;
+  }  
 }

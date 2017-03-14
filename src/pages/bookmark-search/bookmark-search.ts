@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Bookmark } from '../../providers/bookmark';
-import { BookmarkService } from '../../providers/bookmark.service';
 import { appToolBar } from '../../utils/appToolbar';
 import { CampusInfo } from '../../providers/campusInfo';
-import { UserInfo } from '../../providers/userInfo';
+import { Keyboard } from 'ionic-native';
 
 @Component({
   selector: 'page-bookmark-search',
@@ -16,25 +15,24 @@ export class BookmarkSearchPage {
   bookmarks: Bookmark[];
   isTileView: boolean = true;
   filter: string = "myFavour";
-  campusInfo: CampusInfo;
-  userInfo: UserInfo;
+  campusInfo: CampusInfo;  
   initListData: boolean = false;
   openDetailBookmark: Function = null;
   launchFromThemeableBrowser: Function = null;
-  
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {    
      this.totalBookmarks = navParams.get('bookmarks');
      console.log(this.totalBookmarks)
      this.isTileView = navParams.get('isTileView');
      this.filter = navParams.get('filter');
      this.campusInfo = navParams.get('campusInfo');
-     this.userInfo = navParams.get('userInfo');
      this.openDetailBookmark = navParams.get('openDetailBookmark');
      this.launchFromThemeableBrowser = navParams.get('launchFromThemeableBrowser');
   }
 
   ngOnInit(): void {
     appToolBar.hideTabsBar();
+    Keyboard.show();
   }
 
   ionViewWillLeave() {

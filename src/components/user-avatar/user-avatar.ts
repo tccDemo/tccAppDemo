@@ -1,20 +1,26 @@
-import {Component, OnInit, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import {Camera} from 'ionic-native';
+import { UserInfo } from '../../providers/userInfo';
+import { StorageService, USER_INFO } from '../../providers/storage.service';
+
+import { Camera } from 'ionic-native';
 
 @Component({
     selector: 'user-avatar',
     templateUrl: 'user-avatar.html'
 })
-
-export class UserAvatarComponent implements OnInit {
+export class UserAvatarComponent {
 
     @Input()
     public base64Image: string = null;
     public avatarPath;
-    public userAvatar: any = "assets/images/avatar/default.png";
+    public userAvatar: string = "assets/images/avatar/default.png";
+    private userInfo: UserInfo = null;
 
-    // call camera API
+    constructor(private storageService: StorageService) {
+
+    }
+
     takePhoto() {
         let options = {
             targetWidth: 50,
@@ -31,12 +37,20 @@ export class UserAvatarComponent implements OnInit {
             let base64Image = imageData;
             this.avatarPath = base64Image;
             this.userAvatar = base64Image;
+            this.userInfo.profileIcon = this.userAvatar;
+            this.storageService.set(USER_INFO, this.userInfo);
+            alert(this.userInfo.profileIcon);
         }, (err) => {
-            alert(err.toString());
+            console.log(err.toString());
         });
     }
 
-    ngOnInit() {
-        console.log('user avatar');
+    ngOnInit(): void {
+        this.userInfo = this.storageService.get(USER_INFO);
+        if (this.userInfo.profileIcon != "") {
+            this.userAvatar = this.userInfo.profileIcon;
+        }
+        alert(this.userInfo.profileIcon);
     }
+
 }

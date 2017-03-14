@@ -11,6 +11,7 @@ import { BookmarkListPage } from '../pages/bookmark-list/bookmark-list';
 import { BookmarkSearchPage } from '../pages/bookmark-search/bookmark-search';
 import { EventListPage } from '../pages/event-list/event-list';
 import { EventDetailPage } from '../pages/event-detail/event-detail';
+import { EventSearchPage } from '../pages/event-search/event-search';
 import { EventCalendarPage } from '../pages/event-calendar/event-calendar';
 
 import { SettingPage } from '../pages/setting/setting';
@@ -51,6 +52,7 @@ import { DragulaService, DragulaModule } from 'ng2-dragula';
         EventListPage,
         EventDetailPage,
         EventCalendarPage,
+        EventSearchPage,
         SettingPage,
         HomePage,
         FooterPage,
@@ -70,6 +72,7 @@ import { DragulaService, DragulaModule } from 'ng2-dragula';
         EventListPage,
         EventDetailPage,
         EventCalendarPage,
+        EventSearchPage,
         SettingPage,
         HomePage,
         FooterPage,

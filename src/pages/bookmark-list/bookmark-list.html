@@ -3,18 +3,14 @@
     <bookmark-filter (onRefreshBookmarks)="refreshBookmarks($event)"></bookmark-filter>
   </ion-buttons>
 
-  <ion-searchbar
-    animated="true"
-    (ionInput)="doSearch($event)">
+  <ion-searchbar *ngIf="bookmarks!=null&&bookmarks.length>0" 
+    (ionFocus)="openSearch()">
   </ion-searchbar>
 
-  <ion-buttons right>
+  <ion-buttons right *ngIf="bookmarks!=null&&bookmarks.length>0">
     <button ion-button icon-only (click)="switchView()">
-      <!-- <ion-icon name="list" ></ion-icon> -->
-      <!-- <ion-icon name="grid" *ngIf="!isTileView" id="gridIcon"></ion-icon> -->
       <img src="assets/icon/thumb.png" alt="" *ngIf="isTileView" id="listIcon">
       <img src="assets/icon/list.png" alt="" *ngIf="!isTileView" id="gridIcon">
-
     </button>
   </ion-buttons>
 </ion-toolbar>

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar color="heading">
+    <ion-searchbar
+      (ionInput)="doSearch($event)" (ionClear)="doClear()">
+    </ion-searchbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="position:static">
+  <div class="dataContainer" *ngIf="initListData">
+
+    <ion-item *ngIf="bookmarks==null">
+      <IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg">
+    </ion-item>
+    <ion-item *ngIf="bookmarks!=null&&bookmarks.length==0">
+      No data found
+    </ion-item>
+
+      <div *ngIf="!isTileView">
+        <ion-item *ngFor="let bookmark of bookmarks"
+                  (click)="openDetailBookmark(bookmark.id)" bookmarkId="{{bookmark.id}}">
+          <ion-thumbnail item-left>
+            <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-list-img" *ngIf="bookmark.iconType==102">
+            <img [src]="bookmark.imgIcon" class="bookmark-list-img" *ngIf="bookmark.iconType!=102">
+          </ion-thumbnail>
+          <h2>{{bookmark.subject}}</h2>
+          <p *ngIf="bookmark.description">{{bookmark.description}}</p>
+        </ion-item>
+      </div>
+
+
+      <ion-row wrap *ngIf="isTileView" class="ion-row-bookmark responsive-media">
+        <ion-col *ngFor="let bookmark of bookmarks"
+                 (click)="openDetailBookmark(bookmark.id)" class="ion-col-bookmark cc-width-grid"
+                 bookmarkId="{{bookmark.id}}">
+          <ion-card color="bookmark">
+            <ion-card-content>
+              <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-img" *ngIf="bookmark.iconType==102">
+              <img [src]="bookmark.imgIcon" class="bookmark-img" *ngIf="bookmark.iconType!=102">
+              <div class="bookmark-item-body">
+                <h3>
+                  {{bookmark.subject}}
+                </h3>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+    </div>
+</ion-content>

@@ -8,6 +8,7 @@ import { AnnouncementListPage } from '../pages/announcement-list/announcement-li
 import { AnnouncementSearchPage } from '../pages/announcement-search/announcement-search';
 import { AnnouncementDetailPage } from '../pages/announcement-detail/announcement-detail';
 import { BookmarkListPage } from '../pages/bookmark-list/bookmark-list';
+import { BookmarkSearchPage } from '../pages/bookmark-search/bookmark-search';
 import { EventListPage } from '../pages/event-list/event-list';
 import { EventDetailPage } from '../pages/event-detail/event-detail';
 import { EventCalendarPage } from '../pages/event-calendar/event-calendar';
@@ -46,6 +47,7 @@ import { DragulaService, DragulaModule } from 'ng2-dragula';
         AnnouncementSearchPage,
         AnnouncementDetailPage,
         BookmarkListPage,
+        BookmarkSearchPage,
         EventListPage,
         EventDetailPage,
         EventCalendarPage,
@@ -64,6 +66,7 @@ import { DragulaService, DragulaModule } from 'ng2-dragula';
         AnnouncementSearchPage,
         AnnouncementDetailPage,
         BookmarkListPage,
+        BookmarkSearchPage,
         EventListPage,
         EventDetailPage,
         EventCalendarPage,

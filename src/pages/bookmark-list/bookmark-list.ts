@@ -7,7 +7,7 @@ import { BookmarkService } from '../../providers/bookmark.service';
 import { CampusInfo } from '../../providers/campusInfo';
 import { UserInfo } from '../../providers/userInfo';
 import { StorageService } from '../../providers/storage.service';
-
+import { BookmarkSearchPage } from '../bookmark-search/bookmark-search';
 import { DragulaService } from 'ng2-dragula';
 import { Dragula } from 'dragula';
 
@@ -80,17 +80,6 @@ export class BookmarkListPage {
     } else {
       this.filter = "myFavour";
       this.getMyFavourBookmarks();
-    }
-  }
-
-  doSearch(ev): void {
-    var val = ev.target.value;
-    if (val && val.trim() != '') {
-      this.bookmarks = this.bookmarks.filter((item) => {
-        return (item.subject.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    } else {
-      this.refreshBookmarks(this.filter);
     }
   }
 
@@ -202,4 +191,10 @@ export class BookmarkListPage {
   disableSort(): void {
     this.isSortable = false;
   }
+  
+  openSearch() {
+    this.navCtrl.push(BookmarkSearchPage, {bookmarks: this.bookmarks, isTileView: this.isTileView, 
+      filter: this.filter, campusInfo: this.campusInfo, userInfo: this.userInfo, 
+      openDetailBookmark: this.openDetailBookmark, launchFromThemeableBrowser: this.launchFromThemeableBrowser});
+  }  
 }

@@ -18,4 +18,36 @@ page-announcement-search {
     display: none;
     opacity: 0 !important;
   }
+
+  ion-list.dataContainer {
+    padding-top: 2rem;
+  }  
+ .announcementIcon {
+    color: #fff;
+    font-size: 40px;
+    background: #28bc82;
+    height: 48px;
+    width: 48px;
+    display: inline-block;
+    text-align: center;
+    line-height: 48px;
+ }  
+ .item-md ion-thumbnail {
+     min-width: 0px;
+     min-height: 0px;
+ }
+  .bar-button-default-md {
+    color: #fff;
+  }
+  .scroll-content{
+    margin-bottom: 0 !important;
+  }
+  .item-block{
+    align-items: inherit;
+
+  }
+  .data-summary{
+    white-space: nowrap;
+    margin-top: 3px;
+  } 
 }

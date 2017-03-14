@@ -19,10 +19,6 @@ export class AnnouncementSearchPage {
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchPage');
-  }
-
   ngOnInit(): void {
     this.getAnnouncements();
     appToolBar.hideTabsBar();
@@ -40,11 +36,12 @@ export class AnnouncementSearchPage {
       this.announcements = this.announcements.filter((item) => {
         return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
-      this.initListData = true
+      this.initListData = true;
     } else {
-      this.getAnnouncements();
+      this.doClear();
     }
   }
+
   doClear(): void {
     this.initListData = false;
   }

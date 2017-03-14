@@ -3,7 +3,7 @@ import {NavParams, ViewController, NavController} from 'ionic-angular';
 
 import {Announcement} from '../../providers/announcement';
 import {AnnouncementService} from '../../providers/announcement.service';
-import { appToolBar } from '../../utils/appToolbar';
+import {appToolBar} from '../../utils/appToolbar';
 
 @Component({
   selector: 'page-announcement-detail',
@@ -22,6 +22,9 @@ export class AnnouncementDetailPage {
 
   ngOnInit(): void {
     this.getAnnouncement(this.params.get('announcementId'));
+    console.log()
+
+
     appToolBar.hideTabsBar();
   }
 
@@ -30,6 +33,10 @@ export class AnnouncementDetailPage {
   }
 
   getAnnouncement(announcementId: number): void {
-    this.announcementService.getAnnouncement(announcementId).then((announcement: Announcement) => this.announcement = announcement);
+    this.announcementService.getAnnouncement(announcementId).then(
+      (announcement: Announcement) => {
+        this.announcement = announcement;
+        announcement.detail = announcement.detail.replace(/(?:img|IMG) src="([\s\S]*?)"/g, 'img src="\http://ccstage.campuscruiser.com/$1\"')
+      });
   }
 }

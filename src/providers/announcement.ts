@@ -5,5 +5,5 @@ export class Announcement {
   postedBy: string;
   postedAt: string;
   postedFrom: string;
-  isNew:boolean
+  isNew:boolean;
 }

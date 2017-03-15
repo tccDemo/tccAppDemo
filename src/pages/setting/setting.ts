@@ -1,25 +1,29 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild, OnInit} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 
 import {UserAvatarComponent} from '../../components/user-avatar/user-avatar';
 
-/*
- Generated class for the Setting page.
+import { UserInfo } from '../../providers/userInfo';
+import { StorageService, USER_INFO } from '../../providers/storage.service';
 
- See http://ionicframework.com/docs/v2/components/#navigation for more info on
- Ionic pages and navigation.
- */
 @Component({
     selector: 'page-setting',
     templateUrl: 'setting.html'
 })
 export class SettingPage {
     
+    userInfo: UserInfo = null;
+
     @ViewChild(UserAvatarComponent)
     userAvatar: UserAvatarComponent;
 
     constructor(public navCtrl: NavController,
-                public navParams: NavParams) {
+                public navParams: NavParams,
+                public storageService: StorageService) {
+    }
+
+    ngOnInit(): void {
+        this.userInfo = this.storageService.get(USER_INFO);
     }
 
     ionViewDidLoad() {

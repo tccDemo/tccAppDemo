@@ -12,12 +12,9 @@ import { Camera } from 'ionic-native';
 export class UserAvatarComponent {
 
     @Input()
-    public base64Image: string = null;
-    public avatarPath;
-    public userAvatar: string = "assets/images/avatar/default.png";
-    private userInfo: UserInfo = null;
+    userInfo: UserInfo;
 
-    constructor(private storageService: StorageService) {
+    constructor(public storageService: StorageService) {
 
     }
 
@@ -34,23 +31,10 @@ export class UserAvatarComponent {
         };
 
         Camera.getPicture(options).then((imageData) => {
-            let base64Image = imageData;
-            this.avatarPath = base64Image;
-            this.userAvatar = base64Image;
-            this.userInfo.profileIcon = this.userAvatar;
+            this.userInfo.profileIcon = imageData;
             this.storageService.set(USER_INFO, this.userInfo);
-            alert(this.userInfo.profileIcon);
         }, (err) => {
             console.log(err.toString());
         });
     }
-
-    ngOnInit(): void {
-        this.userInfo = this.storageService.get(USER_INFO);
-        if (this.userInfo.profileIcon != "") {
-            this.userAvatar = this.userInfo.profileIcon;
-        }
-        alert(this.userInfo.profileIcon);
-    }
-
 }

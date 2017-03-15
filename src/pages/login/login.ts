@@ -97,7 +97,7 @@ export class LoginPage {
         })
       .catch(err => 
       {   
-           console.log(err);
+           alert(err);
            let toast = this.toastCtrl.create({
                 message: 'Login or Password is wrong, please try again!',
                 duration: 3000,

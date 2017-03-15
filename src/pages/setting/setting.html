@@ -8,8 +8,8 @@
 
 
   <div class="bgWall">
-    <user-avatar></user-avatar>
-  	<div class="userNameLabel">Cherry Louis</div>
+    <user-avatar [userInfo]="userInfo"></user-avatar>
+  	<div class="userNameLabel">{{userInfo.name}}</div>
   </div>
 
   <ion-list>

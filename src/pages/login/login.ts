@@ -70,7 +70,7 @@ export class LoginPage {
     formState: any = "in";
     loginForm: FormGroup;
 
-    campusId: number = 1;
+    campusId: number = 55;
 
     constructor(public navController: NavController,
         public navParams: NavParams,

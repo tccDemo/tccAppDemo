@@ -1,56 +1,58 @@
 page-notification-list {
-  .item-block  {
-    min-height: 80px;
+  background: #fff;
+  .item-block {
+    min-height: 60px;
   }
- .loadingImg {
-   display:inline-block;
-   margin-top: 25px;
-   margin-left: 43%;
- }
+  .loadingImg {
+    display: inline-block;
+    margin-top: 25px;
+    margin-left: 43%;
+  }
 
- .announcementIcon {
+  .announcementIcon {
     color: #fff;
-    font-size: 40px;
+    font-size: 20px;
     background: #28bc82;
-    height: 48px;
-    width: 48px;
+    height: 32px;
+    width: 32px;
     display: inline-block;
-    /*border-radius: 50%;*/
+    border-radius: 50%;
     text-align: center;
-    line-height: 48px;
- }
+    line-height: 32px;
+  }
 
- .othersIcon {
+  .othersIcon {
     color: #fff;
-    font-size: 40px;
+    font-size: 20px;
     background: #ff9f38;
-    height: 48px;
-    width: 48px;
+    height: 32px;
+    width: 32px;
     display: inline-block;
-    /*border-radius: 50%;*/
+    border-radius: 50%;
     text-align: center;
-    line-height: 48px;
- }
+    line-height: 32px;
+  }
 
- .systemheadlineIcon {
+  .systemheadlineIcon {
     color: #fff;
-    font-size: 40px;
+    font-size: 20px;
     background: #53ADFF;
-    height: 48px;
-    width: 48px;
+    height: 32px;
+    width: 32px;
     display: inline-block;
-    /*border-radius: 50%;*/
+    border-radius: 50%;
     text-align: center;
-    line-height: 48px;
- }
+    line-height: 32px;
+  }
 
-
-
- .item-md ion-thumbnail {
-     min-width: 0px;
-     min-height: 0px;
- }
-  .scroll-content{
+  .item-md ion-thumbnail {
+    min-width: 0px;
+    min-height: 0px;
+  }
+  .scroll-content {
     margin-bottom: 0 !important;
+  }
+  .item-md p{
+    color: #999;
   }
 }

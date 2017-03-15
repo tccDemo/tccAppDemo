@@ -22,13 +22,14 @@ page-setting {
   }
   .settingIcon {
     color: #fff;
-    font-size: 40px;
+    font-size: 20px;
     background: #28bc82;
-    height: 48px;
-    width: 48px;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
     display: inline-block;
     text-align: center;
-    line-height: 48px;
+    line-height: 32px;
   }
   .changePwdIcon {
     background: #53ADFF;

@@ -1,9 +1,14 @@
 <ion-header>
-  <ion-navbar color="heading">
-    <ion-searchbar
-      (ionInput)="doSearch($event)" (ionClear)="doClear()">
+  <ion-toolbar color="heading">
+    <ion-searchbar #searchBar (ionInput)="doSearch($event)" (ionClear)="doClear()">
     </ion-searchbar>
-  </ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="light">Cancel</span>
+        <!--<ion-icon name="md-close" showWhen="android,windows"></ion-icon>-->
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 

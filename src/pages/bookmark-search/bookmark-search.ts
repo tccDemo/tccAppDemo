@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Searchbar, ViewController } from 'ionic-angular';
 import { Bookmark } from '../../providers/bookmark';
-import { appToolBar } from '../../utils/appToolbar';
 import { CampusInfo } from '../../providers/campusInfo';
 import { Keyboard } from 'ionic-native';
 
@@ -11,32 +10,37 @@ import { Keyboard } from 'ionic-native';
 })
 export class BookmarkSearchPage {
 
+  @ViewChild('searchBar') searchBarRef: Searchbar;
   totalBookmarks: Bookmark[];
   bookmarks: Bookmark[];
   isTileView: boolean = true;
   filter: string = "myFavour";
-  campusInfo: CampusInfo;  
+  campusInfo: CampusInfo;
   initListData: boolean = false;
   openDetailBookmark: Function = null;
   launchFromThemeableBrowser: Function = null;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {    
-     this.totalBookmarks = navParams.get('bookmarks');
-     console.log(this.totalBookmarks)
-     this.isTileView = navParams.get('isTileView');
-     this.filter = navParams.get('filter');
-     this.campusInfo = navParams.get('campusInfo');
-     this.openDetailBookmark = navParams.get('openDetailBookmark');
-     this.launchFromThemeableBrowser = navParams.get('launchFromThemeableBrowser');
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public viewCtrl: ViewController) {
+    this.totalBookmarks = navParams.get('bookmarks');
+    this.isTileView = navParams.get('isTileView');
+    this.filter = navParams.get('filter');
+    this.campusInfo = navParams.get('campusInfo');
+    this.openDetailBookmark = navParams.get('openDetailBookmark');
+    this.launchFromThemeableBrowser = navParams.get('launchFromThemeableBrowser');
   }
 
   ngOnInit(): void {
-    appToolBar.hideTabsBar();
-    Keyboard.show();
+    var self = this;
+    setTimeout(() => {
+      self.searchBarRef.setFocus();
+      Keyboard.show();
+    }, 500);
   }
 
   ionViewWillLeave() {
-    appToolBar.showTabsBar();
   }
 
   doSearch(ev): void {
@@ -54,5 +58,9 @@ export class BookmarkSearchPage {
 
   doClear(): void {
     this.initListData = false;
+  }
+
+  dismiss(): void {
+    this.viewCtrl.dismiss();
   }
 }

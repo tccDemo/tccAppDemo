@@ -3,8 +3,7 @@
     <bookmark-filter (onRefreshBookmarks)="refreshBookmarks($event)"></bookmark-filter>
   </ion-buttons>
 
-  <ion-searchbar *ngIf="bookmarks!=null&&bookmarks.length>0"
-    (ionFocus)="openSearch()">
+  <ion-searchbar *ngIf="bookmarks!=null&&bookmarks.length>0" (ionFocus)="openSearch()">
   </ion-searchbar>
 
   <ion-buttons right *ngIf="bookmarks!=null&&bookmarks.length>0">

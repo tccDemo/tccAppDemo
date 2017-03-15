@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams, ViewController, Platform } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Platform, ModalController } from 'ionic-angular';
 import { ThemeableBrowser } from "ionic-native";
 
 import { Bookmark } from '../../providers/bookmark';
@@ -32,6 +32,7 @@ export class BookmarkListPage {
     private bookmarkService: BookmarkService,
     private dragulaService: DragulaService,
     private zone: NgZone,
+    private modalCtrl: ModalController,
     private storageService: StorageService) {
   }
 
@@ -191,10 +192,11 @@ export class BookmarkListPage {
   }
 
   openSearch() {
-    this.navCtrl.push(BookmarkSearchPage, {
+    let modal = this.modalCtrl.create(BookmarkSearchPage, {
       bookmarks: this.bookmarks, isTileView: this.isTileView,
       filter: this.filter, campusInfo: this.campusInfo,
       openDetailBookmark: this.openDetailBookmark, launchFromThemeableBrowser: this.launchFromThemeableBrowser
     });
-  }
+    modal.present();
+  }  
 }

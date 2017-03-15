@@ -1,6 +1,5 @@
 <ion-toolbar>
-  <ion-searchbar
-   (ionFocus)="openSearch()">
+  <ion-searchbar *ngIf="announcements!=null&&announcements.length>0" (ionFocus)="openSearch()">
   </ion-searchbar>
 </ion-toolbar>
 <ion-content style="position:static">

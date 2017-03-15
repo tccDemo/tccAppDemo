@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild, Renderer, ElementRef } from '@angular/core';
+import { NavController, NavParams, Searchbar, ViewController } from 'ionic-angular';
 import { BundleEvents } from '../../providers/bundleEvents';
-import { appToolBar } from '../../utils/appToolbar';
 import { Keyboard } from 'ionic-native';
 
 @Component({
@@ -13,21 +12,38 @@ export class EventSearchPage {
   bundleEvents: BundleEvents[];
   openDetailPage: Function = null;
   initListData: boolean = false;
+  @ViewChild('searchBar') searchBarRef: Searchbar;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    private renderer: Renderer,
+    private elementRef: ElementRef) {
     this.bundleEvents = navParams.get('bundleEvents');
     this.openDetailPage = navParams.get('openDetailPage');
   }
+  ngAfterViewInit() {
 
-
-  ngOnInit(): void {
-    appToolBar.hideTabsBar();
-    Keyboard.show();
+    // const element = this.elementRef.nativeElement.querySelector('ion-searchbar');
+    // setTimeout(() => {
+    //     this.renderer.invokeElementMethod(element, 'focus', []);
+    //     Keyboard.show();
+    // },500);
   }
 
-  ionViewWillLeave() {
-    appToolBar.showTabsBar();
-    Keyboard.close();
+  ngOnInit(): void {
+    var self = this;    
+    setTimeout(() => {
+        self.searchBarRef.setFocus();
+        Keyboard.show();
+    },500);    
+  }
+
+  ionViewLoaded(): void {
+  }
+
+  ionViewWillLeave(): void {
   }
 
   doSearch(ev): void {
@@ -46,5 +62,9 @@ export class EventSearchPage {
 
   doClear(): void {
     this.initListData = false;
+  }
+
+  dismiss(): void {
+    this.viewCtrl.dismiss();
   }
 }

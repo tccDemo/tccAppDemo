@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { Announcement } from '../../providers/announcement';
 import { AnnouncementService } from '../../providers/announcement.service';
@@ -19,6 +19,7 @@ export class AnnouncementListPage {
 
   constructor(private navParams: NavParams,
     private navCtrl: NavController,
+    private modalCtrl: ModalController,
     private announcementService: AnnouncementService) {
   }
 
@@ -43,6 +44,7 @@ export class AnnouncementListPage {
   }
 
   openSearch() {
-    this.navCtrl.push(AnnouncementSearchPage);
+    let modal = this.modalCtrl.create(AnnouncementSearchPage);
+    modal.present();
   }
 }

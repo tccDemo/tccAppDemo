@@ -96,3 +96,16 @@
   content: "";
   border-bottom: none;
 }
+.container-no-data{
+  text-align: center;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  span{
+    color: #999;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+}

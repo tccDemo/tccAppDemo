@@ -35,7 +35,11 @@
       <IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg">
     </ion-item>
     <ion-item *ngIf="bookmarks!=null&&bookmarks.length==0">
-      No data found
+      <div class="container-no-data">
+        <span><img src="assets/icon/no-data.png" alt=""></span>
+        <span>No data found</span>
+      </div>
+
     </ion-item>
 
     <div *ngIf="filter=='myFavour' && isSortable">
@@ -44,7 +48,10 @@
                   bookmarkId="{{bookmark.id}}">
           <ion-thumbnail item-left>
             <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-list-img" *ngIf="bookmark.iconType==102">
-            <img [src]="bookmark.imgIcon" class="bookmark-list-img" *ngIf="bookmark.iconType!=102">
+            <div class="bookmark-list-bg" [ngStyle]="{'background':bookmark.iconBg}" *ngIf="bookmark.iconType!=102">
+              <span [innerHtml]="bookmark.iconCode" [ngStyle]="{'color':bookmark.iconFg}"></span>
+            </div>
+
           </ion-thumbnail>
           <h2>{{bookmark.subject}}</h2>
           <p *ngIf="bookmark.description">{{bookmark.description}}</p>
@@ -61,7 +68,9 @@
           <ion-card color="bookmark">
             <ion-card-content>
               <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-img" *ngIf="bookmark.iconType==102">
-              <img [src]="bookmark.imgIcon" class="bookmark-img" *ngIf="bookmark.iconType!=102">
+              <div class="bookmark-list-bg" [ngStyle]="{'background':bookmark.iconBg}" *ngIf="bookmark.iconType!=102">
+                <span [innerHtml]="bookmark.iconCode" [ngStyle]="{'color':bookmark.iconFg}"></span>
+              </div>
               <div class="bookmark-item-body">
                 <h3>
                   {{bookmark.subject}}
@@ -79,7 +88,9 @@
                   (click)="openDetailBookmark(bookmark.id)" bookmarkId="{{bookmark.id}}">
           <ion-thumbnail item-left>
             <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-list-img" *ngIf="bookmark.iconType==102">
-            <img [src]="bookmark.imgIcon" class="bookmark-list-img" *ngIf="bookmark.iconType!=102">
+            <div class="bookmark-list-bg list-icon" [ngStyle]="{'background':bookmark.iconBg}" *ngIf="bookmark.iconType!=102">
+              <span [innerHtml]="bookmark.iconCode" [ngStyle]="{'color':bookmark.iconFg}"></span>
+            </div>
           </ion-thumbnail>
           <h2>{{bookmark.subject}}</h2>
           <p *ngIf="bookmark.description">{{bookmark.description}}</p>
@@ -94,7 +105,9 @@
           <ion-card color="bookmark"  (press)="enableSort()">
             <ion-card-content>
               <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-img" *ngIf="bookmark.iconType==102">
-              <img [src]="bookmark.imgIcon" class="bookmark-img" *ngIf="bookmark.iconType!=102">
+              <div class="bookmark-list-bg" [ngStyle]="{'background':bookmark.iconBg}" *ngIf="bookmark.iconType!=102">
+                <span [innerHtml]="bookmark.iconCode" [ngStyle]="{'color':bookmark.iconFg}"></span>
+              </div>
               <div class="bookmark-item-body">
                 <h3>
                   {{bookmark.subject}}

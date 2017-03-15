@@ -25,6 +25,11 @@ page-#{$prefix-bookmark}-list {
     }
     .card-md-bookmark {
       box-shadow: none;
+      .bookmark-list-bg {
+        border: none;
+        height: 120px;
+        line-height: 120px;
+      }
       .card-content {
         position: relative;
         padding: 0;
@@ -86,11 +91,17 @@ page-#{$prefix-bookmark}-list {
         }
       }
     }
+
   }
-  .scroll-content{
+  .scroll-content {
     margin-bottom: 0 !important;
   }
-
+  .list-icon {
+    height: 48px;
+    width: 48px;
+    line-height: 48px;
+    text-align: center;
+  }
 }
 
 

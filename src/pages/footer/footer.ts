@@ -41,10 +41,10 @@ export class FooterPage {
     }
 
     schedule(): void {
-        LocalNotifications.schedule({
-            title: "TCC Notifications",
-            text: "You have TCC notifications. Please check it.",
-            badge: this.notificationData.size
-        })
+        // LocalNotifications.schedule({
+        //     title: "TCC Notifications",
+        //     text: "You have TCC notifications. Please check it.",
+        //     badge: this.notificationData.size
+        // })
     } 
 }

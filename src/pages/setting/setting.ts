@@ -26,6 +26,10 @@ export class SettingPage {
         this.userInfo = this.storageService.get(USER_INFO);
     }
 
+    ionViewDidEnter() {
+        this.userInfo = this.storageService.get(USER_INFO);
+    }
+
     ionViewDidLoad() {
         console.log('ionViewDidLoad SettingPage');
     }

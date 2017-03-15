@@ -14,68 +14,70 @@ import { EventSearchPage } from '../event-search/event-search';
   templateUrl: 'event-list.html'
 })
 export class EventListPage {
-   
+
   bundleEvents: BundleEvents[];
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, 
-  	private eventService: EventService, private modalCtrl: ModalController){}
+  constructor(private navCtrl: NavController, private navParams: NavParams,
+    private eventService: EventService, private modalCtrl: ModalController) { }
 
   ionViewDidLoad() {
   }
-  
+
   ngOnInit(): void {
     this.getEvents();
   }
 
   doRefresh(refresher) {
-    console.log('Begin async operation', refresher);    
+    console.log('Begin async operation', refresher);
     setTimeout(() => {
       this.bundleEvents = [];
       this.getEvents();
       console.log('Async operation has ended');
       refresher.complete();
     }, 500);
-  }  
+  }
 
   getEvents(): void {
-    this.eventService.getEvents().then( (events:Event[]) => this.orderEvents(events));
+    this.eventService.getEvents().then((events: Event[]) => this.orderEvents(events));
   }
 
   orderEvents(events: Event[]): void {
-  	var self = this;
-  	this.bundleEvents = new Array();
-    events.sort(function(e1,e2){
-    		if (e1.startDate.getTime() != e2.startDate.getTime()) {
-    			return e1.startDate.getTime() - e2.startDate.getTime();
-    		}
-    		return e1.startTime - e2.startTime;
-    }).forEach(function(ev){
+    var self = this;
+    this.bundleEvents = new Array();
+    events.sort(function (e1, e2) {
+      if (e1.startDate.getTime() != e2.startDate.getTime()) {
+        return e1.startDate.getTime() - e2.startDate.getTime();
+      }
+      return e1.startTime - e2.startTime;
+    }).forEach(function (ev) {
 
-      ev.start = new Date(ev.startDate.getTime()+ev.startTime*1000*3600);
-      ev.end = new Date(ev.endDate.getTime()+ev.endTime*1000*3600);
+      ev.start = new Date(ev.startDate.getTime() + ev.startTime * 1000 * 3600);
+      ev.end = new Date(ev.endDate.getTime() + ev.endTime * 1000 * 3600);
 
-    	if (self.bundleEvents.length == 0 ||
-    	  self.bundleEvents[self.bundleEvents.length-1].date.getTime()<ev.startDate.getTime()) {
-    		let be = new BundleEvents();
-    		be.date = ev.startDate;
-    		be.events = new Array();
-    		be.events.push(ev);
-    		self.bundleEvents.push(be);
-    	} else {
-  			self.bundleEvents[self.bundleEvents.length-1].events.push(ev);    		
-    	}
-  	});
+      if (self.bundleEvents.length == 0 ||
+        self.bundleEvents[self.bundleEvents.length - 1].date.getTime() < ev.startDate.getTime()) {
+        let be = new BundleEvents();
+        be.date = ev.startDate;
+        be.events = new Array();
+        be.events.push(ev);
+        self.bundleEvents.push(be);
+      } else {
+        self.bundleEvents[self.bundleEvents.length - 1].events.push(ev);
+      }
+    });
   }
 
-  openDetailPage(eventId: string | number):void {
+  openDetailPage(eventId: string | number): void {
     this.navCtrl.push(EventDetailPage, eventId);
   }
 
-  openCalendarPage():void{
-    this.navCtrl.push(EventCalendarPage);  
+  openCalendarPage(): void {
+    this.navCtrl.push(EventCalendarPage);
   }
 
   openSearch() {
-    this.navCtrl.push(EventSearchPage, {bundleEvents: this.bundleEvents, openDetailPage: this.openDetailPage});
-  }   
+    // this.navCtrl.push(EventSearchPage, {bundleEvents: this.bundleEvents, openDetailPage: this.openDetailPage});
+    let modal = this.modalCtrl.create(EventSearchPage, { bundleEvents: this.bundleEvents, openDetailPage: this.openDetailPage });
+    modal.present();
+  }
 }

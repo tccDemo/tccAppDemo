@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Searchbar, ViewController } from 'ionic-angular';
 import { Announcement } from '../../providers/announcement';
 import { AnnouncementService } from '../../providers/announcement.service';
 import { AnnouncementDetailPage } from '../announcement-detail/announcement-detail';
-import { appToolBar } from '../../utils/appToolbar';
 import { Keyboard } from 'ionic-native';
 
 @Component({
@@ -13,21 +12,29 @@ import { Keyboard } from 'ionic-native';
 export class AnnouncementSearchPage {
   public announcements: Announcement[];
   initListData: boolean = false;
+  @ViewChild('searchBar') searchBarRef: Searchbar;
 
   constructor(private navParams: NavParams,
     private navCtrl: NavController,
+    private viewCtrl: ViewController,
     private announcementService: AnnouncementService) {
 
   }
 
   ngOnInit(): void {
+    var self = this;
     this.getAnnouncements();
-    appToolBar.hideTabsBar();
-    Keyboard.show();
+    setTimeout(() => {
+      self.searchBarRef.setFocus();
+      Keyboard.show();
+    }, 500);
   }
-  
+
+
+  ionViewDidEnter() {
+  }
+
   ionViewWillLeave() {
-    appToolBar.showTabsBar();
   }
 
   getAnnouncements(): void {
@@ -52,5 +59,9 @@ export class AnnouncementSearchPage {
 
   openDetailPage(announcementId: string | number): void {
     this.navCtrl.push(AnnouncementDetailPage, announcementId);
+  }
+
+  dismiss(): void {
+    this.viewCtrl.dismiss();
   }
 }

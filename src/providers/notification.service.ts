@@ -15,7 +15,7 @@ export class NotificationService {
   }
 
   getNotificationsByName(term: string): Promise<Notification[]> {
-    return Promise.resolve(NOTIFICATIONS).then(notifications =>
+    return Promise.resolve(NOTIFICATIONS).then((notifications:any) =>
       notifications.find(notification => notification.name.indexOf(term) != -1));
   }
 

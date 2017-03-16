@@ -1,6 +1,12 @@
 @import "../scss/variables";
 @import "../scss/global";
 
+ .loadingImg {
+   display:inline-block;
+   margin-top: 25px;
+   margin-left: 43%;
+ }
+
 .toolbar-md-heading {
   .toolbar-background-md {
     background: $blue !important;

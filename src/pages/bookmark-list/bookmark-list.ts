@@ -67,6 +67,8 @@ export class BookmarkListPage {
   }
 
   refreshBookmarks(bookmarkFilter: string): void {
+    this.bookmarks = null;
+    
     if (this.filter != bookmarkFilter) {
       this.isSortable = false;
     }

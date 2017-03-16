@@ -16,7 +16,9 @@ import { StorageService, USER_INFO } from '../../providers/storage.service';
 })
 export class HomePage {
 
-    tab: string = "bookmark";
+   // tab: string = "bookmark";
+  tabsArray = ['bookmark','announcement','event'];
+  tab: string = this.tabsArray[0];
     userInfo: UserInfo = null;
 
     @ViewChild(UserAvatarComponent)
@@ -50,4 +52,19 @@ export class HomePage {
     clearNewEvents(): void {
         this.hasNewEvents = false;
     }
+  swipeEvent(event) {
+    //swipe left
+    if (event.direction == 2) {
+      if (this.tabsArray.indexOf(this.tab) < 2) {
+        this.tab = this.tabsArray[this.tabsArray.indexOf(this.tab) + 1];
+      }
+    }
+//swipe right
+    if (event.direction == 4) {
+      if (this.tabsArray.indexOf(this.tab) > 0) {
+        this.tab = this.tabsArray[this.tabsArray.indexOf(this.tab) - 1];
+      }
+    }
+  }
+
 }

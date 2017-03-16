@@ -25,7 +25,7 @@
 
 <ion-content>
 
-  <div [ngSwitch]="tab">
+  <div [ngSwitch]="tab" (swipe)="swipeEvent($event)">
     <ion-list *ngSwitchCase="'bookmark'">
       <page-bookmark-list></page-bookmark-list>
     </ion-list>

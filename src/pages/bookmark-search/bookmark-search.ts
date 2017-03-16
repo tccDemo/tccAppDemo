@@ -3,6 +3,7 @@ import { NavController, NavParams, Searchbar, ViewController } from 'ionic-angul
 import { Bookmark } from '../../providers/bookmark';
 import { CampusInfo } from '../../providers/campusInfo';
 import { Keyboard } from 'ionic-native';
+import { IS_USING_REAL_DATA } from '../../providers/tcc.service';
 
 @Component({
   selector: 'page-bookmark-search',
@@ -19,6 +20,7 @@ export class BookmarkSearchPage {
   initListData: boolean = false;
   openDetailBookmark: Function = null;
   launchFromThemeableBrowser: Function = null;
+  isUsingRealData: boolean = IS_USING_REAL_DATA;
 
   constructor(
     public navCtrl: NavController,

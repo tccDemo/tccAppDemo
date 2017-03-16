@@ -10,6 +10,7 @@ import { StorageService, USER_INFO, CAMPUS_INFO } from '../../providers/storage.
 import { BookmarkSearchPage } from '../bookmark-search/bookmark-search';
 import { DragulaService } from 'ng2-dragula';
 import { Dragula } from 'dragula';
+import { IS_USING_REAL_DATA } from '../../providers/tcc.service';
 
 declare var $: any;
 
@@ -25,7 +26,8 @@ export class BookmarkListPage {
   isSortable: boolean = false;
   campusInfo: CampusInfo;
   userInfo: UserInfo;
-
+  isUsingRealData: boolean = IS_USING_REAL_DATA;
+  
   constructor(public plt: Platform,
     private navCtrl: NavController,
     private navParams: NavParams,

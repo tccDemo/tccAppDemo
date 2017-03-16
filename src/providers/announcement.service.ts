@@ -22,8 +22,8 @@ export class AnnouncementService {
   }
 
   getAnnouncementsByName(term: string): Promise<Announcement[]> {
-    return this.getAnnouncements().then((announcements:any) =>
-      announcements.find(announcement => announcement.title.indexOf(term)!=-1));
+    return this.getAnnouncements().then((announcements: any) =>
+      announcements.find(announcement => announcement.title.indexOf(term) != -1));
   }
 
   getAnnouncements(): Promise<Announcement[]> {
@@ -35,6 +35,37 @@ export class AnnouncementService {
     } else {
       return Promise.resolve(ANNOUNCEMENTS);
     }
+  }
+
+  getUnNotifiedNewNotifications(): Promise<Announcement[]> {
+    if (IS_USING_REAL_DATA) {
+      let url = `${BASE_URL}&cmd=getNewAnnouncementCount&cx=${this.cx}&token=${this.token}`;
+      return this.http.get(url).toPromise().then(res => res.json())
+        .catch(err => handleError(err));
+    } else {
+      var ret = new Array();
+      for (var i = 0; i < ANNOUNCEMENTS.length; i++) {
+        if (ANNOUNCEMENTS[i].isNew && !ANNOUNCEMENTS[i].hasNotified) {
+          ANNOUNCEMENTS[i].hasNotified = true;
+          ret.push(ANNOUNCEMENTS[i]);
+        }
+      }
+      return Promise.resolve(ret);
+    }
+  }
+
+  markAllRead(): Promise<boolean> {
+    if (IS_USING_REAL_DATA) {
+      let url = `${BASE_URL}&cmd=markAllAnnouncementRead&cx=${this.cx}&token=${this.token}`;
+      this.http.get(url);
+    } else {
+      for (var i = 0; i < ANNOUNCEMENTS.length; i++) {
+        if (ANNOUNCEMENTS[i].isNew) {
+          ANNOUNCEMENTS[i].isNew = false;
+        }
+      }     
+    }    
+    return Promise.resolve(true);
   }
 
   getAnnouncement(id: number): Promise<Announcement> {

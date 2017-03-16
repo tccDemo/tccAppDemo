@@ -109,3 +109,11 @@
     vertical-align: middle;
   }
 }
+.has-icon .tab-badge {
+  right: calc(50% - 23px);
+}
+
+.tab-badge {
+  border-radius: 50%;
+  top: 10%;
+}

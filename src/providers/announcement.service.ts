@@ -37,9 +37,9 @@ export class AnnouncementService {
     }
   }
 
-  getUnNotifiedNewNotifications(): Promise<Announcement[]> {
+  getNewAnnouncements(): Promise<Announcement[]> {
     if (IS_USING_REAL_DATA) {
-      let url = `${BASE_URL}&cmd=getNewAnnouncementCount&cx=${this.cx}&token=${this.token}`;
+      let url = `${BASE_URL}&cmd=getNewAnnouncements&cx=${this.cx}&token=${this.token}`;
       return this.http.get(url).toPromise().then(res => res.json())
         .catch(err => handleError(err));
     } else {

@@ -24,10 +24,10 @@ export class FooterPage {
 
     constructor(private notificationService: NotificationService, private navController: NavController) {
 
-        LocalNotifications.on("click", (notification, state) => {
-            this.navController.push(NotificationListPage);
-            // this.tabRef.select(1);
-        });
+        // LocalNotifications.on("click", (notification, state) => {
+        //     this.navController.push(NotificationListPage);
+        //     // this.tabRef.select(1);
+        // });
     }
 
     ionViewDidLoad() {

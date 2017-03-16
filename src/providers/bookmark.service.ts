@@ -4,7 +4,7 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Bookmark } from './bookmark';
-import { BOOKMARKS } from './bookmark-mock';
+import { ALLBOOKMARKS, POPULARBOOKMARKS, RECENTBOOKMARKS, MYFAVBOOKMARKS } from './bookmark-mock';
 import { BASE_URL, REQUEST_OPTIONS, IS_USING_REAL_DATA, handleError, TCCData } from './tcc.service';
 
 @Injectable()
@@ -27,12 +27,12 @@ export class BookmarkService {
       return this.http.get(url).toPromise().then(res => res.json())
         .catch(err => handleError(err));
     } else {
-      return Promise.resolve(this.getSortedBookmarks());
+      return Promise.resolve(this.getSortedBookmarks(ALLBOOKMARKS));
     }
   }
 
-  getSortedBookmarks(): Bookmark[] {
-    return BOOKMARKS.sort(function (b1, b2) {
+  getSortedBookmarks(bookmarks: Bookmark[]): Bookmark[] {
+    return bookmarks.sort(function (b1, b2) {
       return b1.seq - b2.seq;
     });
   }
@@ -41,10 +41,9 @@ export class BookmarkService {
     if (IS_USING_REAL_DATA) {
       let url = `${BASE_URL}&cmd=getMyFavCampusLinks&cx=${this.cx}&token=${this.token}`;
       return this.http.get(url).toPromise().then(res => res.json())
-        .catch(err => handleError(err));
+        .catch(err => alert(err));
     } else {
-      let ret = this.getSortedBookmarks().filter(function (bookmark) { return bookmark.isMyFavour });
-      return Promise.resolve(ret);
+      return Promise.resolve(this.getSortedBookmarks(MYFAVBOOKMARKS));
     }
   }
 
@@ -54,8 +53,7 @@ export class BookmarkService {
       return this.http.get(url).toPromise().then(res => res.json())
         .catch(err => handleError(err));
     } else {
-      let ret = this.getSortedBookmarks().filter(function (bookmark) { return bookmark.isRecent });
-      return Promise.resolve(ret);
+      return Promise.resolve(this.getSortedBookmarks(RECENTBOOKMARKS));
     }
   }
 
@@ -65,8 +63,7 @@ export class BookmarkService {
       return this.http.get(url).toPromise().then(res => res.json())
         .catch(err => handleError(err));
     } else {
-      let ret = this.getSortedBookmarks().filter(function (bookmark) { return bookmark.isPopular });
-      return Promise.resolve(ret);
+      return Promise.resolve(this.getSortedBookmarks(POPULARBOOKMARKS));
     }
   }
 
@@ -76,7 +73,7 @@ export class BookmarkService {
       return this.http.get(url).toPromise().then(res => res.json())
         .catch(err => handleError(err));
     } else {
-      return Promise.resolve(this.getSortedBookmarks()).then(bookmarks => bookmarks.find(bookmark => bookmark.id == +id));
+      return Promise.resolve(this.getSortedBookmarks(ALLBOOKMARKS)).then(bookmarks => bookmarks.find(bookmark => bookmark.id == +id));
     }
   }
 
@@ -90,13 +87,12 @@ export class BookmarkService {
         ids += bookmark.bookmarkId;
       });
       let url = `${BASE_URL}&cmd=reorderMyFavCampusLinks&cx=${this.cx}&token=${this.token}&ids=${ids}`;
-      this.http.post(url, REQUEST_OPTIONS).toPromise().then(res => res.json())
-        .catch(err => handleError(err));
+      this.http.get(url);
     } else {
       var seq = 0;
       for (var i = 0; i < bookmarks.length; i++) {
         seq++;
-        BOOKMARKS.forEach(function (bookmark) {
+        MYFAVBOOKMARKS.forEach(function (bookmark) {
           if (bookmark.id == bookmarks[i].bookmarkId) {
             bookmark.seq = seq;
           }
@@ -108,14 +104,40 @@ export class BookmarkService {
   markFavour(id: number | string, isMyFavour: boolean): void {
     if (IS_USING_REAL_DATA) {
       let url = `${BASE_URL}&cmd=markFavCampusLinkOrNot&cx=${this.cx}&token=${this.token}&id=${id}&isMyFavour=${isMyFavour}`;
-      this.http.post(url, REQUEST_OPTIONS).toPromise().then(res => res.json())
+      this.http.get(url).toPromise().then(res => res.json())
         .catch(err => handleError(err));
     } else {
-      BOOKMARKS.forEach(function (bookmark) {
+
+      RECENTBOOKMARKS.forEach(function (bookmark) {
         if (bookmark.id == id) {
           bookmark.isMyFavour = isMyFavour;
         }
       });
+      POPULARBOOKMARKS.forEach(function (bookmark) {
+        if (bookmark.id == id) {
+          bookmark.isMyFavour = isMyFavour;
+        }
+      });
+      ALLBOOKMARKS.forEach(function (bookmark) {
+        if (bookmark.id == id) {
+          bookmark.isMyFavour = isMyFavour;
+        }
+      });
+
+      if (isMyFavour) {
+        ALLBOOKMARKS.forEach(function (bookmark) {
+          if (bookmark.id == id) {
+            MYFAVBOOKMARKS.push(bookmark);
+            MYFAVBOOKMARKS[MYFAVBOOKMARKS.length - 1].seq = MYFAVBOOKMARKS.length;
+          }
+        });
+      } else {
+        for (var i = 0; i < MYFAVBOOKMARKS.length; i++) {
+          if (MYFAVBOOKMARKS[i].id == id) {
+            MYFAVBOOKMARKS.splice(i, 1);
+          }
+        }
+      }
     }
   }
 }

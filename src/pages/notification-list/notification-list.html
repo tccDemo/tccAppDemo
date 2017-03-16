@@ -1,44 +1,40 @@
 <ion-header>
   <ion-navbar class="headToolBar" color="heading">
-    <ion-title>Notification</ion-title>    
-	<ion-buttons right>
-      <button ion-button  ion-right round small (click)="clearAll()" color="light">Clear All</button>
-    </ion-buttons>	  
+    <ion-title>Notification</ion-title>
+    <ion-buttons right>
+      <button ion-button ion-right round small (click)="clearAll()" color="light">Clear All</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
-
 <ion-content>
-
- <ion-list>
-	  <ion-item *ngIf="notifications==null">
-	     <IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg">
-	  </ion-item>	
-   	  <ion-item *ngIf="notifications!=null&&notifications.length==0">
-		 No data found
-	  </ion-item>
-
-	<ion-item-sliding *ngFor="let notification of notifications">
-
-    <ion-item (click)="openDetailPage({notificationId: notification.id})">
-	  <ion-thumbnail item-left>
-        <ion-icon name="information-circle" class="announcementIcon" *ngIf="notification.nType=='announcement'"></ion-icon>		
-		<ion-icon name="easel" class="systemheadlineIcon" *ngIf="notification.nType=='systemheadline'"></ion-icon>
-		<ion-icon name="albums" class="othersIcon" *ngIf="notification.nType=='others'"></ion-icon>		
-      </ion-thumbnail>
-      <h2><span class="ionLabel">{{notification.name}}</span></h2>	  
-	  <p>{{notification.publishedAt}} <span *ngIf="notification.description"> • {{notification.description}}</span></p>
+  <ion-list>
+    <ion-item *ngIf="notifications==null">
+      <IMG src='assets/images/loading.svg' alt='loading' class="loadingImg">
     </ion-item>
-    <ion-item-options>
-      <button ion-button color="danger" icon-left (click)="delete(notification.id)">
+    <ion-item *ngIf="notifications!=null&&notifications.length==0">
+      <div class="container-no-data">
+        <span><img src="assets/icon/no-data.png" alt=""></span>
+        <span>No data found</span>
+      </div>
+    </ion-item>
+
+    <ion-item-sliding *ngFor="let notification of notifications">
+
+      <ion-item (click)="openDetailPage({notificationId: notification.id})">
+        <ion-thumbnail item-left>
+          <ion-icon name="information-circle" class="announcementIcon" *ngIf="notification.nType=='announcement'"></ion-icon>
+          <ion-icon name="easel" class="systemheadlineIcon" *ngIf="notification.nType=='systemheadline'"></ion-icon>
+          <ion-icon name="albums" class="othersIcon" *ngIf="notification.nType=='others'"></ion-icon>
+        </ion-thumbnail>
+        <h2><span class="ionLabel">{{notification.name}}</span></h2>
+        <p>{{notification.publishedAt}} <span *ngIf="notification.description"> • {{notification.description}}</span></p>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="danger" icon-left (click)="delete(notification.id)">
           <ion-icon name="trash"></ion-icon>
           Delete
-      </button>	  
-    </ion-item-options>					
-
-    </ion-item-sliding>		  
-	  
-	  
- </ion-list>
-
- 
+      </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

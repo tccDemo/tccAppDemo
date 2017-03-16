@@ -7,6 +7,6 @@
 </ion-header>
 <ion-content padding style="background:#fff">
 
-  <div *ngIf="announcement==null"><IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg"></div>
+  <div *ngIf="announcement==null"><IMG src='assets/images/loading.svg' alt='loading' class="loadingImg"></div>
   <div *ngIf="announcement!=null" [innerHtml]='announcement.detail'></div>
 </ion-content>

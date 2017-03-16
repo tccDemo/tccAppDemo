@@ -6,6 +6,6 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <div *ngIf="notification==null"><IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg"></div>
+    <div *ngIf="notification==null"><IMG src='assets/images/loading.svg' alt='loading' class="loadingImg"></div>
     <div *ngIf="notification!=null" [innerHtml]="notification.detail"></div>    
 </ion-content>

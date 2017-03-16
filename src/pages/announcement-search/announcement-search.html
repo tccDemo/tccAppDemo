@@ -16,10 +16,13 @@
   <ion-list class="dataContainer" *ngIf="initListData">
 
     <ion-item *ngIf="announcements==null">
-      <IMG src='assets/images/loading3.gif' alt='loading' class="loadingImg">
+      <IMG src='assets/images/loading.svg' alt='loading' class="loadingImg">
     </ion-item>
     <ion-item *ngIf="announcements!=null&&announcements.length==0">
-      No data found
+      <div class="container-no-data">
+        <span><img src="assets/icon/no-data.png" alt=""></span>
+        <span>No data found</span>
+      </div>
     </ion-item>
     <ion-item *ngFor="let announcement of announcements" (click)="openDetailPage({announcementId: announcement.id})">
       <ion-thumbnail item-left>

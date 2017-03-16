@@ -49,7 +49,7 @@
           <ion-thumbnail item-left>
             <img src="assets/images/bookmarks/{{bookmark.id}}.jpg" class="bookmark-list-img" *ngIf="bookmark.iconType==102&&!isUsingRealData">
             <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-list-img" *ngIf="bookmark.iconType==102&&isUsingRealData">
-            <div class="bookmark-list-bg" [ngStyle]="{'background':bookmark.iconBg}" *ngIf="bookmark.iconType!=102">
+            <div class="bookmark-list-bg list-icon" [ngStyle]="{'background':bookmark.iconBg}" *ngIf="bookmark.iconType!=102">
               <span [innerHtml]="bookmark.iconCode" [ngStyle]="{'color':bookmark.iconFg}"></span>
             </div>
 
@@ -75,7 +75,7 @@
               </div>
               <div class="bookmark-item-body">
                 <h3>
-                  {{bookmark.subject}}
+              {{bookmark.subject}}
                 </h3>
               </div>
             </ion-card-content>

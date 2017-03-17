@@ -20,6 +20,13 @@
         <h2>{{ev.title}}</h2>
       </ion-item>
 
+      <ion-item *ngIf="ev.calendar">
+        Calendar
+        <ion-note item-right>
+          {{ev.calendar}}
+        </ion-note>
+      </ion-item>
+
       <ion-item *ngIf="ev.allDay">
         Time
         <ion-note item-right>
@@ -57,14 +64,14 @@
 	
       <ion-item *ngIf="ev.detail">
         Notes
-        <p class="longContent">
+        <p class="longContent"  item-right>
           {{ev.detail}}
         </p>
       </ion-item>
 	
       <ion-item *ngIf="ev.repeatInfo">
         Repeat
-        <p class="longContent">
+        <p class="longContent"  item-right>
           {{ev.repeatInfo}}
         </p>
       </ion-item>

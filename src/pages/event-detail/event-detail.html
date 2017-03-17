@@ -22,44 +22,44 @@
 
       <ion-item *ngIf="ev.calendar">
         Calendar
-        <ion-note item-right>
+        <p item-right>
           {{ev.calendar}}
-        </ion-note>
+        </p>
       </ion-item>
 
       <ion-item *ngIf="ev.allDay">
         Time
-        <ion-note item-right>
+        <p item-right>
           All Day
-        </ion-note>
+        </p>
       </ion-item>
 	 
       <ion-item *ngIf="!ev.allDay">
         Start Time
-        <ion-note item-right>
+        <p item-right>
           {{start | date:'short'}}
-        </ion-note>
+        </p>
       </ion-item>	  
 	 
       <ion-item *ngIf="!ev.allDay">
         End Time
-        <ion-note item-right>
+        <p item-right>
           {{end | date:'short'}}
-        </ion-note>
+        </p>
       </ion-item>
 	  
       <ion-item *ngIf="ev.postedBy">
         Posted by
-        <ion-note item-right>
+        <p item-right>
           {{ev.postedBy}}
-        </ion-note>
+        </p>
       </ion-item>	
 
       <ion-item *ngIf="ev.location">
         Location
-        <ion-note item-right>
+        <p item-right>
           {{ev.location}}
-        </ion-note>
+        </p>
       </ion-item>	  
 	
       <ion-item *ngIf="ev.detail">

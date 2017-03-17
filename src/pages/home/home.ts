@@ -1,6 +1,6 @@
 import { Component, ViewChild, Input, OnInit } from '@angular/core';
 
-import { NavController,NavParams } from 'ionic-angular';
+import { NavController, NavParams, App, ModalController } from 'ionic-angular';
 import { UserAvatarComponent } from '../../components/user-avatar/user-avatar';
 
 import { BookmarkListPage } from '../bookmark-list/bookmark-list';
@@ -12,6 +12,8 @@ import { StorageService, USER_INFO } from '../../providers/storage.service';
 import { AnnouncementService } from '../../providers/announcement.service';
 import { IS_USING_REAL_DATA } from '../../providers/tcc.service';
 import { LocalNotifications } from 'ionic-native';
+
+import { LocalNotificationListPage } from '../local-notification-list/local-notification-list';
 
 @Component({
     selector: 'page-home',
@@ -37,46 +39,79 @@ export class HomePage {
 
     hasNewAnnouncements: boolean = true;
     hasNewEvents: boolean = true;
-    annNotificationData: any = { size: 0 };
+    notifiedIds: Array<number> = new Array;
 
     constructor(
         public announcementService: AnnouncementService,
         public navController: NavController,
         public navParams: NavParams,
-        public storageService: StorageService) {
+        public storageService: StorageService,
+        public modalCtrl: ModalController,
+        public appCtrl: App) {
 
-            let preTab = navParams.get('tab');
-            if (preTab) {
-                this.tab = preTab;
-            }
+        let preTab = navParams.get('tab');
+        if (preTab) {
+            this.tab = preTab;
+        }
+
+
+        var self = this;
+        setInterval(function () {
+            self.announcementService.getNewAnnouncements().then((announcements: any) => {
+                if (announcements.length > 0) {
+                    var unreadAnnCount = 0;
+                    announcements.forEach(function (announcement) {
+                        var hasNotified = false;
+                        self.notifiedIds.forEach(function (id) {
+                            if (id == announcement.id) {
+                                hasNotified = true;
+                            }
+                        });
+                        if (!hasNotified) {
+                            self.notifiedIds.push(announcement.id);
+                            unreadAnnCount++;
+                        }
+                    });
+                    if (unreadAnnCount > 0) {
+                        self.hasNewAnnouncements = true;
+                        console.log("Unread " + unreadAnnCount)
+                        LocalNotifications.schedule({
+                            title: "TCC Announcements",
+                            text: "You have got new announcements. Please check it.",
+                            badge: unreadAnnCount
+                        });
+                    }
+                }
+            });
+        }, 10000);
+
     }
 
     ngOnInit(): void {
-        if (IS_USING_REAL_DATA) {
-            // setInterval(this.schedule, 30000);
-        }
-
         LocalNotifications.on("click", (notification, state) => {
-            this.navController.push(HomePage, { tab: 'announcement' });
+            // this.navController.push(HomePage, { tab: 'announcement' });
+            // this.appCtrl.getRootNav().push(LocalNotificationListPage);
+            let modal = this.modalCtrl.create(LocalNotificationListPage);
+            modal.present();
         });
     }
 
     ionViewDidLoad(): void {
-        let sentNotification = this.storageService.get("sentNotification");
-        if (!sentNotification) {
-            LocalNotifications.schedule({
-                title: "TCC Announcements",
-                text: "You have got new announcements. Please check it.",
-                badge: 10
-            });
-            this.storageService.set("sentNotification", true);
-        }
+        // let sentNotification = this.storageService.get("sentNotification");
+        // if (!sentNotification) {
+        //     // LocalNotifications.schedule({
+        //     //     title: "TCC Announcements",
+        //     //     text: "You have got new announcements. Please check it.",
+        //     //     badge: 10
+        //     // });
+        //     this.storageService.set("sentNotification", true);
+        // }
     }
 
     markAnnouncementsRead(): void {
-        this.announcementService.markAllRead().then(() => {
-            this.hasNewAnnouncements = false;
-        });
+        // this.announcementService.markAllRead().then(() => {
+        this.hasNewAnnouncements = false;
+        // });
     }
 
     clearNewEvents(): void {
@@ -85,26 +120,6 @@ export class HomePage {
 
     ionViewDidEnter() {
         this.userInfo = this.storageService.get(USER_INFO);
-    }
-
-    updateBadge(): void {
-        // this.annNotificationData.size = this.announcementService.getNewCount();
-    }
-
-    schedule(): void {
-        this.announcementService.getNewAnnouncements().then((announcements: any) => {
-            alert(announcements.length)
-            if (announcements.length > 0) {
-                this.hasNewAnnouncements = true;
-                LocalNotifications.schedule({
-                    title: "TCC Announcements",
-                    text: "You have got new announcements. Please check it.",
-                    badge: announcements.length
-                });
-            } else {
-                this.hasNewAnnouncements = false;
-            }
-        });
     }
 
     swipeEvent(event) {

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar class="headToolBar" color="heading">
+    <ion-title>New Announcements</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content style="position:static">
+  <ion-list class="dataContainer">
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content refreshingSpinner="circles">
+      </ion-refresher-content>
+    </ion-refresher>
+
+    <ion-item *ngIf="announcements==null">
+      <IMG src='assets/images/loading.svg' alt='loading' class="loadingImg">
+    </ion-item>
+    <ion-item *ngIf="announcements!=null&&announcements.length==0">
+      <div class="container-no-data">
+        <span><img src="assets/icon/no-data.png" alt=""></span>
+        <span>No data found</span>
+      </div>
+    </ion-item>
+    <ion-item *ngFor="let announcement of announcements" (click)="openDetailPage({announcementId: announcement.id})">
+      <ion-thumbnail item-left>
+        <ion-icon name="information-circle" class="announcementIcon"></ion-icon>
+      </ion-thumbnail>
+      <h2>{{announcement.title}}</h2>
+      <p class="data-summary"  [innerHtml]="announcement.shortDetail"></p>
+    </ion-item>
+  </ion-list>
+</ion-content>

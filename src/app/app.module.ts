@@ -7,12 +7,15 @@ import { NotificationDetailPage } from '../pages/notification-detail/notificatio
 import { AnnouncementListPage } from '../pages/announcement-list/announcement-list';
 import { AnnouncementSearchPage } from '../pages/announcement-search/announcement-search';
 import { AnnouncementDetailPage } from '../pages/announcement-detail/announcement-detail';
+import { LocalNotificationListPage } from '../pages/local-notification-list/local-notification-list';
+
 import { BookmarkListPage } from '../pages/bookmark-list/bookmark-list';
 import { BookmarkSearchPage } from '../pages/bookmark-search/bookmark-search';
 import { EventListPage } from '../pages/event-list/event-list';
 import { EventDetailPage } from '../pages/event-detail/event-detail';
 import { EventSearchPage } from '../pages/event-search/event-search';
 import { EventCalendarPage } from '../pages/event-calendar/event-calendar';
+
 
 import { SettingPage } from '../pages/setting/setting';
 import { HomePage } from '../pages/home/home';
@@ -47,6 +50,7 @@ import { DragulaService, DragulaModule } from 'ng2-dragula';
         AnnouncementListPage,
         AnnouncementSearchPage,
         AnnouncementDetailPage,
+        LocalNotificationListPage,
         BookmarkListPage,
         BookmarkSearchPage,
         EventListPage,
@@ -67,6 +71,7 @@ import { DragulaService, DragulaModule } from 'ng2-dragula';
         AnnouncementListPage,
         AnnouncementSearchPage,
         AnnouncementDetailPage,
+        LocalNotificationListPage,
         BookmarkListPage,
         BookmarkSearchPage,
         EventListPage,

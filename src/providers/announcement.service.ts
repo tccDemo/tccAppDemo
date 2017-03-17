@@ -45,8 +45,7 @@ export class AnnouncementService {
     } else {
       var ret = new Array();
       for (var i = 0; i < ANNOUNCEMENTS.length; i++) {
-        if (ANNOUNCEMENTS[i].isNew && !ANNOUNCEMENTS[i].hasNotified) {
-          ANNOUNCEMENTS[i].hasNotified = true;
+        if (ANNOUNCEMENTS[i].isNew) {
           ret.push(ANNOUNCEMENTS[i]);
         }
       }

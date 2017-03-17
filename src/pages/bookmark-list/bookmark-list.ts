@@ -40,8 +40,8 @@ export class BookmarkListPage {
 
   private doSort(args: any): void {
     let [el, target, source] = args;
-    this.bookmarkService.updateSeqs(target.children);
-    this.refreshBookmarks(this.filter);
+    this.bookmarkService.updateSeqs(target.children).then((bookmarks: Bookmark[]) => this.bookmarks = bookmarks);
+    // this.refreshBookmarks(this.filter);
   }
 
   loadInfo(): void {

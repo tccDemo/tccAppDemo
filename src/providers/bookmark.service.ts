@@ -77,7 +77,7 @@ export class BookmarkService {
     }
   }
 
-  updateSeqs(bookmarks: any): void {
+  updateSeqs(bookmarks: any): Promise<Bookmark[]> {
     if (IS_USING_REAL_DATA) {
       var ids = "";
       for (var i = 0; i < bookmarks.length; i++) {
@@ -87,7 +87,7 @@ export class BookmarkService {
         ids += bookmarks[i].bookmarkId;
       }
       let url = `${BASE_URL}&cmd=reorderMyFavCampusLinks&cx=${this.cx}&token=${this.token}&ids=${ids}`;
-      this.http.get(url).toPromise().then(res => res.json())
+      return this.http.get(url).toPromise().then(res => res.json())
         .catch(err => handleError(err));
     } else {
       var seq = 0;
@@ -99,6 +99,7 @@ export class BookmarkService {
           }
         });
       }
+      return Promise.resolve(this.getSortedBookmarks(MYFAVBOOKMARKS));
     }
   }
 

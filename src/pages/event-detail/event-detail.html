@@ -18,7 +18,6 @@
            <ion-icon name="calendar" class="calLogo"></ion-icon>
         </ion-avatar>
         <h2>{{ev.title}}</h2>
-        <p>{{ev.detail}}</p>
       </ion-item>
 
       <ion-item *ngIf="ev.allDay">
@@ -42,20 +41,34 @@
         </ion-note>
       </ion-item>
 	  
-      <ion-item>
+      <ion-item *ngIf="ev.postedBy">
+        Posted by
+        <ion-note item-right>
+          {{ev.postedBy}}
+        </ion-note>
+      </ion-item>	
+
+      <ion-item *ngIf="ev.location">
         Location
         <ion-note item-right>
           {{ev.location}}
         </ion-note>
       </ion-item>	  
 	
-      <ion-item>
+      <ion-item *ngIf="ev.detail">
         Notes
-        <ion-note item-right>
+        <p class="longContent">
           {{ev.detail}}
-        </ion-note>
+        </p>
       </ion-item>
 	
+      <ion-item *ngIf="ev.repeatInfo">
+        Repeat
+        <p class="longContent">
+          {{ev.repeatInfo}}
+        </p>
+      </ion-item>
+
   </ion-list>
   
 </ion-content>

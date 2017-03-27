@@ -1,7 +1,9 @@
-import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { FooterPage } from '../footer/footer';
+
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 
 import { CampusInfo } from '../../providers/campusInfo';
 import { UserInfo } from '../../providers/userInfo';

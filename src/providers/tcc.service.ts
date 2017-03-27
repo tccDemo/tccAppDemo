@@ -10,7 +10,7 @@ export const HEADERS: Headers = new Headers({ 'Content-Type': 'application/json'
 
 export const REQUEST_OPTIONS: RequestOptions = new RequestOptions({ headers: HEADERS });
 
-export const IS_USING_REAL_DATA: boolean = true;
+export const IS_USING_REAL_DATA: boolean = false;     
 
 export function handleError(error: any): Promise<any> {
     console.error('An error occurred', error);

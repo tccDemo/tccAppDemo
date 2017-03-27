@@ -14,7 +14,7 @@ export class EventService {
   constructor(private http: Http) {}
 
   getEventsByName(term: string): Promise<Event[]> {
-    return Promise.resolve(EVENTS).then(events => 
+    return Promise.resolve(EVENTS).then((events: any) => 
       events.find(ev => ev.title.indexOf(term)!=-1));   
   }
 

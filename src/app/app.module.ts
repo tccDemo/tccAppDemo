@@ -9,6 +9,8 @@ import { AnnouncementSearchPage } from '../pages/announcement-search/announcemen
 import { AnnouncementDetailPage } from '../pages/announcement-detail/announcement-detail';
 import { LocalNotificationListPage } from '../pages/local-notification-list/local-notification-list';
 
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 import { BookmarkListPage } from '../pages/bookmark-list/bookmark-list';
 import { BookmarkSearchPage } from '../pages/bookmark-search/bookmark-search';
 import { EventListPage } from '../pages/event-list/event-list';
@@ -40,7 +42,8 @@ import { DragulaService, DragulaModule } from 'ng2-dragula';
     imports: [
         IonicModule.forRoot(MyApp), //{passThruUnknownUrl: true}
         NgCalendarModule,
-        DragulaModule
+        DragulaModule,
+        BrowserAnimationsModule
     ],
     declarations: [
         MyApp,

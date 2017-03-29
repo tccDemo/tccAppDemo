@@ -34,7 +34,6 @@ export class EventCalendarPage {
     }
 
     onEventSelected(event) {
-        console.log('Event selected:' + event.id + "-" + event.startTime + '-' + event.endTime + ',' + event.title);
         this.navController.push(EventDetailPage, {eventId:event.id});
         // this.openDetailModal(event.id);
     }
@@ -70,8 +69,8 @@ export class EventCalendarPage {
         	self.eventSource.push({
         		    id: ev.id,
                     title: ev.title,
-                    startTime: new Date(ev.startDate.getTime()+ev.startTime*1000*3600),
-                    endTime: new Date(ev.endDate.getTime()+ev.endTime*1000*3600),
+                    startTime: ev.startDate,
+                    endTime: ev.endDate,
                     allDay: ev.allDay
         		});
         	});

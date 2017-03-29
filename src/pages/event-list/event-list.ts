@@ -28,11 +28,9 @@ export class EventListPage {
   }
 
   doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
     setTimeout(() => {
       this.bundleEvents = [];
       this.getEvents();
-      console.log('Async operation has ended');
       refresher.complete();
     }, 500);
   }
@@ -45,14 +43,9 @@ export class EventListPage {
     var self = this;
     this.bundleEvents = new Array();
     events.sort(function (e1, e2) {
-      if (e1.startDate.getTime() != e2.startDate.getTime()) {
-        return e1.startDate.getTime() - e2.startDate.getTime();
-      }
-      return e1.startTime - e2.startTime;
+      console.log(e1);
+       return e1.startDate.getTime() - e2.startDate.getTime();
     }).forEach(function (ev) {
-
-      ev.start = new Date(ev.startDate.getTime() + ev.startTime * 1000 * 3600);
-      ev.end = new Date(ev.endDate.getTime() + ev.endTime * 1000 * 3600);
 
       if (self.bundleEvents.length == 0 ||
         self.bundleEvents[self.bundleEvents.length - 1].date.getTime() < ev.startDate.getTime()) {

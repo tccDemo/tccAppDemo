@@ -40,12 +40,10 @@ export class EventDetailPage {
 
   loadEvent(ev: Event) {
     this.ev = ev;
-    this.start = new Date(this.ev.startDate.getTime() + this.ev.startTime * 1000 * 3600);
-    this.end = new Date(this.ev.endDate.getTime() + this.ev.endTime * 1000 * 3600);
   }
 
   download(): void {
-    Calendar.createEvent(this.ev.title,  this.ev.location,  this.ev.detail, this.start, this.end).then(() => this.showDLSucMsg());
+    Calendar.createEvent(this.ev.title,  this.ev.location,  this.ev.detail, this.ev.startDate, this.ev.endDate).then(() => this.showDLSucMsg());
   }
 
   showDLSucMsg(): void {

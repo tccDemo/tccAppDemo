@@ -69,8 +69,8 @@ export class EventCalendarPage {
         	self.eventSource.push({
         		    id: ev.id,
                     title: ev.title,
-                    startTime: ev.startDate,
-                    endTime: ev.endDate,
+                    startTime: ev.start,
+                    endTime: ev.end,
                     allDay: ev.allDay
         		});
         	});

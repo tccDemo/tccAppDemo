@@ -33,9 +33,9 @@
         {{be.date | date: 'mediumDate'}}
       </ion-list-header>
       <ion-item *ngFor="let ev of be.events" class="eventRow" (click)="openDetailPage({eventId: ev.id})">
-        <h2 class="eventTitle">{{ev.title}}</h2>
+        <h2 class="eventTitle" [ngStyle]="{'color':ev.calendarColor}">{{ev.title}}</h2>
         <ion-note item-right *ngIf="ev.allDay">All Day</ion-note>
-        <ion-note item-right *ngIf="!ev.allDay">{{ev.startDate | date:"HH:mm"}}</ion-note>
+        <ion-note item-right *ngIf="!ev.allDay">{{ev.start | date:"HH:mm"}}</ion-note>
         <ion-nav [root]="rootPage"></ion-nav>
 
       </ion-item>

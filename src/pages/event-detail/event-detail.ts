@@ -43,7 +43,7 @@ export class EventDetailPage {
   }
 
   download(): void {
-    Calendar.createEvent(this.ev.title,  this.ev.location,  this.ev.detail, this.ev.startDate, this.ev.endDate).then(() => this.showDLSucMsg());
+    Calendar.createEvent(this.ev.title,  this.ev.location,  this.ev.detail, this.ev.start, this.ev.end).then(() => this.showDLSucMsg());
   }
 
   showDLSucMsg(): void {

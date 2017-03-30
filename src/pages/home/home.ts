@@ -108,6 +108,20 @@ export class HomePage {
         // }
     }
 
+    switchEventTab(): void {
+        this.tab = "event";
+        this.clearNewEvents();
+    }
+
+    switchAnnouncementTab(): void {
+        this.tab = "announcement";
+        this.markAnnouncementsRead();
+    }
+
+    switchBookmarkTab(): void {
+        this.tab = "bookmark";
+    }
+
     markAnnouncementsRead(): void {
         // this.announcementService.markAllRead().then(() => {
         this.hasNewAnnouncements = false;

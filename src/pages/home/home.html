@@ -10,13 +10,13 @@
   </ion-navbar>
 
   <ion-segment [(ngModel)]="tab" color="primary">
-    <ion-segment-button value="bookmark">
+    <ion-segment-button value="bookmark" (ionSelect)="switchBookmarkTab()">
       Campus Links
     </ion-segment-button>
-    <ion-segment-button value="announcement" (ionSelect)="markAnnouncementsRead()">
+    <ion-segment-button value="announcement" (ionSelect)="switchAnnouncementTab()">
       Announcements <span class="segment-badge" *ngIf="hasNewAnnouncements"></span>
     </ion-segment-button>
-    <ion-segment-button value="event" (ionSelect)="clearNewEvents()">
+    <ion-segment-button value="event" (ionSelect)="switchEventTab()">
       Events <span class="segment-badge" *ngIf="hasNewEvents"></span>
     </ion-segment-button>
   </ion-segment>

@@ -6,8 +6,10 @@ export class Event {
   postedBy: string;
   detail: string;
   location: string;
-  startDate: Date;
-  endDate: Date;
+  start: Date;
+  end: Date;
+  startDate: string;
+  endDate: string;
   allDay: boolean;
   repeatInfo: string;
 }

@@ -43,14 +43,12 @@ export class EventListPage {
     var self = this;
     this.bundleEvents = new Array();
     events.sort(function (e1, e2) {
-      console.log(e1);
-       return e1.startDate.getTime() - e2.startDate.getTime();
+       return e1.start.getTime() - e2.start.getTime();
     }).forEach(function (ev) {
-
       if (self.bundleEvents.length == 0 ||
-        self.bundleEvents[self.bundleEvents.length - 1].date.getTime() < ev.startDate.getTime()) {
+        self.bundleEvents[self.bundleEvents.length - 1].date.getTime() < ev.start.getTime()) {
         let be = new BundleEvents();
-        be.date = ev.startDate;
+        be.date = ev.start;
         be.events = new Array();
         be.events.push(ev);
         self.bundleEvents.push(be);

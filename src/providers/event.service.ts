@@ -43,16 +43,16 @@ export class EventService {
   parseJSON(res): Event[] {
     let objs = res.json();
     for (let i = 0; i < objs.length; i++) {
-      objs[i].startDate = new Date(objs[i].startDate);
-      objs[i].endDate = new Date(objs[i].endDate);
+      objs[i].start = new Date(objs[i].startDate);
+      objs[i].end = new Date(objs[i].endDate);
     }
     return objs;
   }
 
   parseSingleJSON(res): Event {
     let obj = res.json();
-    obj.startDate = new Date(obj.startDate);
-    obj.endDate = new Date(obj.endDate);
+    obj.start = new Date(obj.startDate);
+    obj.end = new Date(obj.endDate);
     return obj;
   }
 

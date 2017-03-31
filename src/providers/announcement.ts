@@ -6,7 +6,7 @@ export class Announcement {
   shortDetail: string;
   sticky: string;
   postedBy: string;
-  postedAt: string;
+  postedAt: Date;
   postedFrom: string;
   isNew:boolean;
   hasNotified: boolean;

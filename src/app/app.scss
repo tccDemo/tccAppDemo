@@ -3,8 +3,10 @@
 
  .loadingImg {
    display:inline-block;
-   margin-top: 25px;
-   margin-left: 43%;
+   display: flex;
+   align-items: center;
+   margin-bottom: 100rem;
+  justify-content:center;
  }
 
 .toolbar-md-heading {

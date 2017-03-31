@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { FooterPage } from '../footer/footer';
 
@@ -80,34 +80,45 @@ export class LoginPage {
         public toastCtrl: ToastController,
         public userInfoService: UserInfoService,
         public campusInfoService: CampusInfoService,
+        public loadingCtrl: LoadingController,
         public storageService: StorageService) {
 
         this.loginForm = this.formBuilder.group({
             'UserName': ['', [Validators.required, Validators.minLength(4)]],
             'Password': ['', [Validators.required, Validators.minLength(4)]]
         });
-       this.campusInfoService.getCampusInfo(this.campusId).then(res => {  
+        this.campusInfoService.getCampusInfo(this.campusId).then(res => {
             this.storageService.set(CAMPUS_INFO, res);
         })
     }
 
     login(value, _event) {
         _event.preventDefault();
+
+        let loading = this.loadingCtrl.create({
+            spinner: 'hide',
+            content: 'Please wait, login...'
+        });
+
+        loading.present();
+
         this.userInfoService.login(value.UserName, value.Password, this.campusId).then(res => {
-            this.storageService.set(USER_INFO, res);  
+            this.storageService.set(USER_INFO, res);
+            loading.dismiss();
             this.navController.push(FooterPage);
         })
-      .catch(err => 
-      {   
-           console.log(err);
-           let toast = this.toastCtrl.create({
-                message: 'Login or Password is wrong, please try again!',
-                duration: 3000,
-                position: 'top',
-                showCloseButton: true,
-                closeButtonText: 'Close'
+            .catch(err => {
+                loading.dismiss();
+                console.log(err);
+                let toast = this.toastCtrl.create({
+                    message: 'Login or Password is wrong, please try again!',
+                    duration: 3000,
+                    position: 'top',
+                    showCloseButton: true,
+                    closeButtonText: 'Close',
+                    cssClass: "errorLoginMsg"
+                });
+                toast.present();
             });
-            toast.present();
-      });
     }
 }

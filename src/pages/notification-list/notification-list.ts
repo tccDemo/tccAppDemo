@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
-import {Notification} from '../../providers/notification';
-import {NotificationService} from '../../providers/notification.service';
+import { Notification } from '../../providers/notification';
+import { NotificationService } from '../../providers/notification.service';
 
-import {NotificationDetailPage} from '../notification-detail/notification-detail';
+import { NotificationDetailPage } from '../notification-detail/notification-detail';
 
 @Component({
   selector: 'page-notification-list',
@@ -13,11 +13,12 @@ import {NotificationDetailPage} from '../notification-detail/notification-detail
 export class NotificationListPage {
 
   public notifications: Notification[];
-  notificationData: any = {size: 0};
+  notificationData: any = { size: 0 };
 
   constructor(private navCtrl: NavController,
-              private navParams: NavParams,
-              private notificationService: NotificationService) {
+    private navParams: NavParams,
+    private alertCtrl: AlertController,
+    private notificationService: NotificationService) {
   }
 
   ionViewDidLoad() {
@@ -48,7 +49,25 @@ export class NotificationListPage {
   }
 
   clearAll(): void {
-    this.notificationService.clearAll().then((notifications: Notification[]) => this.load(notifications));
+    let confirm = this.alertCtrl.create({
+      title: 'Do you want to clear all notifications?',
+      message: '',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.notificationService.clearAll().then((notifications: Notification[]) => this.load(notifications));
+          }
+        },        
+        {
+          text: 'No',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
   openDetailPage(notificationId: string | number): void {

@@ -1,5 +1,10 @@
 <ion-header>
-  <ion-navbar class="headToolBar" color="heading">
+  <ion-toolbar class="headToolBar" color="heading">
+    <ion-buttons left>
+      <button ion-button (click)="dismiss()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>    
     <ion-title>
       <span *ngIf="ev!=null">{{ev.title}}</span>
     </ion-title>
@@ -7,8 +12,8 @@
       <button ion-button (click)="download()" icon-only icon-right>
         <ion-icon name="download" class="downloadIcon"></ion-icon>
       </button>
-    </ion-buttons>	
-  </ion-navbar>
+    </ion-buttons>	    
+  </ion-toolbar>
 </ion-header>
 <ion-content>
   <div *ngIf="ev==null"><IMG src='assets/images/loading.svg' alt='loading' class="loadingImg"></div>
@@ -29,21 +34,21 @@
 
       <ion-item *ngIf="ev.allDay">
         Time
-        <p item-right>
+        <p item-right (click)="download()" >
           All Day
         </p>
       </ion-item>
 	 
       <ion-item *ngIf="!ev.allDay">
         Start Time
-        <p item-right>
+        <p item-right (click)="download()" >
           {{start | date:'short'}}
         </p>
       </ion-item>	  
 	 
       <ion-item *ngIf="!ev.allDay">
         End Time
-        <p item-right>
+        <p item-right (click)="download()" >
           {{end | date:'short'}}
         </p>
       </ion-item>

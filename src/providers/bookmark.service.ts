@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Bookmark } from './bookmark';
 import { ALLBOOKMARKS, POPULARBOOKMARKS, RECENTBOOKMARKS, MYFAVBOOKMARKS } from './bookmark-mock';
-import { BASE_URL, REQUEST_OPTIONS, IS_USING_REAL_DATA, handleError, TCCData } from './tcc.service';
+import { BASE_URL, REQUEST_OPTIONS, IS_USING_REAL_DATA, TCCData } from './tcc.service';
 
 @Injectable()
 export class BookmarkService {
@@ -25,7 +25,7 @@ export class BookmarkService {
     if (IS_USING_REAL_DATA) {
       let url = `${BASE_URL}&cmd=getAllCampusLinks&cx=${this.cx}&token=${this.token}`;
       return this.http.get(url).toPromise().then(res => res.json())
-        .catch(err => handleError(err));
+        .catch(err => this.tccData.handleError(err));
     } else {
       return Promise.resolve(this.getSortedBookmarks(ALLBOOKMARKS));
     }
@@ -41,7 +41,7 @@ export class BookmarkService {
     if (IS_USING_REAL_DATA) {
       let url = `${BASE_URL}&cmd=getMyFavCampusLinks&cx=${this.cx}&token=${this.token}`;
       return this.http.get(url).toPromise().then(res => res.json())
-        .catch(err => alert(err));
+        .catch(err => this.tccData.handleError(err));
     } else {
       return Promise.resolve(this.getSortedBookmarks(MYFAVBOOKMARKS));
     }
@@ -51,7 +51,7 @@ export class BookmarkService {
     if (IS_USING_REAL_DATA) {
       let url = `${BASE_URL}&cmd=getRecentCampusLinks&cx=${this.cx}&token=${this.token}`;
       return this.http.get(url).toPromise().then(res => res.json())
-        .catch(err => handleError(err));
+        .catch(err => this.tccData.handleError(err));
     } else {
       return Promise.resolve(this.getSortedBookmarks(RECENTBOOKMARKS));
     }
@@ -61,7 +61,7 @@ export class BookmarkService {
     if (IS_USING_REAL_DATA) {
       let url = `${BASE_URL}&cmd=getPopularCampusLinks&cx=${this.cx}&token=${this.token}`;
       return this.http.get(url).toPromise().then(res => res.json())
-        .catch(err => handleError(err));
+        .catch(err => this.tccData.handleError(err));
     } else {
       return Promise.resolve(this.getSortedBookmarks(POPULARBOOKMARKS));
     }
@@ -71,7 +71,7 @@ export class BookmarkService {
     if (IS_USING_REAL_DATA) {
       let url = `${BASE_URL}&cmd=getCampusLink&cx=${this.cx}&token=${this.token}&id=${id}`;
       return this.http.get(url).toPromise().then(res => res.json())
-        .catch(err => handleError(err));
+        .catch(err => this.tccData.handleError(err));
     } else {
       return Promise.resolve(this.getSortedBookmarks(ALLBOOKMARKS)).then(bookmarks => bookmarks.find(bookmark => bookmark.id == +id));
     }
@@ -88,7 +88,7 @@ export class BookmarkService {
       }
       let url = `${BASE_URL}&cmd=reorderMyFavCampusLinks&cx=${this.cx}&token=${this.token}&ids=${ids}`;
       return this.http.get(url).toPromise().then(res => res.json())
-        .catch(err => handleError(err));
+        .catch(err => this.tccData.handleError(err));
     } else {
       var seq = 0;
       for (var i = 0; i < bookmarks.length; i++) {
@@ -107,7 +107,7 @@ export class BookmarkService {
     if (IS_USING_REAL_DATA) {
       let url = `${BASE_URL}&cmd=markFavCampusLinkOrNot&cx=${this.cx}&token=${this.token}&id=${id}&isMyFavour=${isMyFavour}`;
       this.http.get(url).toPromise().then(res => res.json())
-        .catch(err => handleError(err));
+        .catch(err => this.tccData.handleError(err));
     } else {
 
       RECENTBOOKMARKS.forEach(function (bookmark) {

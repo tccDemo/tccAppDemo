@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController,ToastController } from 'ionic-angular';
 
 import { Event } from '../../providers/event';
 import { EventService } from '../../providers/event.service';
-
 import { Calendar } from 'ionic-native';
-import { AlertController } from 'ionic-angular';
 import { appToolBar } from '../../utils/appToolbar';
 
 @Component({
@@ -20,9 +18,10 @@ export class EventDetailPage {
 
   constructor(
     public params: NavParams,
+    public navCtrl: NavController,
     public viewCtrl: ViewController,
     public eventService: EventService,
-    public alertCtrl: AlertController
+    public toastCtrl: ToastController
   ) { }
 
   ngOnInit(): void {
@@ -47,13 +46,14 @@ export class EventDetailPage {
   }
 
   showDLSucMsg(): void {
-    let alert = this.alertCtrl.create({
-      title: 'Success!',
-      subTitle: 'You have imported the event into your mobile calendar!',
-      buttons: ['OK']
+    let toast = this.toastCtrl.create({
+      message: 'You have imported the event into your mobile calendar successfully!',
+      duration: 3000
     });
-    alert.present();
+    toast.present();    
   }
 
-
+  dismiss() {
+    this.navCtrl.pop();
+  }
 }

@@ -1,9 +1,14 @@
 <ion-header>
-  <ion-navbar class="headToolBar" color="heading">
+  <ion-toolbar class="headToolBar" color="heading">
+    <ion-buttons left>
+      <button ion-button (click)="dismiss()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>    
     <ion-title>
-      <span *ngIf="announcement!=null">Announcement Deatil</span>
+      <span *ngIf="announcement!=null">{{announcement.title}}</span>
     </ion-title>
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 <ion-content padding style="background:#fff">
 

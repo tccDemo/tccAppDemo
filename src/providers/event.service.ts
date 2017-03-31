@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 import { Event } from './event';
 import { EVENTS } from './event-mock';
 
-import { BASE_URL, REQUEST_OPTIONS, IS_USING_REAL_DATA, handleError, TCCData } from './tcc.service';
+import { BASE_URL, REQUEST_OPTIONS, IS_USING_REAL_DATA, TCCData } from './tcc.service';
 
 declare var $: any;
 
@@ -34,7 +34,7 @@ export class EventService {
     if (IS_USING_REAL_DATA) {
       let url = `${BASE_URL}&cmd=getCalEvents&cx=${this.cx}&token=${this.token}`;
       return this.http.get(url).toPromise().then(res => this.parseJSON(res))
-        .catch(err => handleError(err));
+        .catch(err => this.tccData.handleError(err));
     } else {
       return Promise.resolve(EVENTS);
     }
@@ -61,7 +61,7 @@ export class EventService {
     if (IS_USING_REAL_DATA) {
       let url = `${BASE_URL}&cmd=getCalEvent&cx=${this.cx}&token=${this.token}&id=${id}`;
       return this.http.get(url).toPromise().then(res => this.parseSingleJSON(res))
-        .catch(err => handleError(err));
+        .catch(err => this.tccData.handleError(err));
     } else {
       return Promise.resolve(EVENTS).then(events => events.find(ev => ev.id == +id));
     }

@@ -14,7 +14,7 @@
     <ion-item *ngIf="notifications!=null&&notifications.length==0">
       <div class="container-no-data">
         <span><img src="assets/icon/no-data.png" alt=""></span>
-        <span>No data found</span>
+        <span>You don't have any notifications reight now</span>
       </div>
     </ion-item>
 
@@ -27,13 +27,12 @@
           <ion-icon name="albums" class="othersIcon" *ngIf="notification.nType=='others'"></ion-icon>
         </ion-thumbnail>
         <h2><span class="ionLabel">{{notification.name}}</span></h2>
-        <p>{{notification.publishedAt}} <span *ngIf="notification.description"> • {{notification.description}}</span></p>
+        <p>{{notification.publishedAt}}</p>
       </ion-item>
       <ion-item-options>
-        <button ion-button color="danger" icon-left (click)="delete(notification.id)">
-          <ion-icon name="trash"></ion-icon>
-          Delete
-      </button>
+        <button ion-button icon-only color="danger" icon-left (click)="delete(notification.id)">
+          <ion-icon name="close" large></ion-icon>
+        </button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>

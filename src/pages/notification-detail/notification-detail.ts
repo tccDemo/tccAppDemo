@@ -39,4 +39,8 @@ export class NotificationDetailPage {
   getNotification(notificationId: number): void {
     this.notificationService.getNotification(notificationId).then((notification: Notification) => this.notification = notification);
   }
+
+  dismiss() {
+    this.navCtrl.pop();
+  }  
 }

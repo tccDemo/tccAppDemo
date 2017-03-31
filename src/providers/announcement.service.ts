@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Announcement } from './announcement';
 import { ANNOUNCEMENTS } from './announcement-mock';
-import { BASE_URL, REQUEST_OPTIONS, IS_USING_REAL_DATA, handleError, TCCData } from './tcc.service';
+import { BASE_URL, REQUEST_OPTIONS, IS_USING_REAL_DATA, TCCData } from './tcc.service';
 
 @Injectable()
 export class AnnouncementService {
@@ -31,7 +31,7 @@ export class AnnouncementService {
     if (IS_USING_REAL_DATA) {
       let url = `${BASE_URL}&cmd=getCampusAnnouncements&cx=${this.cx}&token=${this.token}`;
       return this.http.get(url).toPromise().then(res => res.json())
-        .catch(err => handleError(err));
+        .catch(err => this.tccData.handleError(err));
     } else {
       return Promise.resolve(ANNOUNCEMENTS);
     }
@@ -41,7 +41,7 @@ export class AnnouncementService {
     if (IS_USING_REAL_DATA) {
       let url = `${BASE_URL}&cmd=getNewAnnouncements&cx=${this.cx}&token=${this.token}`;
       return this.http.get(url).toPromise().then(res => res.json())
-        .catch(err => handleError(err));
+        .catch(err => this.tccData.handleError(err));
     } else {
       var ret = new Array();
       for (var i = 0; i < ANNOUNCEMENTS.length; i++) {
@@ -71,7 +71,7 @@ export class AnnouncementService {
     if (IS_USING_REAL_DATA) {
       let url = `${BASE_URL}&cmd=getAnnouncement&cx=${this.cx}&token=${this.token}&id=${id}`;
       return this.http.get(url).toPromise().then(res => res.json())
-        .catch(err => handleError(err));
+        .catch(err => this.tccData.handleError(err));
     } else {
       return this.getAnnouncements().then(announcements => announcements.find(announcement => announcement.id == +id));
     }

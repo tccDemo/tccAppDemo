@@ -37,7 +37,8 @@
     <ion-item *ngIf="bookmarks!=null&&bookmarks.length==0">
       <div class="container-no-data">
         <span><img src="assets/icon/no-data.png" alt=""></span>
-        <span>No data found</span>
+        <span *ngIf="filter=='myFavour'">Your Favorite Links will live here<br><br>Start Exploring</span>
+        <span *ngIf="filter!='myFavour'">No Items Found</span>
       </div>
     </ion-item>
 

@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/platform-server": "^4.0.0",
+    "@ionic-native/network": "^3.4.4",
     "dragula": "^3.7.2",
     "ion2-calendar": "^1.0.5",
     "ionic-angular": "^2.3.0",

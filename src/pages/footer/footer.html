@@ -1,4 +1,4 @@
-<ion-tabs>
+<ion-tabs color="secondary">
     <ion-tab [root]='navRoot1' tabIcon="home" tabTitle="Home"></ion-tab>
     <ion-tab [root]='navRoot2' [rootParams]="notificationData" tabIcon="notifications" tabTitle="Notification" [tabBadge]="notificationData.size" tabBadgeStyle="danger" (ionSelect)="updateBadge()"></ion-tab>
     <ion-tab [root]='navRoot3' tabIcon="settings" tabTitle="Settings"></ion-tab>

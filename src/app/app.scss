@@ -47,9 +47,7 @@
   color: $black;
   background-color: #fff;
 }
-.tabs-md .tabbar{
-  background: #f5f5f5;
-}
+
 .searchbar-input {
   border-radius: 2px !important;
 
@@ -124,4 +122,8 @@
 .tab-badge {
   border-radius: 50%;
   top: 10%;
+}
+
+.tabs-md .tabbar {
+  background:$blue;
 }

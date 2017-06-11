@@ -1,28 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
+import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
 import { Event } from './event';
 import { EVENTS } from './event-mock';
 
-import { BASE_URL, REQUEST_OPTIONS, IS_USING_REAL_DATA, TCCData } from './tcc.service';
-
-declare var $: any;
+import { CampusInfo } from './campusInfo';
+import { ResourceService } from './resource/resource.service';
+import { UtilLogService } from './util/util-log.service';
+import { IS_USING_REAL_DATA, LOAD_COUNT } from './tcc.service';
+import { StorageService, CAMPUS_INFO } from './storage.service';
 
 @Injectable()
 export class EventService {
 
-  private cx: string;
-  private token: string;
+  private getResourceUrl(): string {
+    let campusInfo: CampusInfo = this.storageServ.get(CAMPUS_INFO);
+    return `tcc_calendar/22.${campusInfo.campusId}/`;
+  }
 
   constructor(
-    private http: Http,
-    private tccData: TCCData,
-  ) {
-    this.cx = "22." + this.tccData.getCampusId();
-    this.token = this.tccData.getToken();
-  }
+    private resourceServ: ResourceService,
+    private storageServ: StorageService,
+    private utilLogServ: UtilLogService
+  ) { }
 
   getEventsByName(term: string): Promise<Event[]> {
     return Promise.resolve(EVENTS).then((events: any) =>
@@ -31,17 +33,32 @@ export class EventService {
 
   getEvents(): Promise<Event[]> {
 
-    if (IS_USING_REAL_DATA) {
-      let url = `${BASE_URL}&cmd=getCalEvents&cx=${this.cx}&token=${this.token}`;
-      return this.http.get(url).toPromise().then(res => this.parseJSON(res))
-        .catch(err => this.tccData.handleError(err));
-    } else {
-      return Promise.resolve(EVENTS);
-    }
+    let url = `${this.getResourceUrl()}Event/list`;
+
+    return new Promise((reslove, reject) => {
+      if (IS_USING_REAL_DATA) {
+        this.resourceServ
+          .getWithAuthentication(url)
+          .then((response) => {
+            this.utilLogServ.log(`Get resource "${url}" success`, undefined, 'EventService', 'getEvents');
+            reslove(this.parseJSON(response));
+          })
+          .catch((error) => {
+            this.utilLogServ.warn(`Unable to get resource, url: "${url}"`, undefined, 'EventService', 'getEvents');
+            reject(error);
+          });
+      } else {
+        setTimeout(() => {
+          this.utilLogServ.log(`Get resource "${url}" use fake data`, undefined, 'EventService', 'getEvents');
+          reslove(EVENTS);
+        }, 1000);
+      }
+    });
   }
 
   parseJSON(res): Event[] {
-    let objs = res.json();
+    // let objs = res.json();
+    let objs = res;
     for (let i = 0; i < objs.length; i++) {
       objs[i].start = new Date(objs[i].startDate);
       objs[i].end = new Date(objs[i].endDate);
@@ -50,21 +67,35 @@ export class EventService {
   }
 
   parseSingleJSON(res): Event {
-    let obj = res.json();
+    // let obj = res.json();
+    let obj = res;
     obj.start = new Date(obj.startDate);
     obj.end = new Date(obj.endDate);
     return obj;
   }
 
-  getEvent(id: number): Promise<Event> {
+  getEvent(id: string): Promise<Event> {
 
-    if (IS_USING_REAL_DATA) {
-      let url = `${BASE_URL}&cmd=getCalEvent&cx=${this.cx}&token=${this.token}&id=${id}`;
-      return this.http.get(url).toPromise().then(res => this.parseSingleJSON(res))
-        .catch(err => this.tccData.handleError(err));
-    } else {
-      return Promise.resolve(EVENTS).then(events => events.find(ev => ev.id == +id));
-    }
+    let url = `${this.getResourceUrl()}Event/${id}`;
+
+    return new Promise((reslove, reject) => {
+      if (IS_USING_REAL_DATA) {
+        this.resourceServ
+          .getWithAuthentication(url)
+          .then((response) => {
+            this.utilLogServ.log(`Get resource "${url}" success`, undefined, 'EventService', 'getEvent');
+            reslove(this.parseSingleJSON(response));
+          })
+          .catch((error) => {
+            this.utilLogServ.warn(`Unable to get resource, url: "${url}"`, undefined, 'EventService', 'getEvent');
+            reject(error);
+          });
+      } else {
+        setTimeout(() => {
+          this.utilLogServ.log(`Get resource "${url}" use fake data`, undefined, 'EventService', 'getEvent');
+          reslove(EVENTS.find(ev => ev.id == id));
+        }, 1000);
+      }
+    });
   }
-
 }

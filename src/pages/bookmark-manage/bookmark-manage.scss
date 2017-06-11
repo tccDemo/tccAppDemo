@@ -1,0 +1,13 @@
+page-bookmark-manage {
+  .scroll-content {
+    margin-bottom: 0 !important;
+  }
+  .btn-done{
+    background: #2b9bff;
+    border-color: #2b9bff;
+    color: #fff;
+    margin-right: 15px;
+    padding: 0 15px;
+  }
+  @import "../../scss/pages/_bookmark";
+}

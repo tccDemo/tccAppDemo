@@ -1,0 +1,58 @@
+.list, .list-ios, .list-md {
+  .item-block {
+    &.ng-untouched {
+      .item-inner {
+        border-color: color($colors,divider);
+      }
+    }
+    &.ng-touched, &.ng-dirty {
+      &.ng-invalid {
+        .item-inner {
+          border-bottom-color: color($colors,danger);
+          border-bottom-width: 2px;
+        }
+        & + .msgValid {
+          p {
+            margin: 8px 16px;
+            color: color($colors,danger);
+          }
+        }
+      }
+    }
+  }
+}
+.list-ios {
+  & > .item-input {
+    &, &:first-child, &:last-child {
+      border-bottom: none;
+      .item-inner {
+        border-bottom: 0.55px solid color($colors,divider);
+      }
+    }
+  }
+}
+.list-md {
+  .item-input {
+    &, &:first-child, &:last-child {
+      border-bottom: none;
+      box-shadow: none !important;
+      .item-inner {
+        border-bottom: 0.55px solid color($colors,divider);
+      }
+    }
+    &.input-has-focus, &:not(.input-has-focus) {
+      &, &.ng-valid, &.ng-invalid {
+        .item-inner {
+          box-shadow: none !important;
+        }
+      }
+    }
+    &.input-has-value:not(.input-has-focus) {
+      &.ng-valid {
+        .item-inner {
+          border-color: color($colors,divider);
+        }
+      }
+    }
+  }
+}

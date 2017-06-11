@@ -1,0 +1,41 @@
+<!-- <ion-header>
+  <ion-navbar class="headToolBar" color="heading">
+    <ion-title>Setting</ion-title>      
+  </ion-navbar>
+</ion-header>
+ -->
+<ion-content>
+
+
+  <div class="bgWall">
+    <img src="assets/images/campus-bg.png" class="campusLogo">    
+  </div>
+ 
+ 
+  <form [formGroup]="form">
+    <div padding [@flyInBottomFast]="cloudState" id="cloud-layer">
+      <ion-row>
+        <ion-col>
+          <ion-list class="stretcher" inset [@bounceInBottom]="formState">
+
+            <ion-item class="form-input">
+              <ion-input type="text" focus formControlName="CampusCode" placeholder="Please enter the campus code"></ion-input>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <button class="login-button stretcher" [@fadeIn]="loginState" ion-button block
+                  (click)="chooseCampus(form.value, $event)">OK
+          </button>
+        </ion-col>
+      </ion-row>
+
+    </div>
+  </form> 
+
+
+</ion-content>

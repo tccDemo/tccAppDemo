@@ -1,15 +1,10 @@
-<ion-toolbar>
-  <ion-searchbar *ngIf="announcements!=null&&announcements.length>0" (ionFocus)="openSearch()">
-  </ion-searchbar>
-</ion-toolbar>
 <ion-content style="position:static">
-  <ion-list class="dataContainer">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
 
-    <ion-refresher (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content refreshingSpinner="circles">
-      </ion-refresher-content>
-    </ion-refresher>
-
+  <ion-list (swipe)="swipeEvent($event)">
     <ion-item *ngIf="announcements==null">
       <IMG src='assets/images/loading.svg' alt='loading' class="loadingImg">
     </ion-item>
@@ -19,12 +14,20 @@
         <span>No Items Found</span>
       </div>
     </ion-item>
+
     <ion-item *ngFor="let announcement of announcements" (click)="openDetailPage({announcementId: announcement.id})">
       <ion-thumbnail item-left>
-        <ion-icon name="information-circle" class="announcementIcon"></ion-icon>
+        <ion-icon class="announcementIcon ci ci-announcement"></ion-icon>
       </ion-thumbnail>
-      <h2>{{announcement.title}}</h2>
-      <p class="data-summary"  [innerHtml]="announcement.shortDetail"></p>
+      <h2 class="ellipsis">{{announcement.title}}</h2>
+      <h3 class="ellipsis">
+        {{announcement.postedBy}}
+        <ion-note class="date" item-right>{{announcement.postedDate | date: 'longDate'}}</ion-note>
+      </h3>
+      <p class="summary" [innerHtml]="announcement.shortDetail"></p>
     </ion-item>
   </ion-list>
+  <ion-item class="total" *ngIf="totalCount>0">
+    <p text-center>Total: {{totalCount}}</p>
+  </ion-item>
 </ion-content>

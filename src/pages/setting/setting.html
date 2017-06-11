@@ -1,42 +1,43 @@
-<!-- <ion-header>
+<!--ion-header>
   <ion-navbar class="headToolBar" color="heading">
-    <ion-title>Setting</ion-title>      
+    <ion-title>Settings</ion-title>      
   </ion-navbar>
-</ion-header>
- -->
-<ion-content>
+</ion-header-->
 
+<ion-content [color]="campusDesign.theme.color">
 
-  <div class="bgWall">
-    <user-avatar [userInfo]="userInfo"></user-avatar>
+  <div class="bg-setting-wall">
+    <button icon-only (click)="linkToProfile($event)" style="background:transparent">
+      <img src="assets/images/avatar/default.png" alt="profile" class="profileImg" *ngIf="!userInfo || !userInfo.profileIcon||userInfo.profileIcon==''"/>
+      <img [src]="userInfo.profileIcon" alt="profile" class="profileImg" *ngIf="userInfo&&userInfo.profileIcon&&userInfo.profileIcon!=''"/>
+    </button>
   	<div class="userNameLabel">{{userInfo.name}}</div>
+    <div class="userProfileEntry">
+      <div class="userProfileEntryItem" (click)="linkToProfileEducation()">
+        <ion-icon name="school"></ion-icon>
+        <span class="userProfileLabel">Education</span>
+      </div>
+      <div class="userProfileEntryItem" (click)="linkToProfileWorkExperience()">
+        <ion-icon name="briefcase"></ion-icon>
+        <span class="userProfileLabel">Work Experience</span>
+      </div>
+    </div>
   </div>
 
-  <ion-list>
-  
-    <ion-item>
-      <ion-thumbnail item-left>
-        <ion-icon name="ios-contact-outline" class="settingIcon"></ion-icon>
-      </ion-thumbnail>
-      <span class="settingLabel">User Profile</span>
-    </ion-item>  
-    <ion-item>
-      <ion-thumbnail item-left>
-        <ion-icon name="ios-card" class="settingIcon changePwdIcon"></ion-icon>
-      </ion-thumbnail>
+  <ion-list class="settingList">
+    <button ion-item icon-left (click)="linkToUserChangePassword()">
+      <ion-icon name="ios-lock-outline" class="settingIcon changePwdIcon" item-left></ion-icon>
       <span class="settingLabel">Change Password</span>
-    </ion-item>  
-	    <ion-item>
-      <ion-thumbnail item-left>
-        <ion-icon name="cog" class="settingIcon notificationIcon"></ion-icon>
-      </ion-thumbnail>
-      <span class="settingLabel">Notification Options</span>
-    </ion-item>  
-    <ion-item>
-      <ion-thumbnail item-left>
-        <ion-icon name="ios-calendar" class="settingIcon calendarIcon"></ion-icon>
-      </ion-thumbnail>
+    </button>
+    <button ion-item icon-left (click)="linkToSettingPushNotification()">
+      <ion-icon name="ios-notifications-outline" class="settingIcon notificationIcon" item-left></ion-icon>
+      <span class="settingLabel">Push Notification</span>
+    </button>
+    <button ion-item icon-left (click)="linkToUserCalendarSubscription()">
+      <ion-icon name="ios-calendar-outline" class="settingIcon calendarIcon" item-left></ion-icon>
       <span class="settingLabel">Calendar Subscription</span>
-    </ion-item>
+    </button>
   </ion-list>
+  
 </ion-content>
+

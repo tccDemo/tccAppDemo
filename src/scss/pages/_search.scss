@@ -1,0 +1,28 @@
+.searchbar-input {
+  background: #fff;
+  box-shadow: none;
+}
+.searchbar-md .searchbar-input {
+  background: #fff;
+  box-shadow: none;
+}
+.content-md {
+  color: #333;
+  background-color: #fff;
+}
+.bar-button-default-md {
+  color: #fff;
+}
+.show-tabbar{
+  display: none;
+  opacity: 0 !important;
+}
+.search-category {
+  .button {
+    padding: 0 16px;
+    box-shadow: none;
+    &.button-md-light, &.button-ios-light {
+      background: color($colors,light);
+    }
+  }
+}

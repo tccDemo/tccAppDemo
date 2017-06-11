@@ -3,20 +3,28 @@ import { NavController, NavParams, Searchbar, ViewController } from 'ionic-angul
 import { Announcement } from '../../providers/announcement';
 import { AnnouncementService } from '../../providers/announcement.service';
 import { AnnouncementDetailPage } from '../announcement-detail/announcement-detail';
-import { Keyboard } from 'ionic-native';
+import { Keyboard } from '@ionic-native/keyboard';
+import { CampusDesign } from '../../providers/campusDesign';
+import { StorageService, CAMPUS_DESIGN } from '../../providers/storage.service';
+import { UtilDialogService } from '../../providers/util/util-dialog.service';
 
 @Component({
   selector: 'page-announcement-search',
   templateUrl: 'announcement-search.html'
 })
 export class AnnouncementSearchPage {
-  public announcements: Announcement[];
+
+  announcements: Announcement[];
+  campusDesign: CampusDesign;
   initListData: boolean = false;
   @ViewChild('searchBar') searchBarRef: Searchbar;
 
   constructor(private navParams: NavParams,
     private navCtrl: NavController,
     private viewCtrl: ViewController,
+    private utilDialogServ: UtilDialogService,
+    private storageService: StorageService,
+    private keyboard: Keyboard,
     private announcementService: AnnouncementService) {
 
   }
@@ -25,20 +33,27 @@ export class AnnouncementSearchPage {
     var self = this;
     this.getAnnouncements();
     setTimeout(() => {
-      self.searchBarRef.setFocus();
-      Keyboard.show();
+      self.searchBarRef._fireFocus();
+      this.keyboard.show();
     }, 500);
+
+    this.campusDesign = this.storageService.get(CAMPUS_DESIGN);
   }
 
 
   ionViewDidEnter() {
   }
 
-  ionViewWillLeave() {
+  ionViewDidLeave() {
+    this.keyboard.close();
   }
 
   getAnnouncements(): void {
-    this.announcementService.getAnnouncements().then((announcements: Announcement[]) => this.announcements = announcements);
+    this.announcementService.getAnnouncements(1, 9999)
+      .then((announcements: Announcement[]) => this.announcements = announcements)
+      .catch((error) => {
+        this.utilDialogServ.showError(error);
+      });
   }
 
   doSearch(ev): void {

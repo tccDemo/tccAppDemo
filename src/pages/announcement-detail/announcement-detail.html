@@ -1,19 +1,24 @@
 <ion-header>
-  <ion-toolbar class="headToolBar" color="heading">
+  <ion-toolbar class="headToolBar" [color]="campusDesign.header.color">
     <ion-buttons left>
       <button ion-button (click)="dismiss()">
         <ion-icon name="md-close"></ion-icon>
       </button>
     </ion-buttons>    
     <ion-title>
-      <span *ngIf="announcement!=null">{{announcement.title}}</span>
+      <span *ngIf="announcement!=null">Announcement Detail</span>
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content padding style="background:#fff">
+<ion-content padding style="background:#fff" [color]="campusDesign.theme.color">
 
   <div *ngIf="announcement==null"><IMG src='assets/images/loading.svg' alt='loading' class="loadingImg"></div>
   <div *ngIf="announcement!=null">
-    <h3 style="font-size: 2rem;padding: 15px 0;">{{announcement.title}}</h3>
-    <p [innerHtml]='announcement.detail' style="color: #777;font-size: 1.6rem;line-height: 20px;font-weight: 200;"></p></div>
+    <h2>{{announcement.title}}</h2>
+    <h3>
+      {{announcement.postedBy}}
+      <ion-note class="date" item-right>{{announcement.postedDate | date: 'longDate'}}</ion-note>
+    </h3>
+    <p [innerHtml]='announcement.detail' style="color: #777;font-size: 1.6rem;line-height: 20px;font-weight: 200;"></p>
+  </div>
 </ion-content>

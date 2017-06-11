@@ -1,5 +1,5 @@
 export class Event {
-  id: number;
+  id: string;
   calendar: string;
   calendarColor: string;
   title: string;

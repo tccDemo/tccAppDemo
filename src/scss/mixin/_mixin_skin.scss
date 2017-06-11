@@ -1,0 +1,98 @@
+@mixin campus-design-skin($theme-name: primary,$theme-color: color($colors,primary),$text-color: #fff) {
+    //tabs
+    .tabs-md-#{$theme-name}, .tabs-ios-#{$theme-name} {
+        .tab-button[aria-selected=true] {
+            &, .tab-button-icon {
+                color: $theme-color;
+            }
+            
+        }
+    }
+    //header
+    .toolbar-md-#{$theme-name}, .toolbar-ios-#{$theme-name} {
+        .toolbar-background {
+            background: $theme-color;
+        }
+        .toolbar-title {
+            color: $text-color;
+        }
+        .searchbar-ios {
+            .searchbar-input {
+                background: rgba($text-color,.5);
+            }
+        }
+    }
+    //segments
+    .segment-md-#{$theme-name}, .segment-ios-#{$theme-name} {
+        .segment-button {
+            &.activated {
+                border-color: rgba($theme-color,.5);
+            }
+            &.segment-activated {
+                color: $theme-color;
+                border-color: $theme-color;
+            }
+        }
+    }
+    //button
+    .button-md-#{$theme-name}, .button-ios-#{$theme-name}, .fab-md-#{$theme-name}, .fab-ios-#{$theme-name} {
+        color: $text-color;
+        background: $theme-color;
+        &.activated {
+            background: darken($theme-color,5);
+        }
+    }
+    //theme option
+    .content-md-#{$theme-name}, .content-ios-#{$theme-name} {
+        //forgotPasswordBG
+        .bg-forgotpwd-wall {
+          background-image: radial-gradient(ellipse farthest-side at 50% 0, lighten(saturate($theme-color,40),20) 0%, $theme-color 80%);
+        }
+        //settingBG
+        .bg-setting-wall {
+            background-image: radial-gradient(ellipse farthest-side at 50% 0, lighten(saturate($theme-color,40),20) 0%, $theme-color 80%, $theme-color 99%, transparent 99%);
+        }
+        //calendarCurrent
+        .monthview-current {
+          color: $theme-color;
+        }
+        //calendarSelected
+        .monthview-selected {
+          &:before {
+            background: $theme-color;
+          }
+        }
+        //event label
+        .bundleHeader {
+            color: $theme-color;
+        }
+        //search category
+        .search-category {
+            .button {
+                background: $theme-color;
+            }
+        }
+    }
+    //toggle
+    .content-ios-#{$theme-name} {
+        .toggle {
+            &.toggle-checked {
+                .toggle-icon {
+                    background: $theme-color;
+                }
+            }
+        }
+    }
+    .content-md-#{$theme-name} {
+        .toggle {
+            &.toggle-checked {
+                .toggle-icon {
+                    background: lighten($theme-color,30);
+                }
+                .toggle-inner {
+                    background: $theme-color;
+                }
+            }
+        }
+    }
+}

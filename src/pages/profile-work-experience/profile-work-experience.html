@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar class="headToolBar" [color]="campusDesign.header.color">
+    <ion-buttons right>
+      <button type="button" ion-button (click)="linkToDetail()">Add</button>
+    </ion-buttons>
+    <ion-title class="title title-ios">Work Experience</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content [color]="campusDesign.theme.color">
+  <ion-list class="settingList" *ngIf="loaded">
+    <ion-item-sliding *ngFor="let item of workExperienceList">
+      <button ion-item (click)="linkToDetail(item)">
+        <h2>{{item.title}}</h2>
+        <h3>{{item.company}}</h3>
+        <p>
+          <span *ngIf="item.beginYear && item.beginMonth">{{item.beginYear}}/{{item.beginMonth}}</span>
+          <span *ngIf="item.beginYear && item.beginMonth && item.endYear && item.endMonth">&nbsp;-&nbsp;</span>
+          <span *ngIf="item.endYear && item.endMonth">{{item.endYear}}/{{item.endMonth}}</span>
+        </p>
+      </button>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="deleteItem(item)">Delete</button>
+      </ion-item-options>
+    </ion-item-sliding>
+    <ion-item *ngIf="workExperienceList != null && workExperienceList.length == 0">
+      <div class="container-no-data">
+        <span><img src="assets/icon/no-data.png" alt=""></span>
+        <span>No data</span>
+      </div>
+    </ion-item>
+  </ion-list>
+  <div class="page-loading" *ngIf="!loaded">
+    <ion-spinner></ion-spinner>
+  </div>
+</ion-content>

@@ -1,6 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">CC APP</string>
+    <string name="app_name">Strata Live</string>
     <string name="launcher_name">@string/app_name</string>
     <string name="activity_name">@string/launcher_name</string>
+    <string name="google_app_id">1:535646759022:android:dc7ca45bcffddee5</string>
+    <string name="google_api_key">AIzaSyDPxYQOC6RFJzpBl7fo158vztF5jJedzjw</string>
 </resources>

@@ -1,0 +1,90 @@
+@media (max-width: $screen-xs-max) {
+  .responsive-media {
+    .cc-width-grid {
+      -webkit-flex: 0 0 50%;
+      -ms-flex: 0 0 50%;
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+}
+@media (min-width: $screen-sm-min) {
+  .responsive-media {
+    .cc-width-grid {
+      -webkit-flex: 0 0 33.3%;
+      -ms-flex: 0 0 33.3%;
+      flex: 0 0 33.3%;
+      max-width: 33.3%;
+    }
+  }
+}
+@media (min-width: $screen-md-min) {
+  .responsive-media {
+    .cc-width-grid {
+      -webkit-flex: 0 0 20%;
+      -ms-flex: 0 0 20%;
+      flex: 0 0 20%;
+      max-width: 20%;
+    }
+  }
+}
+.ion-row-#{$prefix-bookmark} {
+  padding: 10px;
+  .ion-col-#{$prefix-bookmark} {
+    padding: 0;
+  }
+  .card {
+    width: calc(100% - 16px);
+    margin: 8px;
+    box-shadow: none;
+    .card-content {
+      position: relative;
+      padding: 8px;
+      background-color: #f3f3f3;
+      @media (min-width: $screen-sm-min) {
+        padding: 12px;
+      }
+      .thumbnail {
+        @include aspect-ratio(16,9);
+        border-radius: 3px;
+      }
+      .bookmark-list-bg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10rem;
+        line-height: 1;
+        height: 100%;
+      }
+      .#{$prefix-bookmark}-item-body {
+        display: flex;
+        align-items: center;
+        padding: 8px 24px 0 0;
+        width: 100%;
+        @extend .border-none;
+        @media (min-width: $screen-sm-min) {
+          padding-top: 12px;
+        }
+        h3 {
+          font-size: 1.4rem;
+          font-weight: 200;
+          color: $black;
+          vertical-align: middle;
+          @extend .text-ellipsis;
+          @media (min-width: $screen-sm-min) {
+            font-size: 1.5rem;
+          }
+        }
+        .favIcon {
+          right: 8px;
+          border: 0;
+          position: absolute;
+          @media (min-width: $screen-sm-min) {
+            font-size: 1.6rem;
+            right: 12px;
+          }
+        }
+      }
+    }
+  }
+}

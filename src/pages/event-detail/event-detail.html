@@ -1,86 +1,42 @@
-<ion-header>
-  <ion-toolbar class="headToolBar" color="heading">
-    <ion-buttons left>
-      <button ion-button (click)="dismiss()">
-        <ion-icon name="md-close"></ion-icon>
-      </button>
-    </ion-buttons>    
-    <ion-title>
-      <span *ngIf="ev!=null">{{ev.title}}</span>
-    </ion-title>
-    <ion-buttons right>
-      <button ion-button (click)="download()" icon-only icon-right>
-        <ion-icon name="download" class="downloadIcon"></ion-icon>
-      </button>
-    </ion-buttons>	    
-  </ion-toolbar>
-</ion-header>
-<ion-content>
+<ion-content [color]="campusDesign.theme.color">
   <div *ngIf="ev==null"><IMG src='assets/images/loading.svg' alt='loading' class="loadingImg"></div>
-  <ion-list *ngIf="ev!=null">
-      <ion-item>
-        <ion-avatar item-left>
-           <ion-icon name="calendar" class="calLogo"></ion-icon>
-        </ion-avatar>
-        <h2>{{ev.title}}</h2>
-      </ion-item>
-
-      <ion-item *ngIf="ev.calendar">
-        Calendar
-        <p item-right>
-          {{ev.calendar}}
-        </p>
-      </ion-item>
-
-      <ion-item *ngIf="ev.allDay">
-        Time
-        <p item-right (click)="download()" >
-          All Day
-        </p>
-      </ion-item>
-	 
-      <ion-item *ngIf="!ev.allDay">
-        Start Time
-        <p item-right (click)="download()" >
-          {{start | date:'short'}}
-        </p>
-      </ion-item>	  
-	 
-      <ion-item *ngIf="!ev.allDay">
-        End Time
-        <p item-right (click)="download()" >
-          {{end | date:'short'}}
-        </p>
-      </ion-item>
-	  
-      <ion-item *ngIf="ev.postedBy">
-        Posted by
-        <p item-right>
-          {{ev.postedBy}}
-        </p>
-      </ion-item>	
-
-      <ion-item *ngIf="ev.location">
-        Location
-        <p item-right>
-          {{ev.location}}
-        </p>
-      </ion-item>	  
-	
-      <ion-item *ngIf="ev.detail">
-        Notes
-        <p class="longContent"  item-right>
-          {{ev.detail}}
-        </p>
-      </ion-item>
-	
-      <ion-item *ngIf="ev.repeatInfo">
-        Repeat
-        <p class="longContent"  item-right>
-          {{ev.repeatInfo}}
-        </p>
-      </ion-item>
-
+  <div class="event-header" *ngIf="ev!=null" [ngStyle]="{'background': ev.calendarColor}">
+    <h2 class="event-title">{{ev.title}}</h2>
+    <p class="event-time" *ngIf="ev.allDay || (start || end)">
+      <ion-icon name="ios-time-outline"></ion-icon>
+      <span *ngIf="ev.allDay">All Day</span>
+      <span *ngIf="!ev.allDay">
+        <span class="start-time">{{start | date:'short'}}</span>
+        <span class="end-time">{{end | date:'short'}}</span>
+      </span>
+    </p>
+    <button color="light" clear ion-button (click)="dismiss()" class="closeBtn" large>
+      <ion-icon name="md-close" large></ion-icon>
+    </button>
+  </div>
+  <ion-list class="event-detail-list" *ngIf="ev!=null">
+    <ion-item *ngIf="ev.calendar" icon-left>
+      <ion-icon name="ios-calendar-outline" class="event-icon calendar" item-left></ion-icon>
+      <h2>{{ev.calendar}}</h2>
+    </ion-item>
+    <ion-item *ngIf="ev.postedBy" icon-left>
+      <ion-icon name="ios-person-outline" class="event-icon postby" item-left></ion-icon>
+      <h2>{{ev.postedBy}}</h2>
+    </ion-item>
+    <ion-item *ngIf="ev.location" icon-left>
+      <ion-icon name="ios-pin-outline" class="event-icon location" item-left></ion-icon>
+      <h2>{{ev.location}}</h2>
+    </ion-item>
+    <ion-item class="event-detail" *ngIf="ev.detail" icon-left>
+      <ion-icon name="ios-clipboard-outline" class="event-icon detail" item-left></ion-icon>
+      <h2>{{ev.detail}}</h2>
+    </ion-item>
+    <ion-item class="event-repeat" *ngIf="ev.repeatInfo" icon-left>
+      <ion-icon name="ios-repeat-outline" class="event-icon repeatinfo" item-left></ion-icon>
+      <h2>{{ev.repeatInfo}}</h2>
+    </ion-item>
   </ion-list>
-  
+  <ion-fab center bottom (click)="download()">
+    <button ion-fab [color]="campusDesign.button.color"><ion-icon name="ios-download-outline"></ion-icon></button>
+  </ion-fab>
 </ion-content>

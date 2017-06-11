@@ -1,21 +1,83 @@
 page-event-detail {
-  .calLogo{
-    font-size: 30pt;
+  .event-header {
+    color: white;
+     padding: 12px 24px 24px 50px;
+    position: relative;
+    @include border-bottom-serrated(16px,white);
   }
-  
-  .downloadIcon{
-    font-size: 2.4rem;
+  .closeBtn {
+    height: 1.8em;
+    padding: 0 16px;
+    left: 0;
+    top: 24px;
+    position: absolute;
   }
-  
-  ion-header ion-icon {
-    font-size: 3rem;
-    margin-left: 10px;
+  .event-title {
+    font-weight: normal;
+   
   }
-  .bar-button-default-md {
+  .event-time {
+    margin-top: 16px;
+    ion-icon {
+      margin-right: 8px;
+    }
+  }
+  .end-time {
+    &:before {
+      content: "-";
+      margin: 0 8px;
+    }
+  }
+  .event-detail-list {
+    margin-top: 24px;
+    & > .item-block {
+      &, &:first-child, &:last-child {
+        border: none;
+      }
+      .item-inner {
+        border: none;
+      }
+    }
+  }
+  .event-icon {
     color: #fff;
+    font-size: 20px;
+    background: #28bc82;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    min-height: 0;
+    padding: 0;
+    display: inline-block;
+    text-align: center;
+    line-height: 32px;
+    &.calendar {
+      background: color($colors,icon_second);
+    }
+    &.postby {
+      background: color($colors,icon_first);
+    }
+    &.location {
+      background: color($colors,icon_third);
+    }
+    &.detail {
+      background: color($colors,icon_fourth);
+    }
+    &.repeatinfo {
+      background: color($colors,icon_fifth);
+    }
   }
-
-  p.longContent {
-    margin-top: 1rem;
+  .event-detail, .event-repeat {
+    .label {
+      white-space: normal;
+    }
+    ion-icon {
+      align-self: flex-start;
+    }
+  }
+  .fab {
+    ion-icon {
+      font-size: 3.6rem;
+    }
   }
 }

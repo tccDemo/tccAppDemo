@@ -1,12 +1,13 @@
 export class Announcement {
-  id: number;
+  id: string;
   title: string;
   detail: string;
   priority: string;
   shortDetail: string;
   sticky: string;
   postedBy: string;
-  postedAt: Date;
+  postedAt: string;
+  postedDate: Date;
   postedFrom: string;
   isNew:boolean;
   hasNotified: boolean;

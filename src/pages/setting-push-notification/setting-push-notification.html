@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar class="headToolBar" [color]="campusDesign.header.color">
+    <ion-buttons right>
+      <button type="button" ion-button *ngIf="loaded" (click)="evSave()">Save</button>
+    </ion-buttons>
+    <ion-title class="title title-ios">Push Notification</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content [color]="campusDesign.theme.color">
+  <span *ngIf="loaded">
+    <ion-list class="settingList">
+      <button ion-item class="ion-arrow-none">
+        <span class="settingLabel">Push Notification</span>
+          <ion-note class="settingContent" item-right>Enable</ion-note>
+      </button>
+    </ion-list>
+    <ion-note class="comment" *ngIf="isIOS">
+      Please go to iPhone's "Setting" - "Notifications" to find the "Strata GO App" there to enable or disable "Push notification" for Strata GO.
+    </ion-note>
+    <ion-list class="settingList">
+      <ion-item-group>
+        <ion-item-divider>
+          Push the related type of notification when enabled
+        </ion-item-divider>
+        <ion-item>
+          <ion-label class="settingLabel">Annoucements</ion-label>
+          <ion-toggle [(ngModel)]="setting.pushAnnouncements"></ion-toggle>
+        </ion-item>
+        <ion-item>
+          <ion-label class="settingLabel">Campus Links</ion-label>
+          <ion-toggle [(ngModel)]="setting.pushBookmarks"></ion-toggle>
+        </ion-item>
+        <ion-item>
+          <ion-label class="settingLabel">Calendar Events</ion-label>
+          <ion-toggle [(ngModel)]="setting.pushCalEvents"></ion-toggle>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+    <ion-list class="settingList">
+      <ion-item-group>
+        <ion-item-divider>
+          You will not receive push notification from 10:00pm to 10:00am when enable quiet hours
+        </ion-item-divider>
+        <ion-item>
+          <ion-label class="settingLabel">Quiet Hours</ion-label>
+          <ion-toggle [(ngModel)]="setting.enableQuietHours"></ion-toggle>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+  </span>
+  <div class="page-loading" *ngIf="!loaded">
+    <ion-spinner></ion-spinner>
+  </div>
+</ion-content>

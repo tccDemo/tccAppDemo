@@ -1,0 +1,32 @@
+page-setting-push-notification {
+  @import "../../scss/pages/_user";
+  .list {
+    margin: 0;
+  }
+  .comment {
+    padding: 16px;
+    background: color($colors,light);
+    display: block;
+  }
+  .item-divider {
+    &.item-divider-ios {
+      @extend .note-ios;
+    }
+    &.item-divider-md {
+      @extend .note-md;
+    }
+    font-size: 1.4rem;
+    .label {
+      white-space: normal;
+    }
+  }
+  .ion-arrow-none{
+    .item-inner{
+      background-image:none !important;
+      padding-right: 15px !important;
+      .settingContent{
+        color: #ccc !important;
+      }
+    }
+  }
+}

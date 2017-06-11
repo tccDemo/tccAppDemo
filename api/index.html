@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>API Document</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="bower_components/jquery-jsonview/dist/jquery.jsonview.css">
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      body {
+        padding-top: 70px;
+      }
+      body, body .jsonview {
+        font-family: Arial, "微軟正黑體";
+      }
+      .api-search {
+        margin-bottom: 15px;
+      }
+      .optionsNote {
+        margin-top: 20px;
+      }
+      .noteDesc {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="api-document-title navbar-brand">API Document</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav"></ul>
+        </div>
+      </div>
+    </nav>
+    <div id="documentMain" class="container"></div>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery-jsonview/dist/jquery.jsonview.js"></script>
+    <script src="bower_components/chained/jquery.chained.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--
+    <script src="bower_components/bootstrap3-typeahead/bootstrap3-typeahead.min.js"></script>
+    -->
+    <script src="bower_components/mustache/mustache.min.js"></script>
+    <script src="bower_components/jsSHA/src/sha.js"></script>
+    <script src="bower_components/cryptojslib/components/core-min.js"></script>
+    <script src="bower_components/cryptojslib/components/enc-base64-min.js"></script>
+    <script src="bower_components/cryptojslib/rollups/aes.js"></script>
+    <script src="md5-min.js"></script>
+    <script id="x2b_api_main" type="x-tmpl-mustache">
+      <div class="api-search">
+        <div class="form-inline">
+          <!--
+          <div class="form-group">
+            <label for="searchKeyword" class="sr-only">關鍵字</label>
+            <input type="text" name="keyword" class="form-control" id="searchKeyword" placeholder="輸入API名稱查詢">
+          </div>
+          -->
+          <div class="form-group">
+            <label for="searchCatalog" class="sr-only">功能分類</label>
+            <select name="catalog" id="searchCatalog" class="form-control">
+              <option value="all">全部</option>
+              {{#catalogOption}}
+              <option value="{{&.}}">{{&.}}</option>
+              {{/catalogOption}}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="searchApiId" class="sr-only">API</label>
+            <select name="searchApiId" id="searchApiId" class="form-control">
+              <option value=""> </option>
+              {{#apiList}}
+              <option value="{{name}}" class="{{catalog}} all">{{^auth}}[不需驗證]{{/auth}}&nbsp;{{desc}}&nbsp;-&nbsp;{{name}}</option>
+              {{/apiList}}
+            </select>
+          </div>
+          <button type="button" class="btn btn-default" id="searchBtn">搜尋</button>
+          <button type="button" class="btn btn-default" id="encodeStr">Keygen</button>
+          <button type="button" class="btn btn-success pull-right" id="LoginBtn">一鍵登入</button>
+        </div>
+      </div>
+      <div class="api-list"></div>
+    </script>
+    <script id="x2b_api_list" type="x-tmpl-mustache">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th width="25%">API</th>
+            <th width="15%">描述</th>
+            <th width="20%">參數</th>
+            <th width="40%">回傳JSON</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#apis}}
+          <tr>
+            <td>
+              <div>[{{catalog}}]</div>
+              <p data-cc-func="openTest" data-cc-param-index="{{index}}" class="text-primary">
+                {{^auth}}<span class="text-danger">[不需驗證]</span>{{/auth}} {{&name}}
+              </p>
+              <p>API路徑:</p>
+              <p>{{&url}}</p>
+              {{#img}}
+              <p>API圖片:</p>
+              <a href="javascript:;" class="thumbnail"
+                data-cc-func="showImg"
+                data-cc-param-name="{{name}}"
+                data-cc-param-src="{{img}}"
+              >
+                <img align="center" src="{{img}}">
+              </a>
+              {{/img}}
+            </td>
+            <td>{{&desc}}</td>
+            <td>
+              {{#params}}
+              <p><span class="text-danger">{{&name}}</span>&nbsp;[{{&desc}}]</p>
+              {{/params}}
+              {{^params}}
+              <p class="text-warning">沒有參數</p>
+              {{/params}}
+              {{#hasParamsOptions}}
+              <div class="optionsNote">
+                {{#note.paramsOptions}}
+                <p class="text-danger">* {{name}}({{column}}):</p>
+                <select class="form-control">{{#options}}<option value="{{name}}">{{desc}}&nbsp;-&nbsp;{{name}}</option> {{/options}}</select>
+                {{/note.paramsOptions}}
+              </div>
+              {{/hasParamsOptions}}
+              {{#note.paramsDesc}}
+              <div class="noteDesc">
+                {{&note.paramsDesc}}
+              </div>
+              {{/note.paramsDesc}}
+            </td>
+            <td>
+              <div data-cc-entry="returnJSON" data-cc-param-index="{{index}}"></div>
+              {{#note.desc}}
+              <div class="noteDesc">
+                {{&note.desc}}
+              </div>
+              {{/note.desc}}
+              {{#hasReturnOptions}}
+              <div class="optionsNote">
+                {{#note.returnOptions}}
+                <p class="text-danger">* {{name}}({{column}}):</p>
+                <select class="form-control">{{#options}}<option value="{{name}}">{{desc}}&nbsp;-&nbsp;{{name}}</option> {{/options}}</select>
+                {{/note.returnOptions}}
+              </div>
+              {{/hasReturnOptions}}
+            </td>
+          </tr>
+          {{/apis}}
+        </tbody>
+      </table>
+    </script>
+    <script id="x2b_api_tester" type="x-tmpl-mustache">
+      <div class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">{{name}} <small>{{desc}}</small></h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-xs-4">
+                  <form>
+                  {{#params}}
+                    <div class="form-group">
+                      <label for="col_{{name}}">{{name}}</label>
+                      <input type="text" class="form-control" id="col_{{name}}" placeholder="{{desc}}">
+                    </div>
+                  {{/params}}
+                  <button type="button" class="btn btn-default" data-cc-func="apiSubmit">送出</button>
+                  </form>
+                </div>
+                <div class="col-xs-8">
+                  <spna>Result:</span>
+                  <textarea class="form-control" rows="10" data-cc-entry="apiResult"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+    <script id="x2b_api_image" type="x-tmpl-mustache">
+      <div class="modal fade">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">API <span class="text-primary">{{name}}</span> 圖片</h4>
+            </div>
+            <div class="modal-body">
+              <img src="{{src}}" class="img-responsive">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+    <script id="x2b_api_encode" type="x-tmpl-mustache">
+      <div class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">取得encodeStr</h4>
+            </div>
+            <div class="modal-body">
+
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#encode-tab-token" aria-controls="home" role="tab" data-toggle="tab">Token</a>
+                </li>
+                <li role="presentation">
+                  <a href="#encode-tab-password" aria-controls="profile" role="tab" data-toggle="tab">Password</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="encode-tab-token" style="margin-top: 20px;">
+                  <form name="encodeStrTokenForm">
+                    <div class="form-group">
+                      <label for="encodeStrInstallId">InstallId</label>
+                      <input name="installId" type="text" value="{{installId}}" class="form-control" id="encodeStrInstallId" placeholder="InstallId">
+                    </div>
+                    <div class="form-group">
+                      <label for="encodeStrCampusId">CampusId</label>
+                      <input name="campusId" type="text" value="{{campusId}}" class="form-control" id="encodeStrCampusId" placeholder="CampusId">
+                    </div>
+                    <div class="form-group">
+                      <label for="encodeStrToken">Token</label>
+                      <input name="token" type="text" class="form-control" id="encodeStrToken" placeholder="Token">
+                    </div>
+                    <button type="submit" class="btn btn-default">取得Auth物件</button>
+                  </form>
+                  <hr>
+                  <div class="form-group">
+                    <label for="encodeStrResult">encodeStr</label>
+                    <textarea name="encodeStrResult" class="form-control" id="encodeStrResult"></textarea>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="encode-tab-password" style="margin-top: 20px;">
+                  <form name="encodeStrPasswordForm">
+                    <div class="form-group">
+                      <label for="encodeStrPassword">Password</label>
+                      <input name="password" type="text" class="form-control" id="encodeStrPassword" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-default">加密Password</button>
+                  </form>
+                  <hr>
+                  <div class="form-group">
+                    <label for="encodeStrPasswordResult">encodeStr</label>
+                    <textarea name="encodeStrPasswordResult" class="form-control" id="encodeStrPasswordResult"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+    <script src="apiconf.js"></script>
+    <script src="keygen.js"></script>
+    <script src="api.js"></script>
+  </body>
+</html>

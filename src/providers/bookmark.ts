@@ -1,18 +1,16 @@
 export class Bookmark {
-  id: number;
+  id: string;
   subject: string;
   description: string;
   link: string;
   imgIcon: string;
-
-  iconType: number;
+  iconType: string;
   iconCode: string;
   iconBg: string;
   iconFg: string;
-
   isMyFavour: boolean;
-  isRecent: boolean;
-  isPopular: boolean;
-
+  isRecent: boolean; // just for fake data
+  isPopular: boolean; // just for fake data
   seq: number;
+  iconURL: string;
 }

@@ -1,19 +1,142 @@
+$calendar-version: "c2";
+$event-detail-version: "c1";
 page-event-calendar {
-
-  .input-wrapper {
-    margin-top: 0rem;
-	font-size: 2rem;
-	font-color: #4D4D4D;
-  }
-  .monthview-current {
-    background-color: #ff9900 !important;
-    color: #fff;
-  }
-  .monthview-primary-with-event[_ngcontent-osa-40] {
-    background-color: #aaa;
-    color: #333;
-  }
-  .bar-button-default-md {
-    color: #fff;
-  }
+    .monthview-container {
+        background: color($colors, light);
+    }
+    //nav
+    .nav-calendar {
+        &.item-block {
+            .item-inner {
+                border-width: 0;
+            }
+        }
+        button {
+            opacity: .5;
+        }
+    }
+    //table
+    .slides {
+        background: #fff;
+        box-shadow: rgba(black, .2) 0 3px 10px;
+    }
+    .table-bordered {
+        &,
+        &[_ngcontent-#{$calendar-version}] {
+            margin-bottom: 8px;
+            border-width: 0;
+            &,
+            & > thead,
+            & > tbody {
+                &,
+                &[_ngcontent-#{$calendar-version}] {
+                    & > tr {
+                        &,
+                        &[_ngcontent-#{$calendar-version}] {
+                            & > th,
+                            & > td {
+                                &,
+                                &[_ngcontent-#{$calendar-version}] {
+                                    padding: 12px 0;
+                                    border-width: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .monthview-datetable {
+        border-bottom-width: 1px;
+        th {
+            color: rgba($black, .8);
+            font-size: 1rem;
+            font-weight: normal;
+            text-transform: uppercase;
+        }
+        td {
+            color: $black;
+            font-size: 1.4rem;
+            position: relative;
+            border: none;
+        }
+        .monthview-current {
+            //color: color($colors,primary);
+            background: none;
+        }
+        .monthview-primary-with-event,
+        .monthview-secondary-with-event {
+            color: $black;
+            background: none;
+            &:after {
+                content: "\0020";
+                width: 8px;
+                height: 8px;
+                bottom: -4px;
+                left: 50%;
+                margin-left: -6px;
+                border-radius: 100%;
+                border: 3px solid white;
+                background: #1f99ff;
+                position: absolute;
+            }
+            &.monthview-selected {
+                font-size: 2rem;
+                &:after {}
+            }
+        }
+        .monthview-selected {
+            color: $white;
+            &:before {
+                content: "\0020";
+                width: 40px;
+                height: 40px;
+                top: 40%;
+                left: 50%;
+                margin: -16px 0 0 -20px;
+                border-radius: 100%;
+                background: #1f99ff;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+        .text-muted {
+            color: rgba($black, .3);
+        }
+    }
+    //list
+    .event-detail-container {
+        &,
+        &[_ngcontent-#{$event-detail-version}] {
+            padding: 8px 0;
+            border-top-width: 0;
+            @import "../../scss/pages/_calendar";
+        }
+    }
+    .monthview-eventdetail-timecolumn,
+    .event-detail {
+        display: block;
+    }
+    .monthview-eventdetail-timecolumn {
+        color: rgba($black, .3);
+        font-size: 2rem;
+        margin-bottom: 4px;
+        width: 100% !important;
+    }
+    .event-detail {
+        width: 100%;
+        color: rgba($black, .9);
+        font-size: 1.8rem;
+        overflow: hidden;
+        margin-left: -8px;
+    }
+    .event-detail-container {
+        .item-block {
+            border-left: 6px solid #f795bf !important;
+            .item-inner {
+                padding: 15px;
+            }
+        }
+    }
 }

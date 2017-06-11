@@ -1,53 +1,9 @@
 page-notification-list {
-  background: #fff;
   .item-block {
     min-height: 60px;
-  }
-
-  .announcementIcon {
-    color: #fff;
-    font-size: 20px;
-    background: #28bc82;
-    height: 32px;
-    width: 32px;
-    display: inline-block;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 32px;
-  }
-
-  .othersIcon {
-    color: #fff;
-    font-size: 20px;
-    background: #ff9f38;
-    height: 32px;
-    width: 32px;
-    display: inline-block;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 32px;
-  }
-
-  .systemheadlineIcon {
-    color: #fff;
-    font-size: 20px;
-    background: #53ADFF;
-    height: 32px;
-    width: 32px;
-    display: inline-block;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 32px;
-  }
-
-  .item-md ion-thumbnail {
-    min-width: 0px;
-    min-height: 0px;
   }
   .scroll-content {
     margin-bottom: 0 !important;
   }
-  .item-md p{
-    color: #999;
-  }
+  @import "../../scss/pages/_notification";  
 }

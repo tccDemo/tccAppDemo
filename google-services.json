@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "535646759022",
+    "firebase_url": "https://strata-go.firebaseio.com",
+    "project_id": "strata-go",
+    "storage_bucket": "strata-go.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535646759022:android:dc7ca45bcffddee5",
+        "android_client_info": {
+          "package_name": "com.campuscruiser.stratalive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "535646759022-2hf7n8f1e13p4iim916bmi7dikr5ohpc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPxYQOC6RFJzpBl7fo158vztF5jJedzjw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

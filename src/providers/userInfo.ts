@@ -1,7 +1,8 @@
 export class UserInfo {
   login: string;
   name: string;
-  token: string;
-  userId: number;
+  userId: string;
+  email: string;  
   profileIcon: string;
+  timezone: string;
 }

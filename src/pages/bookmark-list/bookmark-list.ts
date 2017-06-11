@@ -1,22 +1,23 @@
 import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams, ViewController, Platform, ModalController } from 'ionic-angular';
-import { ThemeableBrowser } from "ionic-native";
+import { NavController, NavParams, ViewController, Platform, ModalController, AlertController } from 'ionic-angular';
+import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 
 import { Bookmark } from '../../providers/bookmark';
 import { BookmarkService } from '../../providers/bookmark.service';
 import { CampusInfo } from '../../providers/campusInfo';
 import { UserInfo } from '../../providers/userInfo';
-import { StorageService, USER_INFO, CAMPUS_INFO } from '../../providers/storage.service';
+import { CampusDesign } from '../../providers/campusDesign';
+import { StorageService, USER_INFO, CAMPUS_INFO, CAMPUS_DESIGN } from '../../providers/storage.service';
 import { BookmarkSearchPage } from '../bookmark-search/bookmark-search';
-import { DragulaService } from 'ng2-dragula';
-import { Dragula } from 'dragula';
+import { BookmarkManagePage } from '../bookmark-manage/bookmark-manage';
 import { IS_USING_REAL_DATA } from '../../providers/tcc.service';
-
-declare var $: any;
+import { UtilDialogService } from '../../providers/util/util-dialog.service';
+import { ImgCacheService } from '../../providers/imgCache/imgCache.service';
 
 @Component({
   selector: 'page-bookmark-list',
-  templateUrl: 'bookmark-list.html'
+  templateUrl: 'bookmark-list.html',
+  providers: [UtilDialogService, ThemeableBrowser]
 })
 export class BookmarkListPage {
 
@@ -25,42 +26,48 @@ export class BookmarkListPage {
   filter: string = "myFavour";
   isSortable: boolean = false;
   campusInfo: CampusInfo;
+  campusDesign: CampusDesign;
   userInfo: UserInfo;
   isUsingRealData: boolean = IS_USING_REAL_DATA;
-  
-  constructor(public plt: Platform,
-    private navCtrl: NavController,
-    private navParams: NavParams,
-    private bookmarkService: BookmarkService,
-    private dragulaService: DragulaService,
-    private zone: NgZone,
-    private modalCtrl: ModalController,
-    private storageService: StorageService) {
-  }
+  browser: ThemeableBrowserObject = null;
 
-  private doSort(args: any): void {
-    let [el, target, source] = args;
-    this.bookmarkService.updateSeqs(target.children).then((bookmarks: Bookmark[]) => this.bookmarks = bookmarks);
-    // this.refreshBookmarks(this.filter);
+  constructor(public plt: Platform,
+    private utilDialogServ: UtilDialogService,
+    private navCtrl: NavController,
+    private alertCtrl: AlertController,
+    private navParams: NavParams,
+    private imgcacheService: ImgCacheService,
+    private bookmarkService: BookmarkService,
+    private zone: NgZone,
+    private themeableBrowser: ThemeableBrowser,
+    private modalCtrl: ModalController,
+    private utilDialogService: UtilDialogService,
+    private storageService: StorageService) {
   }
 
   loadInfo(): void {
     this.campusInfo = this.storageService.get(CAMPUS_INFO);
+    this.campusDesign = this.storageService.get(CAMPUS_DESIGN);
     this.userInfo = this.storageService.get(USER_INFO);
+    let isTileView = this.storageService.get("BOOKMARK_VIEW_MODE");
+    if (isTileView != null) {
+      this.isTileView = isTileView;
+    }
   }
 
   ngOnInit(): void {
+    // this.imgcacheService.initImgCache().then(() => {
+    //   console.log("imgCache service init")
     this.loadInfo();
-    var self = this;
-    self.refreshBookmarks("myFavour");
-    self.dragulaService.drop.subscribe((value: any) => {
-      self.doSort(value.slice(1));
-    });
+    this.refreshBookmarks("myFavour");
+    // }).catch((error) => {
+    //   this.utilDialogServ.showError(error);
+    // });
   }
 
   doRefresh(refresher) {
     setTimeout(() => {
-      this.bookmarks = [];
+      this.bookmarks = null;
       this.refreshBookmarks(this.filter);
       refresher.complete();
     }, 500);
@@ -68,7 +75,7 @@ export class BookmarkListPage {
 
   refreshBookmarks(bookmarkFilter: string): void {
     this.bookmarks = null;
-    
+
     if (this.filter != bookmarkFilter) {
       this.isSortable = false;
     }
@@ -89,44 +96,80 @@ export class BookmarkListPage {
   }
 
   getAllBookmarks(): void {
-    this.bookmarkService.getAllBookmarks().then((bookmarks: Bookmark[]) => this.bookmarks = bookmarks);
+    this.bookmarkService.getAllBookmarks()
+      .then((bookmarks: Bookmark[]) => this.bookmarks = bookmarks)
+      .catch((error) => {
+        this.utilDialogServ.showError(error);
+      });
   }
 
   getMyFavourBookmarks(): void {
-    this.bookmarkService.getMyFavourBookmarks().then((bookmarks: Bookmark[]) => this.bookmarks = bookmarks);
+    this.bookmarkService.getMyFavourBookmarks()
+      .then((bookmarks: Bookmark[]) => this.bookmarks = bookmarks)
+      .catch((error) => {
+        this.utilDialogServ.showError(error);
+      });
   }
 
   getPopularBookmarks(): void {
-    this.bookmarkService.getPopularBookmarks().then((bookmarks: Bookmark[]) => this.bookmarks = bookmarks);
+    this.bookmarkService.getPopularBookmarks()
+      .then((bookmarks: Bookmark[]) => this.bookmarks = bookmarks)
+      .catch((error) => {
+        this.utilDialogServ.showError(error);
+      });
   }
 
   getRecentlyBookmarks(): void {
-    this.bookmarkService.getRecentlyBookmarks().then((bookmarks: Bookmark[]) => this.bookmarks = bookmarks);
+    this.bookmarkService.getRecentlyBookmarks()
+      .then((bookmarks: Bookmark[]) => this.bookmarks = bookmarks)
+      .catch((error) => {
+        this.utilDialogServ.showError(error);
+      });
   }
 
   switchView(): void {
     this.isTileView = !this.isTileView;
+    this.storageService.set("BOOKMARK_VIEW_MODE", this.isTileView);
   }
 
-  openDetailBookmark(bookmarkId: number) {
+  openDetailBookmark(bookmarkId: number | string) {
     let bookmark = this.bookmarks.find(function (bookmark) { return bookmark.id == bookmarkId });
     this.launchFromThemeableBrowser(bookmark);
   }
 
+  getSkinColor() {
+    var ret = "#2eb3feff";
+    switch (this.campusDesign.header.color) {
+      case 'black':
+        ret = "#323232";
+        break;
+      case 'green':
+        ret = "#5dc38b";
+        break;
+      case 'orange':
+        ret = "#f18f04";
+        break;
+      case 'purple':
+        ret = "#a082d1";
+        break;
+    }
+    return ret;
+  }
+
   launchFromThemeableBrowser(bookmark: Bookmark) {
     var self = this;
-    // var imageValue = bookmark.isMyFavour ? "unfavour" : "favour";
-
-    let options: any = {
+    var favImage = bookmark.isMyFavour ? "favour" : "unfavour";
+    let color = this.getSkinColor();
+    let options: ThemeableBrowserOptions = {
       statusbar: {
-        color: '#2eb3feff'
+        color: color
       },
       toolbar: {
         height: 44,
-        color: '#2eb3feff'
+        color: color
       },
       title: {
-        color: '#ffffffff',
+        color: '#003264ff',
         showPageTitle: true
       },
       backButton: {
@@ -149,35 +192,49 @@ export class BookmarkListPage {
       },
       customButtons: [
         {
-          image: "favour",
+          image: `${favImage}`,
           imagePressed: 'press_favour',
           align: 'right',
           'event': 'markFavour'
         }
       ],
-
       backButtonCanClose: false
     };
 
-    let browser: ThemeableBrowser = new ThemeableBrowser(bookmark.link, '_self', options);
-    browser.on('markFavour').subscribe(
-      (data) => {
+    this.newBrowser(bookmark, options);
 
-        var msg = bookmark.isMyFavour ? "Do you want to remove this link from your favorite list?" : "Do you want to add this link into your favorite list?";
+  }
+
+  private newBrowser(bookmark: Bookmark, options: ThemeableBrowserOptions): void {
+    var self = this;
+    this.browser = this.themeableBrowser.create(bookmark.link, 'newxxx', options);
+    this.browser.on('markFavour').subscribe(
+      (data) => {
+        console.log(JSON.stringify(data))
+        var msg = bookmark.isMyFavour ?
+          "Do you want to remove this link from your favorite campus links?" :
+          'Do you want to add this link to your favorite campus links?';
 
         if (confirm(msg)) {
           bookmark.isMyFavour = !bookmark.isMyFavour;
           self.bookmarkService.markFavour(bookmark.id, bookmark.isMyFavour);
-          // options.customButtons[0].image = bookmark.isMyFavour ? "unfavour" : "favour";
+          options.customButtons[0]["image"] = bookmark.isMyFavour ? "favour" : "unfavour";
           if (bookmark.isMyFavour) {
             alert("Added this link to your favorite list!");
           } else {
             alert("Removed this link from your favorite list!");
           }
+          console.log(JSON.stringify(self.browser));
 
-          if (self.filter == "myFavour") {
-            self.zone.run(() => self.refreshBookmarks(self.filter));
-          }
+          // self.newBrowser(bookmark, options);          
+
+
+          self.zone.run(() => {
+            console.log("zone refresh")
+            self.refreshBookmarks(self.filter)
+          });
+
+
         }
       },
       (err) => {
@@ -185,22 +242,73 @@ export class BookmarkListPage {
       });
   }
 
-  enableSort(): void {
-    if (this.filter == 'myFavour') {
-      this.isSortable = true;
+  openManagePage(): void {
+    if (this.filter === 'myFavour') {
+      let modal = this.modalCtrl.create(BookmarkManagePage, {
+         bookmarks: this.bookmarks
+      });
+      modal.present();
     }
   }
 
-  disableSort(): void {
-    this.isSortable = false;
+  markFavour(bookmark: Bookmark): void {
+    var isMyFavour = !bookmark.isMyFavour;
+    let alert = this.alertCtrl.create({
+      title: 'Confirm Message',
+      message: isMyFavour ?
+        'Do you want to add this link to your favorite campus links?' :
+        "Do you want to remove this link from your favorite campus links?",
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'OK',
+          handler: () => {
+            bookmark.isMyFavour = isMyFavour;
+            this.bookmarkService.markFavour(bookmark.id, bookmark.isMyFavour).then(() => {
+              this.utilDialogService.showSuccess("'" + bookmark.subject +
+                (bookmark.isMyFavour ? "' was added to my favorite campus links successfully!" :
+                  "' was removed from my favorite campus links successfully!"));
+            }).catch((error) => {
+              this.utilDialogServ.showError(error);
+            });
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  go2AllLinks(): void {
+    this.filter = "all";
+    this.refreshBookmarks(this.filter);
   }
 
   openSearch() {
     let modal = this.modalCtrl.create(BookmarkSearchPage, {
-      bookmarks: this.bookmarks, isTileView: this.isTileView,
+      bookmarks: this.bookmarks,
       filter: this.filter, campusInfo: this.campusInfo,
       openDetailBookmark: this.openDetailBookmark, launchFromThemeableBrowser: this.launchFromThemeableBrowser
     });
     modal.present();
-  }  
+  }
+
+
+  swipeEvent(event) {
+    console.log("Swipe from bookmark-list.ts");
+    //swipe left
+    if (event.direction == 2) {
+      console.log("Swipe to right");
+    }
+    //swipe right
+    if (event.direction == 4) {
+      console.log("Swipe to left");
+    }
+  }
+
 }

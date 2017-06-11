@@ -1,4 +1,4 @@
-<button icon-only (click)="takePhoto()" style="background:transparent">
+<button type="button" icon-only (click)="takePhoto()" style="background:transparent">
   <img src="assets/images/avatar/default.png" alt="profile" class="profileImg" *ngIf="!userInfo || !userInfo.profileIcon||userInfo.profileIcon==''"/>
   <img [src]="userInfo.profileIcon" alt="profile" class="profileImg" *ngIf="userInfo&&userInfo.profileIcon&&userInfo.profileIcon!=''"/>
 </button>

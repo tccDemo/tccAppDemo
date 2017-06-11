@@ -1,10 +1,12 @@
 export class Notification {
-  id: number;
-  name: string;
-  description: string;
+  objectId: string;
+  type: string;
+  from: string;
+  iconName: string;
+  params: string;
+  title: string;
   detail: string;
-  nType: string;
-  publishedBy: string;
+  hasRead: boolean;
   publishedAt: string;
-  isNew:boolean;
+  publishedDate: Date;
 }

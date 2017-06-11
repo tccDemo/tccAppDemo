@@ -3,7 +3,8 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 import { Notification } from '../../providers/notification';
 import { NotificationService } from '../../providers/notification.service';
-import { appToolBar } from '../../utils/appToolbar';
+import { CampusDesign } from '../../providers/campusDesign';
+import { StorageService, CAMPUS_DESIGN } from '../../providers/storage.service';
 
 @Component({
   selector: 'page-notification-detail',
@@ -12,11 +13,13 @@ import { appToolBar } from '../../utils/appToolbar';
 export class NotificationDetailPage {
 
   notification: Notification;
+  campusDesign: CampusDesign;
 
   constructor(
     private navCtrl: NavController,
     private params: NavParams,
     private viewCtrl: ViewController,
+    private storageService: StorageService,
     private notificationService: NotificationService
   ) { }
 
@@ -25,22 +28,20 @@ export class NotificationDetailPage {
   }
 
   ngOnInit(): void {
-    let notificationId = this.params.get('notificationId');
-    this.getNotification(notificationId);
-    this.notificationService.markRead(notificationId);
-    appToolBar.hideTabsBar();
+    this.campusDesign = this.storageService.get(CAMPUS_DESIGN);
+    this.notification = this.params.get('notification');    
+    // this.notificationService.markRead(this.notification);
   }
 
 
   ionViewWillLeave() {
-    appToolBar.showTabsBar();
   }
 
-  getNotification(notificationId: number): void {
-    this.notificationService.getNotification(notificationId).then((notification: Notification) => this.notification = notification);
-  }
+  // getNotification(objectId: number, type: string): void {
+  //   this.notificationService.getNotification(notificationId).then((notification: Notification) => this.notification = notification);
+  // }
 
   dismiss() {
     this.navCtrl.pop();
-  }  
+  }
 }

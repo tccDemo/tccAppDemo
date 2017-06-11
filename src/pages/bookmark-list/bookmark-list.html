@@ -1,31 +1,20 @@
-<ion-toolbar *ngIf="!isSortable">
+<ion-toolbar>
   <ion-buttons left>
-    <bookmark-filter (onRefreshBookmarks)="refreshBookmarks($event)"></bookmark-filter>
+    <bookmark-filter (onRefreshBookmarks)="refreshBookmarks($event)" [filter]="filter"></bookmark-filter>
   </ion-buttons>
-
-  <ion-searchbar *ngIf="bookmarks!=null&&bookmarks.length>0" (ionFocus)="openSearch()">
-  </ion-searchbar>
 
   <ion-buttons right *ngIf="bookmarks!=null&&bookmarks.length>0">
-    <button ion-button icon-only (click)="switchView()">
-      <img src="assets/icon/thumb.png" alt="" *ngIf="isTileView" id="listIcon">
-      <img src="assets/icon/list.png" alt="" *ngIf="!isTileView" id="gridIcon">
+    <button color="dark" ion-button icon-only (click)="switchView()">
+      <ion-icon name="ios-apps-outline" *ngIf="isTileView" id="listIcon"></ion-icon>
+      <ion-icon name="ios-list-outline" *ngIf="!isTileView" id="gridIcon"></ion-icon>
     </button>
   </ion-buttons>
 </ion-toolbar>
 
-<ion-toolbar *ngIf="isSortable">
-  <ion-buttons right>
-    <button ion-button (click)="disableSort()" round outline class="btn-done">
-      Done
-    </button>
-  </ion-buttons>
-</ion-toolbar>
-
-<ion-content style="position:static">
+<ion-content style="position:static" (swipe)="swipeEvent($event)">
   <div class="dataContainer">
 
-    <ion-refresher (ionRefresh)="doRefresh($event)" *ngIf="!isSortable">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
       <ion-refresher-content refreshingSpinner="circles">
       </ion-refresher-content>
     </ion-refresher>
@@ -37,92 +26,67 @@
     <ion-item *ngIf="bookmarks!=null&&bookmarks.length==0">
       <div class="container-no-data">
         <span><img src="assets/icon/no-data.png" alt=""></span>
-        <span *ngIf="filter=='myFavour'">Your Favorite Links will live here<br><br>Start Exploring</span>
+        <span *ngIf="filter=='myFavour'">Your Favorite Links will live here<br><br><a (click)="go2AllLinks()">Start Exploring</a></span>
         <span *ngIf="filter!='myFavour'">No Items Found</span>
       </div>
     </ion-item>
 
-    <div *ngIf="filter=='myFavour' && isSortable">
-      <div *ngIf="!isTileView" [dragula]='"bag-one"' [dragulaModel]='bookmarks' class="dragContainer">
-        <ion-item *ngFor="let bookmark of bookmarks"
-                  bookmarkId="{{bookmark.id}}">
+
+    <div *ngIf="!isTileView&&bookmarks!=null&&bookmarks.length>0">
+      <ion-list>
+        <ion-item *ngFor="let bookmark of bookmarks" (press)="openManagePage()" bookmarkId="{{bookmark.id}}">
           <ion-thumbnail item-left>
-            <img src="assets/images/bookmarks/{{bookmark.id}}.jpg" class="bookmark-list-img" *ngIf="bookmark.iconType==102&&!isUsingRealData">
-            <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-list-img" *ngIf="bookmark.iconType==102&&isUsingRealData">
-            <div class="bookmark-list-bg list-icon" [ngStyle]="{'background':bookmark.iconBg}" *ngIf="bookmark.iconType!=102">
-              <span [innerHtml]="bookmark.iconCode" [ngStyle]="{'color':bookmark.iconFg}"></span>
-            </div>
-
-          </ion-thumbnail>
-          <h2>{{bookmark.subject}}</h2>
-          <p *ngIf="bookmark.description">{{bookmark.description}}</p>
-        </ion-item>
-      </div>
-
-
-      <ion-row wrap *ngIf="isTileView" [dragula]='"bag-one"' [dragulaModel]='bookmarks'
-               class="ion-row-bookmark dragContainer responsive-media">
-        <ion-col *ngFor="let bookmark of bookmarks"
-                 class="ion-col-bookmark cc-width-grid"
-                 bookmarkId="{{bookmark.id}}">
-
-          <ion-card color="bookmark">
-            <ion-card-content>
-              <img src="assets/images/bookmarks/{{bookmark.id}}.jpg" class="bookmark-img" *ngIf="bookmark.iconType==102&&!isUsingRealData">
-              <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-img" *ngIf="bookmark.iconType==102&&isUsingRealData">
-              <div class="bookmark-list-bg" [ngStyle]="{'background':bookmark.iconBg}" *ngIf="bookmark.iconType!=102">
-                <span [innerHtml]="bookmark.iconCode" [ngStyle]="{'color':bookmark.iconFg}"></span>
-              </div>
-              <div class="bookmark-item-body">
-                <h3>
-              {{bookmark.subject}}
-                </h3>
-              </div>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div *ngIf="filter!='myFavour' || !isSortable">
-      <div *ngIf="!isTileView">
-        <ion-item *ngFor="let bookmark of bookmarks"  (press)="enableSort()"
-                  (click)="openDetailBookmark(bookmark.id)" bookmarkId="{{bookmark.id}}">
-          <ion-thumbnail item-left>
-            <img src="assets/images/bookmarks/{{bookmark.id}}.jpg" class="bookmark-list-img" *ngIf="bookmark.iconType==102&&!isUsingRealData">
-            <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-list-img" *ngIf="bookmark.iconType==102&&isUsingRealData">
-            <div class="bookmark-list-bg list-icon" [ngStyle]="{'background':bookmark.iconBg}" *ngIf="bookmark.iconType!=102">
+            <img [src]="bookmark.iconURL" class="bookmark-list-img" *ngIf="bookmark.iconType=='102'"> 
+    <!--         <img lazy-load [inputSrc]="bookmark.iconURL" class="bookmark-list-img" *ngIf="bookmark.iconType=='102'">-->
+            <div class="bookmark-list-bg list-icon" [ngStyle]="{'background':bookmark.iconBg}" *ngIf="bookmark.iconType!='102'">
               <span [innerHtml]="bookmark.iconCode" [ngStyle]="{'color':bookmark.iconFg}"></span>
             </div>
           </ion-thumbnail>
-          <h2>{{bookmark.subject}}</h2>
-          <p *ngIf="bookmark.description">{{bookmark.description}}</p>
+          <h2 (click)="openDetailBookmark(bookmark.id)">{{bookmark.subject}}</h2>
+          <p *ngIf="bookmark.description" (click)="openDetailBookmark(bookmark.id)">{{bookmark.description}}</p>
+          <span item-right (click)="markFavour(bookmark);" class="favIcon" *ngIf="bookmark.isMyFavour">
+                  <ion-icon name="ios-heart"></ion-icon>        
+          </span>
+          <span item-right (click)="markFavour(bookmark);" class="favIcon unfav" *ngIf="!bookmark.isMyFavour">
+                  <ion-icon name="ios-heart-outline"></ion-icon>
+          </span>
         </ion-item>
-      </div>
-
-
-      <ion-row wrap *ngIf="isTileView" class="ion-row-bookmark responsive-media">
-        <ion-col *ngFor="let bookmark of bookmarks"
-                 (click)="openDetailBookmark(bookmark.id)" class="ion-col-bookmark cc-width-grid"
-                 bookmarkId="{{bookmark.id}}">
-          <ion-card color="bookmark"  (press)="enableSort()">
-            <ion-card-content>
-              <img src="assets/images/bookmarks/{{bookmark.id}}.jpg" class="bookmark-img" *ngIf="bookmark.iconType==102&&!isUsingRealData">
-              <img src="{{campusInfo.host}}/m?pg=Bookmark-Logo&bookmarkId={{bookmark.id}}" class="bookmark-img" *ngIf="bookmark.iconType==102&&isUsingRealData">
-              <div class="bookmark-list-bg" [ngStyle]="{'background':bookmark.iconBg}" *ngIf="bookmark.iconType!=102">
-                <span [innerHtml]="bookmark.iconCode" [ngStyle]="{'color':bookmark.iconFg}"></span>
-              </div>
-              <div class="bookmark-item-body">
-                <h3>
-                  {{bookmark.subject}}
-                </h3>
-              </div>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-
+      </ion-list>
+      <ion-item class="total" *ngIf="bookmarks.length>0">
+        <p text-center>Total: {{bookmarks.length}}</p>
+      </ion-item>
     </div>
+
+
+    <ion-row wrap *ngIf="isTileView&&bookmarks!=null&&bookmarks.length>0" class="ion-row-bookmark responsive-media">
+      <ion-col *ngFor="let bookmark of bookmarks" class="ion-col-bookmark cc-width-grid" bookmarkId="{{bookmark.id}}">
+        <ion-card color="bookmark" (press)="openManagePage()">
+          <ion-card-content>
+            <div class="thumbnail" (click)="openDetailBookmark(bookmark.id)">
+              <div class="thumbnail-content">
+               <img [src]="bookmark.iconURL" class="thumbnail-img" *ngIf="bookmark.iconType=='102'">
+            <!--     <img lazy-load [inputSrc]="bookmark.iconURL" class="thumbnail-img" *ngIf="bookmark.iconType=='102'"> -->
+                <div class="bookmark-list-bg thumbnail-img" [ngStyle]="{'background':bookmark.iconBg}" *ngIf="bookmark.iconType!='102'">
+                  <span [innerHtml]="bookmark.iconCode" [ngStyle]="{'color':bookmark.iconFg}"></span>
+                </div>
+              </div>
+            </div>
+            <div class="bookmark-item-body">
+              <h3 (click)="openDetailBookmark(bookmark.id)">
+                {{bookmark.subject}}
+              </h3>
+              <div class="favIcon" (click)="markFavour(bookmark);" *ngIf="bookmark.isMyFavour">
+                <ion-icon name="ios-heart"></ion-icon>
+              </div>
+              <div class="favIcon unfav" (click)="markFavour(bookmark);" *ngIf="!bookmark.isMyFavour">
+                <ion-icon name="ios-heart-outline"></ion-icon>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
   </div>
-</ion-content>
 
+</ion-content>

@@ -2,23 +2,55 @@ page-setting {
   body{
     background: #fff;
   }
-  .bgWall {
-    background:#fff url(../assets/images/setting-bg.png);
-    /*filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";*/
-    background-size: 100% 100%;
+  .bg-setting-wall {
+    //background-image: radial-gradient(ellipse farthest-side at 50% 0, lighten(color($colors,primary),10) 0%, color($colors,primary) 80%, color($colors,primary) 99%, transparent 99%);
+    background-size: 200% 100%;
+    background-position-x: center;
     height: 30rem;
-    text-align: center;
-    padding-top: 12rem;
+    padding-top: 36px;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    display: flex;
   }
   .userNameLabel {
-    font-size: 1.4rem;
-    margin: auto;
+    font-size: 1.8rem;
+    margin-top: 8px;
     color: #fff;
   }
   .userProfileImg {
     color: #fff;
     margin: auto;
     font-size: 5rem;
+  }
+  .userProfileEntry {
+    width: calc(100% - 16px * 2);
+    margin: 16px 16px 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .userProfileEntryItem {
+    width: 50%;
+    padding: 16px;
+    text-align: center;
+    ion-icon {
+      color: rgba(white,.9);
+      font-size: 3rem;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .userProfileLabel {
+      color: rgba(white,.9);
+      display: block;
+    }
+  }
+  .settingList {
+    & > .item-block {
+      &:first-child {
+        border-top: none;
+      }
+    }
   }
   .settingIcon {
     color: #fff;
@@ -27,6 +59,8 @@ page-setting {
     border-radius: 50%;
     height: 32px;
     width: 32px;
+    min-height: 0;
+    padding: 0;
     display: inline-block;
     text-align: center;
     line-height: 32px;
@@ -47,8 +81,8 @@ page-setting {
   .settingLabel {
     text-align: center;
     font-size: 1.7rem;
+    text-align: left;
     margin-left: 0.5rem;
-    test-align: left;
     color: #333333;
     margin-left: 0;
   }
@@ -58,5 +92,8 @@ page-setting {
     width: 90px;
     border-radius: 50%;
     border: 8px solid rgba(255,255,255,0.3);
+  }
+  .logout-button {
+    box-shadow: none;
   }
 }

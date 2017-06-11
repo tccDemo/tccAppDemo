@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar class="headToolBar" [color]="campusDesign.header.color">
+    <ion-buttons right>
+      <button type="button" ion-button (click)="evSubmitForm()">Save</button>
+    </ion-buttons>
+    <ion-title class="title title-ios">Education</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content [color]="campusDesign.theme.color">
+  <form [formGroup]="form" [ngClass]="{'form-is-submit': isSubmit}" (ngSubmit)="evSubmitForm()">
+    <ion-list class="settingList">
+      <ion-item-group>
+        <ion-item>
+          <ion-label class="settingLabel"><span class="highlight">*</span>Institution</ion-label>
+          <ion-input type="text" formControlName="institution" placeholder="Please enter institution name" text-right></ion-input>
+        </ion-item>
+        <div class="msgValid" *ngIf="!form.controls.institution.valid && form.controls.institution.dirty">
+          <p *ngIf="form.controls.institution.hasError('required')">This field is required.</p>
+          <p *ngIf="form.controls.institution.hasError('maxlength')">Please enter no more than 64 characters.</p>
+        </div>
+        
+        <button type="button" ion-item [ngClass]="{'ng-invalid': !form.controls.degree.valid, 'ng-dirty': form.controls.degree.dirty}" (click)="showSelectEdit('degree', form.controls.degree)">
+          <span class="settingLabel"><span class="highlight">*</span>Degree</span>
+          <ion-note class="settingContent" item-right>{{form.value.degree}}</ion-note>
+          <input type="hidden" formControlName="degree">
+        </button>
+        <div class="msgValid" *ngIf="!form.controls.degree.valid && form.controls.degree.dirty">
+          <p *ngIf="form.controls.degree.hasError('required')">This field is required.</p>
+        </div>
+        <button type="button" ion-item [ngClass]="{'ng-invalid': !form.controls.major.valid, 'ng-dirty': form.controls.major.dirty}" (click)="showSelectEdit('major', form.controls.major)">
+          <span class="settingLabel"><span class="highlight">*</span>Major</span>
+          <ion-note class="settingContent" item-right>{{form.value.major}}</ion-note>
+          <input type="hidden" formControlName="major">
+        </button>
+        <div class="msgValid" *ngIf="!form.controls.major.valid && form.controls.major.dirty">
+          <p *ngIf="form.controls.major.hasError('required')">This field is required.</p>
+        </div>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item-divider></ion-item-divider>
+        <ion-item>
+          <ion-label class="settingLabel">Location</ion-label>
+          <ion-input type="text" formControlName="location" placeholder="Your location" text-right></ion-input>
+        </ion-item>
+        <div class="msgValid" *ngIf="!form.controls.location.valid && form.controls.location.dirty">
+          <p *ngIf="form.controls.location.hasError('maxlength')">Please enter no more than 64 characters.</p>
+        </div>
+        <ion-item-sliding>
+          <ion-item>
+            <ion-label class="settingLabel">Graduated</ion-label>
+            <ion-datetime class="settingContent" formControlName="gradTime" displayFormat="YYYY/MM" pickerFormat="YYYY/MM"></ion-datetime>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="danger" type="button" (click)="clearDateVal('gradTime')">Clear</button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-item-group>
+    </ion-list>
+  </form>
+</ion-content>

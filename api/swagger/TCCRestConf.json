@@ -1,0 +1,4 @@
+{
+    "apiPackage" : "WebMan.restapi",
+    "modelPackage" : "WebMan.restapi.model"
+}

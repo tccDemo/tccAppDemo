@@ -1,44 +1,46 @@
-<ion-content class="login">
+<ion-content>
+  <div class="background" [ngStyle]="{
+    'background-image': 'url(' + campusDesign.loginPage.backgroundImg + ')',
+    'background-color': campusDesign.loginPage.backgroundColor
+  }"></div>
   <form [formGroup]="loginForm">
     <div padding [@flyInBottomFast]="cloudState" id="cloud-layer">
-
       <ion-row>
         <ion-col>
-          <div class="logoHeader">STRATA GO!</div>
+          <div class="header">
+            <img [src]="campusDesign.loginPage.logo" class="logo" alt="{{campusDesign.loginPage.campusName}}">
+            <div class="welcome">{{campusDesign.loginPage.campusName}}</div>
+          </div>
         </ion-col>
       </ion-row>
-
-
       <ion-row>
         <ion-col>
-          <ion-list inset [@bounceInBottom]="formState" style="margin: 0">
-
+          <ion-list class="stretcher" [@bounceInBottom]="formState">
             <ion-item class="form-input">
-              <!--<ion-label>
-                <ion-icon name="person" class="loginIcon"></ion-icon>
-              </ion-label>-->
+              <ion-label>
+                <ion-icon name="ios-person-outline" class="loginIcon"></ion-icon>
+              </ion-label>
               <ion-input type="text" formControlName="UserName" placeholder="Login ID"></ion-input>
+              <ion-icon class="icon-validate" item-right></ion-icon>
             </ion-item>
-
             <ion-item  class="form-input">
-              <!--<ion-label>
-                <ion-icon name="key" class="loginIcon"></ion-icon>
-              </ion-label>-->
+              <ion-label>
+                <ion-icon name="ios-lock-outline" class="loginIcon"></ion-icon>
+              </ion-label>
               <ion-input type="password" formControlName="Password" placeholder="Password"></ion-input>
+              <ion-icon class="icon-validate" item-right></ion-icon>
             </ion-item>
-
           </ion-list>
         </ion-col>
       </ion-row>
-
       <ion-row>
         <ion-col>
-          <button class="login-button" [@fadeIn]="loginState" ion-button full
-                  (click)="login(loginForm.value, $event)">SIGN IN
+          <button class="login-button stretcher" [@fadeIn]="loginState" ion-button block
+                  (click)="evLogin(loginForm.value, $event)">SIGN IN
           </button>
+          <button class="forgot-button stretcher" color="light" [@fadeIn]="loginState" (click)="linkToForgotPassword()" ion-button clear block>Forgot password?</button>
         </ion-col>
       </ion-row>
-
     </div>
   </form>
 </ion-content>

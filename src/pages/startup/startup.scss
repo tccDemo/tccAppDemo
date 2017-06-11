@@ -1,0 +1,23 @@
+page-startup {
+  .bgWall {
+    background:#2d9bfd;
+    /*filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";*/
+    background-size: 100% 100%;
+    text-align: center;
+    padding: 56px 0;
+  }
+  .campusLogo {
+    max-width: 90%;
+  }
+  ion-list {
+    &.list[inset] {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+  .login-button {
+    &.button-md {
+      height: 3.6em;
+    }
+  }
+}

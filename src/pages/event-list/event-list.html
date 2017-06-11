@@ -1,44 +1,32 @@
-<ion-toolbar>
-
-  <ion-searchbar *ngIf="bundleEvents!=null&&bundleEvents.length>0" (ionFocus)="openSearch()">
-  </ion-searchbar>
-
-  <ion-buttons right>
-    <button ion-button icon-only (click)="openCalendarPage()"> 
-          <ion-icon name="calendar" id="calendarIcon"></ion-icon>
-        </button>
-  </ion-buttons>
-</ion-toolbar>
-
 <ion-content style="position:static">
-  <div class="dataContainer">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
 
-    <ion-refresher (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content refreshingSpinner="circles">
-      </ion-refresher-content>
-    </ion-refresher>
+  <ion-item *ngIf="bundleEvents==null">
+    <IMG src='assets/images/loading.svg' alt='loading' class="loadingImg">
+  </ion-item>
+  <ion-item *ngIf="bundleEvents!=null&&bundleEvents.length==0">
+    <div class="container-no-data">
+      <span><img src="assets/icon/no-data.png" alt=""></span>
+      <span>No Items Found</span>
+    </div>
+  </ion-item>
 
-    <ion-item *ngIf="bundleEvents==null">
-      <IMG src='assets/images/loading.svg' alt='loading' class="loadingImg">
+  <ion-list *ngFor="let be of bundleEvents" mode="ios" (swipe)="swipeEvent($event)">
+    <ion-list-header class="bundleHeader">
+      {{be.date | date: 'mediumDate'}}
+    </ion-list-header>
+    <ion-item class="eventRow" *ngFor="let ev of be.events" (click)="openDetailPage({eventId: ev.id})" [ngStyle]="{'border-color':ev.calendarColor}">       
+      <h2 class="eventTitle">{{ev.title}}</h2>
+      <ion-note *ngIf="ev.allDay">All Day</ion-note>
+      <ion-note *ngIf="!ev.allDay">{{ev.start | date:"HH:mm"}}</ion-note>
+      <ion-nav [root]="rootPage"></ion-nav>
     </ion-item>
-    <ion-item *ngIf="bundleEvents!=null&&bundleEvents.length==0">
-      <div class="container-no-data">
-        <span><img src="assets/icon/no-data.png" alt=""></span>
-        <span>No Items Found</span>
-      </div>
-    </ion-item>
+  </ion-list>
 
-    <ion-list *ngFor="let be of bundleEvents" mode="ios" no-lines>
-      <ion-list-header class="bundleHeader">
-        {{be.date | date: 'mediumDate'}}
-      </ion-list-header>
-      <ion-item *ngFor="let ev of be.events" class="eventRow" (click)="openDetailPage({eventId: ev.id})">
-        <h2 class="eventTitle" [ngStyle]="{'color':ev.calendarColor}">{{ev.title}}</h2>
-        <ion-note item-right *ngIf="ev.allDay">All Day</ion-note>
-        <ion-note item-right *ngIf="!ev.allDay">{{ev.start | date:"HH:mm"}}</ion-note>
-        <ion-nav [root]="rootPage"></ion-nav>
-
-      </ion-item>
-    </ion-list>
-  </div>
+  <ion-item class="total no-divider" *ngIf="totalCount>0">
+    <p text-center>Total: {{totalCount}}</p>
+  </ion-item>    
 </ion-content>

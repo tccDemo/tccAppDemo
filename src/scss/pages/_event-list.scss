@@ -1,0 +1,35 @@
+.scroll-content {
+  background: color($colors,light);
+}
+.bundleHeader {
+  min-height: 3.6rem;
+  margin-bottom: 8px;
+  font-size: large;
+  border: 0;
+  &.item {
+    background: none;
+    .item-inner {
+      padding: 0;
+      border: none;
+    }
+    .label {
+      margin-bottom: 6px;
+    }
+  }
+}
+ion-list {
+  &.list {
+    margin-bottom: 20px;
+    padding-top: 8px;
+    @import "../../scss/pages/_calendar";
+  }
+  ion-note {
+    font-size: 1.2rem;
+  }
+}
+.eventTitle {
+  font-size: 1.6rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

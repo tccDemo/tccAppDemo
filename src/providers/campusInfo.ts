@@ -1,7 +1,9 @@
 export class CampusInfo {
   campusId: number;
+  campusName: string;
   logo: string;
+  theme: string;  
   host: string;
-  titleColor: string;
-  lastUpdate: Date;
+  loginBGColor: string;
+  loginBGImage: string;  
 }

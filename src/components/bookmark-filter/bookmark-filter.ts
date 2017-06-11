@@ -6,6 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class BookmarkFilterComponent {
 
+  @Input()
   filter: string = "myFavour";
 
   @Output() 
@@ -14,10 +15,8 @@ export class BookmarkFilterComponent {
   constructor() {
 
   }
-
-
+  
   change(){
-  	console.log("change"+ this.filter);
   	this.onRefreshBookmarks.emit(this.filter);
   }
 }

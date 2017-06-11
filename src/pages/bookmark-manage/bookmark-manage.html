@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar [color]="campusDesign.header.color">
+    <ion-buttons left>
+      <button ion-button (click)="dismiss()" icon-only>
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Sort Favorite Links</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [color]="campusDesign.theme.color">
+  <div class="dataContainer">
+    <ion-item *ngIf="bookmarks==null">
+      <IMG src='assets/images/loading.svg' alt='loading' class="loadingImg">
+    </ion-item>
+    <ion-item *ngIf="bookmarks!=null&&bookmarks.length==0">
+      <div class="container-no-data">
+        <span><img src="assets/icon/no-data.png" alt=""></span>
+        <span>No Items Found</span>
+      </div>
+    </ion-item>
+
+    <ion-list>
+      <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
+        <ion-item *ngFor="let bookmark of bookmarks" bookmarkId="{{bookmark.id}}">
+          <ion-thumbnail item-left>
+            <img [src]="bookmark.iconURL" class="bookmark-list-img" *ngIf="bookmark.iconType=='102'">
+            <div class="bookmark-list-bg list-icon" [ngStyle]="{'background':bookmark.iconBg}" *ngIf="bookmark.iconType!='102'">
+              <span [innerHtml]="bookmark.iconCode" [ngStyle]="{'color':bookmark.iconFg}"></span>
+            </div>
+
+          </ion-thumbnail>
+          <h2>{{bookmark.subject}}</h2>
+          <p *ngIf="bookmark.description">{{bookmark.description}}</p>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+  </div>
+</ion-content>

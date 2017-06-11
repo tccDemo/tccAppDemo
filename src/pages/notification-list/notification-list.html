@@ -1,12 +1,14 @@
 <ion-header>
-  <ion-navbar class="headToolBar" color="heading">
+  <ion-navbar [color]="campusDesign.header.color">
     <ion-title>Notification</ion-title>
-    <ion-buttons right>
-      <button ion-button ion-right round small (click)="clearAll()" color="light">Clear All</button>
+    <ion-buttons right *ngIf="notifications!=null&&notifications.length>0">
+      <button color="light" ion-button icon-only (click)="clearAll()" round> 
+        Clear All
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content [color]="campusDesign.theme.color">
   <ion-list>
     <ion-item *ngIf="notifications==null">
       <IMG src='assets/images/loading.svg' alt='loading' class="loadingImg">
@@ -14,26 +16,31 @@
     <ion-item *ngIf="notifications!=null&&notifications.length==0">
       <div class="container-no-data">
         <span><img src="assets/icon/no-data.png" alt=""></span>
-        <span>You don't have any notifications reight now</span>
+        <span>You don't have<br>any notifications right now</span>
       </div>
     </ion-item>
 
     <ion-item-sliding *ngFor="let notification of notifications">
 
-      <ion-item (click)="openDetailPage({notificationId: notification.id})">
+      <ion-item class="single-line" (click)="openDetailPage(notification)">
         <ion-thumbnail item-left>
-          <ion-icon name="information-circle" class="announcementIcon" *ngIf="notification.nType=='announcement'"></ion-icon>
-          <ion-icon name="easel" class="systemheadlineIcon" *ngIf="notification.nType=='systemheadline'"></ion-icon>
-          <ion-icon name="albums" class="othersIcon" *ngIf="notification.nType=='others'"></ion-icon>
+          <ion-icon class="announcementIcon ci ci-announcement" *ngIf="notification.type=='bookmark'"></ion-icon>
+          <ion-icon class="announcementIcon ci ci-announcement" *ngIf="notification.type=='announcement'"></ion-icon>
+          <ion-icon class="announcementIcon ci ci-announcement" *ngIf="notification.type=='calendar'"></ion-icon>
+          <ion-icon class="othersIcon ci ci-announcement" *ngIf="notification.type=='others'"></ion-icon>
         </ion-thumbnail>
-        <h2><span class="ionLabel">{{notification.name}}</span></h2>
-        <p>{{notification.publishedAt}}</p>
+        <h2>{{notification.title}}</h2>
+        <ion-note class="date" item-right>{{notification.publishedAt | date : 'shortDate'}}</ion-note>
       </ion-item>
       <ion-item-options>
-        <button ion-button icon-only color="danger" icon-left (click)="delete(notification.id)">
-          <ion-icon name="close" large></ion-icon>
+        <button ion-button color="danger" icon-left (click)=" delete(notification.objectId, notification.type, notification.title)">
+          Delete
         </button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

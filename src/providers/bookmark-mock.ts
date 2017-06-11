@@ -8,12 +8,12 @@ export const ALLBOOKMARKS: Bookmark[] = [{
   "iconBg": "#363636",
   "isMyFavour": false,
   "isRecent": true,
-  "id": 729019,
+  "id": "729019",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Course Catalog",
-  "seq": 1,
-  "iconType": 102
+  "iconURL":"","seq": 1,
+  "iconType": "102"
 },
 {
   "iconCode": "B",
@@ -22,12 +22,12 @@ export const ALLBOOKMARKS: Bookmark[] = [{
   "iconBg": "#A63379",
   "isMyFavour": true,
   "isRecent": true,
-  "id": 729020,
+  "id": "729020",
   "iconFg": "#FFF",
   "description": "Academic Calendar",
   "isPopular": true,
-  "seq": 2,
-  "iconType": 101,
+  "iconURL":"","seq": 2,
+  "iconType": "101",
   "imgIcon": "",
 }, {
   "iconCode": "P",
@@ -37,12 +37,12 @@ export const ALLBOOKMARKS: Bookmark[] = [{
   "iconBg": "#FF2C00",
   "isMyFavour": true,
   "isRecent": true,
-  "id": 729021,
+  "id": "729021",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Parking Services",
-  "seq": 3,
-  "iconType": 102
+  "iconURL":"","seq": 3,
+  "iconType": "102"
 }, {
   "iconCode": "H",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729022/219H.jpg?fileId=64046158",
@@ -51,12 +51,12 @@ export const ALLBOOKMARKS: Bookmark[] = [{
   "iconBg": "#FF7A00",
   "isMyFavour": false,
   "isRecent": true,
-  "id": 729022,
+  "id": "729022",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Housing",
-  "seq": 4,
-  "iconType": 102
+  "iconURL":"","seq": 4,
+  "iconType": "102"
 }, {
   "iconCode": "S",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729023/mathematics-1622448_640.jpg?fileId=64046157",
@@ -65,12 +65,12 @@ export const ALLBOOKMARKS: Bookmark[] = [{
   "iconBg": "#58ACEC",
   "isMyFavour": true,
   "isRecent": true,
-  "id": 729023,
+  "id": "729023",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Student Advising",
-  "seq": 5,
-  "iconType": 102
+  "iconURL":"","seq": 5,
+  "iconType": "102"
 }, {
   "iconCode": "L",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729024/book-2073023_640.jpg?fileId=64046190",
@@ -79,12 +79,12 @@ export const ALLBOOKMARKS: Bookmark[] = [{
   "iconBg": "#363636",
   "isMyFavour": false,
   "isRecent": true,
-  "id": 729024,
+  "id": "729024",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Library",
-  "seq": 6,
-  "iconType": 102
+  "iconURL":"","seq": 6,
+  "iconType": "102"
 }, {
   "iconCode": "G",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729025/index.jpg?fileId=64046160",
@@ -93,12 +93,12 @@ export const ALLBOOKMARKS: Bookmark[] = [{
   "iconBg": "#FEFEFE",
   "isMyFavour": true,
   "isRecent": true,
-  "id": 729025,
+  "id": "729025",
   "iconFg": "#333",
   "isPopular": true,
   "description": "Gmail",
-  "seq": 7,
-  "iconType": 102
+  "iconURL":"","seq": 7,
+  "iconType": "102"
 }, {
   "iconCode": "T",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729026/globe-967304_640.jpg?fileId=64046154",
@@ -107,24 +107,24 @@ export const ALLBOOKMARKS: Bookmark[] = [{
   "iconBg": "#FF2C00",
   "isMyFavour": false,
   "isRecent": true,
-  "id": 729026,
+  "id": "729026",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Transfer Students",
-  "seq": 8,
-  "iconType": 102
+  "iconURL":"","seq": 8,
+  "iconType": "102"
 }, {
   "isRecent": true,
   "iconCode": "D",
-  "id": 729027,
+  "id": "729027",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729027/dining.jpg?fileId=64046173",
   "isPopular": true,
   "description": "Dining & Meal Plans",
   "subject": "Dining & Meal Plans",
   "link": "https://ccstage.campuscruiser.com/PageServlet?pg=webpageProxy&tg=WebPage-proxy&from=22.55&page=76388&cx=22.55",
-  "seq": 9,
+  "iconURL":"","seq": 9,
   "isMyFavour": false,
-  "iconType": 102,
+  "iconType": "102",
   "iconFg": "#FFF",
   "iconBg": "#21C518"
 }, {
@@ -135,12 +135,12 @@ export const ALLBOOKMARKS: Bookmark[] = [{
   "iconBg": "#21C518",
   "isMyFavour": true,
   "isRecent": true,
-  "id": 729028,
+  "id": "729028",
   "iconFg": "#FFF",
   "isPopular": false,
   "description": "ID Card",
-  "seq": 10,
-  "iconType": 102
+  "iconURL":"","seq": 10,
+  "iconType": "102"
 }]
 
 
@@ -154,12 +154,12 @@ export const POPULARBOOKMARKS: Bookmark[] = [{
   "iconBg": "#363636",
   "isMyFavour": false,
   "isRecent": true,
-  "id": 729019,
+  "id": "729019",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Course Catalog",
-  "seq": 6,
-  "iconType": 102
+  "iconURL":"","seq": 6,
+  "iconType": "102"
 },
 {
   "iconCode": "B",
@@ -168,12 +168,12 @@ export const POPULARBOOKMARKS: Bookmark[] = [{
   "iconBg": "#A63379",
   "isMyFavour": true,
   "isRecent": true,
-  "id": 729020,
+  "id": "729020",
   "iconFg": "#FFF",
   "description": "Academic Calendar",
   "isPopular": true,
-  "seq": 5,
-  "iconType": 101,
+  "iconURL":"","seq": 5,
+  "iconType": "101",
   "imgIcon": "",
 }, {
   "iconCode": "P",
@@ -183,12 +183,12 @@ export const POPULARBOOKMARKS: Bookmark[] = [{
   "iconBg": "#FF2C00",
   "isMyFavour": true,
   "isRecent": true,
-  "id": 729021,
+  "id": "729021",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Parking Services",
-  "seq": 3,
-  "iconType": 102
+  "iconURL":"","seq": 3,
+  "iconType": "102"
 }, {
   "iconCode": "H",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729022/219H.jpg?fileId=64046158",
@@ -197,12 +197,12 @@ export const POPULARBOOKMARKS: Bookmark[] = [{
   "iconBg": "#FF7A00",
   "isMyFavour": false,
   "isRecent": true,
-  "id": 729022,
+  "id": "729022",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Housing",
-  "seq": 4,
-  "iconType": 102
+  "iconURL":"","seq": 4,
+  "iconType": "102"
 }, {
   "iconCode": "S",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729023/mathematics-1622448_640.jpg?fileId=64046157",
@@ -211,12 +211,12 @@ export const POPULARBOOKMARKS: Bookmark[] = [{
   "iconBg": "#58ACEC",
   "isMyFavour": true,
   "isRecent": true,
-  "id": 729023,
+  "id": "729023",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Student Advising",
-  "seq": 2,
-  "iconType": 102
+  "iconURL":"","seq": 2,
+  "iconType": "102"
 }, {
   "iconCode": "L",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729024/book-2073023_640.jpg?fileId=64046190",
@@ -225,12 +225,12 @@ export const POPULARBOOKMARKS: Bookmark[] = [{
   "iconBg": "#363636",
   "isMyFavour": false,
   "isRecent": true,
-  "id": 729024,
+  "id": "729024",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Library",
-  "seq": 1,
-  "iconType": 102
+  "iconURL":"","seq": 1,
+  "iconType": "102"
 }, {
   "iconCode": "G",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729025/index.jpg?fileId=64046160",
@@ -239,12 +239,12 @@ export const POPULARBOOKMARKS: Bookmark[] = [{
   "iconBg": "#FEFEFE",
   "isMyFavour": true,
   "isRecent": true,
-  "id": 729025,
+  "id": "729025",
   "iconFg": "#333",
   "isPopular": true,
   "description": "Gmail",
-  "seq": 9,
-  "iconType": 102
+  "iconURL":"","seq": 9,
+  "iconType": "102"
 }, {
   "iconCode": "T",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729026/globe-967304_640.jpg?fileId=64046154",
@@ -253,24 +253,24 @@ export const POPULARBOOKMARKS: Bookmark[] = [{
   "iconBg": "#FF2C00",
   "isMyFavour": false,
   "isRecent": true,
-  "id": 729026,
+  "id": "729026",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Transfer Students",
-  "seq": 7,
-  "iconType": 102
+  "iconURL":"","seq": 7,
+  "iconType": "102"
 }, {
   "isRecent": true,
   "iconCode": "D",
-  "id": 729027,
+  "id": "729027",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729027/dining.jpg?fileId=64046173",
   "isPopular": true,
   "description": "Dining & Meal Plans",
   "subject": "Dining & Meal Plans",
   "link": "https://ccstage.campuscruiser.com/PageServlet?pg=webpageProxy&tg=WebPage-proxy&from=22.55&page=76388&cx=22.55",
-  "seq": 8,
+  "iconURL":"","seq": 8,
   "isMyFavour": false,
-  "iconType": 102,
+  "iconType": "102",
   "iconFg": "#FFF",
   "iconBg": "#21C518"
 }]
@@ -283,12 +283,12 @@ export const RECENTBOOKMARKS: Bookmark[] = [{
   "iconBg": "#363636",
   "isMyFavour": false,
   "isRecent": true,
-  "id": 729019,
+  "id": "729019",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Course Catalog",
-  "seq": 7,
-  "iconType": 102
+  "iconURL":"","seq": 7,
+  "iconType": "102"
 },
 {
   "iconCode": "B",
@@ -297,12 +297,12 @@ export const RECENTBOOKMARKS: Bookmark[] = [{
   "iconBg": "#A63379",
   "isMyFavour": true,
   "isRecent": true,
-  "id": 729020,
+  "id": "729020",
   "iconFg": "#FFF",
   "description": "Academic Calendar",
   "isPopular": true,
-  "seq": 8,
-  "iconType": 101,
+  "iconURL":"","seq": 8,
+  "iconType": "101",
   "imgIcon": "",
 }, {
   "iconCode": "P",
@@ -312,12 +312,12 @@ export const RECENTBOOKMARKS: Bookmark[] = [{
   "iconBg": "#FF2C00",
   "isMyFavour": true,
   "isRecent": true,
-  "id": 729021,
+  "id": "729021",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Parking Services",
-  "seq": 1,
-  "iconType": 102
+  "iconURL":"","seq": 1,
+  "iconType": "102"
 }, {
   "iconCode": "H",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729022/219H.jpg?fileId=64046158",
@@ -326,12 +326,12 @@ export const RECENTBOOKMARKS: Bookmark[] = [{
   "iconBg": "#FF7A00",
   "isMyFavour": false,
   "isRecent": true,
-  "id": 729022,
+  "id": "729022",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Housing",
-  "seq": 3,
-  "iconType": 102
+  "iconURL":"","seq": 3,
+  "iconType": "102"
 }, {
   "iconCode": "S",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729023/mathematics-1622448_640.jpg?fileId=64046157",
@@ -340,12 +340,12 @@ export const RECENTBOOKMARKS: Bookmark[] = [{
   "iconBg": "#58ACEC",
   "isMyFavour": true,
   "isRecent": true,
-  "id": 729023,
+  "id": "729023",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Student Advising",
-  "seq": 2,
-  "iconType": 102
+  "iconURL":"","seq": 2,
+  "iconType": "102"
 }, {
   "iconCode": "L",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729024/book-2073023_640.jpg?fileId=64046190",
@@ -354,12 +354,12 @@ export const RECENTBOOKMARKS: Bookmark[] = [{
   "iconBg": "#363636",
   "isMyFavour": false,
   "isRecent": true,
-  "id": 729024,
+  "id": "729024",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Library",
-  "seq": 4,
-  "iconType": 102
+  "iconURL":"","seq": 4,
+  "iconType": "102"
 }, {
   "iconCode": "G",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729025/index.jpg?fileId=64046160",
@@ -368,12 +368,12 @@ export const RECENTBOOKMARKS: Bookmark[] = [{
   "iconBg": "#FEFEFE",
   "isMyFavour": true,
   "isRecent": true,
-  "id": 729025,
+  "id": "729025",
   "iconFg": "#333",
   "isPopular": true,
   "description": "Gmail",
-  "seq": 10,
-  "iconType": 102
+  "iconURL":"","seq": 10,
+  "iconType": "102"
 }, {
   "iconCode": "T",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729026/globe-967304_640.jpg?fileId=64046154",
@@ -382,24 +382,24 @@ export const RECENTBOOKMARKS: Bookmark[] = [{
   "iconBg": "#FF2C00",
   "isMyFavour": false,
   "isRecent": true,
-  "id": 729026,
+  "id": "729026",
   "iconFg": "#FFF",
   "isPopular": true,
   "description": "Transfer Students",
-  "seq": 6,
-  "iconType": 102
+  "iconURL":"","seq": 6,
+  "iconType": "102"
 }, {
   "isRecent": true,
   "iconCode": "D",
-  "id": 729027,
+  "id": "729027",
   "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729027/dining.jpg?fileId=64046173",
   "isPopular": true,
   "description": "Dining & Meal Plans",
   "subject": "Dining & Meal Plans",
   "link": "https://ccstage.campuscruiser.com/PageServlet?pg=webpageProxy&tg=WebPage-proxy&from=22.55&page=76388&cx=22.55",
-  "seq": 9,
+  "iconURL":"","seq": 9,
   "isMyFavour": false,
-  "iconType": 102,
+  "iconType": "102",
   "iconFg": "#FFF",
   "iconBg": "#21C518"
 }, {
@@ -410,85 +410,85 @@ export const RECENTBOOKMARKS: Bookmark[] = [{
   "iconBg": "#21C518",
   "isMyFavour": true,
   "isRecent": true,
-  "id": 729028,
+  "id": "729028",
   "iconFg": "#FFF",
   "isPopular": false,
   "description": "ID Card",
-  "seq": 5,
-  "iconType": 102
+  "iconURL":"","seq": 5,
+  "iconType": "102"
 }]
 
 
 
 export const MYFAVBOOKMARKS: Bookmark[] = [
-{
-  "iconCode": "B",
-  "subject": "Academic Calendar",
-  "link": "https://ccstage.campuscruiser.com/q?pg=home_calendar&tg=Calendar-monthly&cmd=load&dt=20170301&cx=22.55",
-  "iconBg": "#A63379",
-  "isMyFavour": true,
-  "isRecent": true,
-  "id": 729020,
-  "iconFg": "#FFF",
-  "description": "Academic Calendar",
-  "isPopular": true,
-  "seq": 3,
-  "iconType": 101,
-  "imgIcon": "",
-}, {
-  "iconCode": "P",
-  "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729021/parking.jpg?fileId=64046171",
-  "subject": "Parking Services",
-  "link": "https://ccstage.campuscruiser.com/PageServlet?pg=webpageProxy&tg=WebPage-proxy&from=22.55&page=76383&cx=22.55",
-  "iconBg": "#FF2C00",
-  "isMyFavour": true,
-  "isRecent": true,
-  "id": 729021,
-  "iconFg": "#FFF",
-  "isPopular": true,
-  "description": "Parking Services",
-  "seq": 4,
-  "iconType": 102
-}, {
-  "iconCode": "S",
-  "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729023/mathematics-1622448_640.jpg?fileId=64046157",
-  "subject": "Student Advising",
-  "link": "https://ccstage.campuscruiser.com/PageServlet?pg=webpageProxy&tg=WebPage-proxy&from=22.55&page=76385&cx=22.55",
-  "iconBg": "#58ACEC",
-  "isMyFavour": true,
-  "isRecent": true,
-  "id": 729023,
-  "iconFg": "#FFF",
-  "isPopular": true,
-  "description": "Student Advising",
-  "seq": 1,
-  "iconType": 102
-}, {
-  "iconCode": "G",
-  "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729025/index.jpg?fileId=64046160",
-  "subject": "Gmail",
-  "link": "https://mail.google.com/mail/u/0/#inbox",
-  "iconBg": "#FEFEFE",
-  "isMyFavour": true,
-  "isRecent": true,
-  "id": 729025,
-  "iconFg": "#333",
-  "isPopular": true,
-  "description": "Gmail",
-  "seq": 2,
-  "iconType": 102
-}, {
-  "iconCode": "I",
-  "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729028/student-id-1863434_640.jpg?fileId=64046187",
-  "subject": "ID Card",
-  "link": "https://ccstage.campuscruiser.com/PageServlet?pg=webpageProxy&tg=WebPage-proxy&from=22.55&page=76390&cx=22.55",
-  "iconBg": "#21C518",
-  "isMyFavour": true,
-  "isRecent": true,
-  "id": 729028,
-  "iconFg": "#FFF",
-  "isPopular": false,
-  "description": "ID Card",
-  "seq": 5,
-  "iconType": 102
-}]
+  {
+    "iconCode": "B",
+    "subject": "Academic Calendar",
+    "link": "https://ccstage.campuscruiser.com/q?pg=home_calendar&tg=Calendar-monthly&cmd=load&dt=20170301&cx=22.55",
+    "iconBg": "#A63379",
+    "isMyFavour": true,
+    "isRecent": true,
+    "id": "729020",
+    "iconFg": "#FFF",
+    "description": "Academic Calendar",
+    "isPopular": true,
+    "iconURL":"","seq": 3,
+    "iconType": "101",
+    "imgIcon": "",
+  }, {
+    "iconCode": "P",
+    "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729021/parking.jpg?fileId=64046171",
+    "subject": "Parking Services",
+    "link": "https://ccstage.campuscruiser.com/PageServlet?pg=webpageProxy&tg=WebPage-proxy&from=22.55&page=76383&cx=22.55",
+    "iconBg": "#FF2C00",
+    "isMyFavour": true,
+    "isRecent": true,
+    "id": "729021",
+    "iconFg": "#FFF",
+    "isPopular": true,
+    "description": "Parking Services",
+    "iconURL":"","seq": 4,
+    "iconType": "102"
+  }, {
+    "iconCode": "S",
+    "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729023/mathematics-1622448_640.jpg?fileId=64046157",
+    "subject": "Student Advising",
+    "link": "https://ccstage.campuscruiser.com/PageServlet?pg=webpageProxy&tg=WebPage-proxy&from=22.55&page=76385&cx=22.55",
+    "iconBg": "#58ACEC",
+    "isMyFavour": true,
+    "isRecent": true,
+    "id": "729023",
+    "iconFg": "#FFF",
+    "isPopular": true,
+    "description": "Student Advising",
+    "iconURL":"","seq": 1,
+    "iconType": "102"
+  }, {
+    "iconCode": "G",
+    "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729025/index.jpg?fileId=64046160",
+    "subject": "Gmail",
+    "link": "https://mail.google.com/mail/u/0/#inbox",
+    "iconBg": "#FEFEFE",
+    "isMyFavour": true,
+    "isRecent": true,
+    "id": "729025",
+    "iconFg": "#333",
+    "isPopular": true,
+    "description": "Gmail",
+    "iconURL":"","seq": 2,
+    "iconType": "102"
+  }, {
+    "iconCode": "I",
+    "imgIcon": "https://ccstage.campuscruiser.com/files/manage/4/22.55/__bookmark/729028/student-id-1863434_640.jpg?fileId=64046187",
+    "subject": "ID Card",
+    "link": "https://ccstage.campuscruiser.com/PageServlet?pg=webpageProxy&tg=WebPage-proxy&from=22.55&page=76390&cx=22.55",
+    "iconBg": "#21C518",
+    "isMyFavour": true,
+    "isRecent": true,
+    "id": "729028",
+    "iconFg": "#FFF",
+    "isPopular": false,
+    "description": "ID Card",
+    "iconURL":"","seq": 5,
+    "iconType": "102"
+  }]

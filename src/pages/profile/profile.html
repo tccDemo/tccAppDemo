@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar class="headToolBar" [color]="campusDesign.header.color">
+    <ion-title class="title title-ios">User Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content [color]="campusDesign.theme.color">
+  <form [formGroup]="form" [ngClass]="{'form-is-submit': isSubmit}" (ngSubmit)="evSubmitForm()">
+    <ion-list class="settingList" *ngIf="loaded">
+      <ion-item-group>
+        <button type="button" ion-item>
+          <span class="settingLabel">Avatar</span>
+          <span class="settingContent" item-right>
+            <user-avatar [userInfo]="userInfo"></user-avatar>
+          </span>
+        </button>
+        <ion-item>
+          <span class="settingLabel">User Name</span>
+          <ion-note class="settingContent" item-right>{{profile.userName}}</ion-note>
+        </ion-item>
+        <ion-item>
+          <span class="settingLabel">Email</span>
+          <ion-note class="settingContent" item-right>{{profile.email}}</ion-note>
+        </ion-item>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item-divider></ion-item-divider>
+        <button type="button" ion-item (click)="showTextareaEdit('homeRegion', form.controls.homeRegion)">
+          <span class="settingLabel">Home Region</span>
+          <ion-note class="settingContent" item-right>{{form.value.homeRegion}}</ion-note>
+          <input type="hidden" formControlName="homeRegion">
+        </button>
+        <button type="button" ion-item (click)="showTextareaEdit('language', form.controls.language)">
+          <span class="settingLabel">Spoken Languages</span>
+          <ion-note class="settingContent" item-right>{{form.value.language}}</ion-note>
+          <input type="hidden" formControlName="language">
+        </button>
+        <button type="button" ion-item (click)="showTextareaEdit('interest', form.controls.interest)">
+          <span class="settingLabel">Interests / Hobbies</span>
+          <ion-note class="settingContent" item-right>{{form.value.interest}}</ion-note>
+          <input type="hidden" formControlName="interest">
+        </button>
+        <button type="button" ion-item (click)="showTextareaEdit('research', form.controls.research)">
+          <span class="settingLabel">Research Interests</span>
+          <ion-note class="settingContent" item-right>{{form.value.research}}</ion-note>
+          <input type="hidden" formControlName="research">
+        </button>
+      </ion-item-group>
+    </ion-list>
+  </form>
+  <div class="page-loading" *ngIf="!loaded">
+    <ion-spinner></ion-spinner>
+  </div>
+</ion-content>
+<ion-footer padding>
+  <ion-row>
+    <ion-col>
+      <button ion-button block color="light" class="logout-button" (click)="logout()">Logout</button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

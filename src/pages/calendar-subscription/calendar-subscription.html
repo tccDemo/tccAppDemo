@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar class="headToolBar" [color]="campusDesign.header.color">
+    <!-- <ion-buttons right>
+      <button type="button" ion-button *ngIf="loaded" (click)="evSave()">Save</button>
+    </ion-buttons> -->
+    <ion-title class="title title-ios">Calendar Subscription</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content [color]="campusDesign.theme.color">
+  <ion-list class="settingList" *ngIf="loaded">
+    <ion-item *ngFor="let item of list">
+      <ion-label class="settingLabel">{{item.name}}</ion-label>
+      <ion-toggle [(ngModel)]="item.isSub"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="list != null && list.length == 0">
+      <div class="container-no-data">
+        <span><img src="assets/icon/no-data.png" alt=""></span>
+        <span>No data</span>
+      </div>
+    </ion-item>
+  </ion-list>
+  <div class="page-loading" *ngIf="!loaded">
+    <ion-spinner></ion-spinner>
+  </div>
+</ion-content>

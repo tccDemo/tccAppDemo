@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar class="headToolBar" [color]="campusDesign.header.color">
+    <ion-buttons right>
+      <button type="button" ion-button (click)="evSubmitForm()">Ok</button>
+    </ion-buttons>
+    <ion-title class="title title-ios">{{fieldInfo.title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="form" [ngClass]="{'form-is-submit': isSubmit}" (ngSubmit)="evSubmitForm()">
+    <ion-list class="settingList">
+      <ion-item [ngClass]="{'ng-invalid': !form.controls.field.valid, 'ng-dirty': form.controls.field.dirty}">
+        <textarea rows="8" formControlName="field" class="settingTextarea" placeholder="{{fieldInfo.placeholder}}"></textarea>
+        <ion-note class="chCounter" text-right>{{fieldInfo.maxLength}}</ion-note>
+      </ion-item>
+      <div class="msgValid" *ngIf="!form.controls.field.valid && form.controls.field.dirty">
+        <p *ngIf="form.controls.field.hasError('required')">This field is required.</p>
+        <p *ngIf="form.controls.field.hasError('minlength')">Please enter at least {{fieldInfo.minLength}} characters.</p>
+        <p *ngIf="form.controls.field.hasError('maxlength')">Please enter no more than {{fieldInfo.maxLength}} characters.</p>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

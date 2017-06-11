@@ -1,0 +1,32 @@
+.list-md {
+  padding-top: 8px;
+}
+.item {
+  ion-thumbnail {
+    min-width: 0;
+    min-height: 0;
+  }
+}
+.bookmark-list-img {
+  color: #fff;
+  font-size: 40px;
+  background: #28bc82;
+  height: 48px !important;
+  width: 48px !important;
+  display: inline-block;
+  text-align: center;
+  line-height: 48px;
+}
+.list-icon {
+  height: 48px;
+  width: 48px;
+  line-height: 48px;
+  text-align: center;
+}
+.favIcon {
+  color: red;
+  background-color:transparent;
+  &.unfav {
+    color: black;
+  }
+}

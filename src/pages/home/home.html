@@ -1,15 +1,27 @@
 <ion-header>
-  <ion-navbar class="headToolBar" color="heading">
+  <ion-navbar class="headToolBar" [color]="campusDesign.header.color" [hideBackButton]="true">
     <ion-buttons left>
-      <user-avatar [userInfo]="userInfo"></user-avatar>
+      <button icon-only (click)="linkToProfile($event)" style="background:transparent">
+        <img src="assets/images/avatar/default.png" alt="profile" class="profileImg" *ngIf="!userInfo || !userInfo.profileIcon||userInfo.profileIcon==''"/>
+        <img [src]="userInfo.profileIcon" alt="profile" class="profileImg" *ngIf="userInfo&&userInfo.profileIcon&&userInfo.profileIcon!=''"/>
+      </button>
     </ion-buttons>
 
     <ion-title class="title title-ios">
       Home
     </ion-title>
+
+    <ion-buttons right>
+      <button color="light" *ngIf="tab=='event'" ion-button icon-only (click)="openCalendarPage()" round> 
+        <ion-icon name="ios-calendar-outline"></ion-icon>
+      </button>      
+      <button color="light" ion-button icon-only (click)="calloutSearchPage()"> 
+          <ion-icon name="ios-search-outline" id="searchIcon"></ion-icon>
+        </button>
+    </ion-buttons>       
   </ion-navbar>
 
-  <ion-segment [(ngModel)]="tab" color="primary">
+  <ion-segment [(ngModel)]="tab" [color]="campusDesign.segments.color">
     <ion-segment-button value="bookmark" (ionSelect)="switchBookmarkTab()">
       Campus Links
     </ion-segment-button>
@@ -23,21 +35,13 @@
 
 </ion-header>
 
-<ion-content>
+<ion-content (swipe)="swipeEvent($event)" [color]="campusDesign.theme.color">
 
-  <div [ngSwitch]="tab" (swipe)="swipeEvent($event)">
-    <ion-list *ngSwitchCase="'bookmark'">
-      <page-bookmark-list></page-bookmark-list>
-    </ion-list>
+  <div [ngSwitch]="tab">
+      <page-bookmark-list *ngSwitchCase="'bookmark'"></page-bookmark-list>
 
-    <ion-list *ngSwitchCase="'announcement'">
-      <page-announcement-list></page-announcement-list>
-    </ion-list>
+      <page-announcement-list *ngSwitchCase="'announcement'"></page-announcement-list>
 
-    <ion-list *ngSwitchCase="'event'">
-      <page-event-list></page-event-list>
-    </ion-list>
-
+      <page-event-list *ngSwitchCase="'event'"></page-event-list>
   </div>
-
 </ion-content>

@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar class="headToolBar" [color]="campusDesign.header.color">
+    <ion-buttons right>
+      <button type="button" ion-button (click)="evSubmitForm()">Ok</button>
+    </ion-buttons>
+    <ion-title class="title title-ios">{{fieldInfo.title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="form" [ngClass]="{'form-is-submit': isSubmit}" (ngSubmit)="evSubmitForm()">
+    <ion-list radio-group formControlName="field">
+      <ion-item *ngFor="let item of fieldInfo.options">
+        <ion-label>{{item.text}}</ion-label>
+        <ion-radio [value]="item.id" [checked]="item.id == form.controls.field.value"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

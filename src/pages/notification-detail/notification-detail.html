@@ -1,16 +1,16 @@
 <ion-header>
-  <ion-toolbar class="headToolBar" color="heading">
+  <ion-toolbar class="headToolBar" [color]="campusDesign.header.color">
     <ion-buttons left>
       <button ion-button (click)="dismiss()">
         <ion-icon name="md-close"></ion-icon>
       </button>
     </ion-buttons>    
     <ion-title>
-      <span *ngIf="notification!=null">{{notification.name}}</span>
+      <span *ngIf="notification!=null">{{notification.title}}</span>
     </ion-title>   
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
+<ion-content padding [color]="campusDesign.theme.color">
     <div *ngIf="notification==null"><IMG src='assets/images/loading.svg' alt='loading' class="loadingImg"></div>
     <div *ngIf="notification!=null" [innerHtml]="notification.detail"></div>    
 </ion-content>

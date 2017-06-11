@@ -1,6 +1,7 @@
 <ion-header>
-  <ion-toolbar color="heading">
-    <ion-searchbar #searchBar (ionInput)="doSearch($event)" (ionClear)="doClear()">
+  <ion-toolbar [color]="campusDesign.header.color">
+    <ion-searchbar #searchBar (ionInput)="doSearch($event)" (ionClear)="doClear()" 
+      placeholder="Search announcements">
     </ion-searchbar>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
@@ -12,7 +13,7 @@
 </ion-header>
 
 
-<ion-content style="position:static">
+<ion-content style="position:static" [color]="campusDesign.theme.color">
   <ion-list class="dataContainer" *ngIf="initListData">
 
     <ion-item *ngIf="announcements==null">
@@ -26,11 +27,14 @@
     </ion-item>
     <ion-item *ngFor="let announcement of announcements" (click)="openDetailPage({announcementId: announcement.id})">
       <ion-thumbnail item-left>
-        <ion-icon name="information-circle" class="announcementIcon"></ion-icon>
+        <ion-icon name="ios-megaphone-outline" class="announcementIcon"></ion-icon>
       </ion-thumbnail>
       <h2>{{announcement.title}}</h2>
-      <p>{{announcement.postedBy}}</p>
-      <p class="data-summary" [innerHtml]="announcement.shortDetail"></p>
+      <h3>
+        {{announcement.postedBy}}
+        <ion-note class="date" item-right>{{announcement.postedDate | date: 'longDate'}}</ion-note>
+      </h3>
+      <p class="summary" [innerHtml]="announcement.shortDetail"></p>
     </ion-item>
   </ion-list>
 </ion-content>

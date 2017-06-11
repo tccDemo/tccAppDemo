@@ -7,6 +7,8 @@ import { CampusInfo } from '../../providers/campusInfo';
 import { UserInfo } from '../../providers/userInfo';
 
 import { AnnouncementDetailPage } from '../announcement-detail/announcement-detail';
+import { CampusDesign } from '../../providers/campusDesign';
+import { StorageService, CAMPUS_DESIGN } from '../../providers/storage.service';
 
 @Component({
   selector: 'page-local-notification-list',
@@ -14,12 +16,14 @@ import { AnnouncementDetailPage } from '../announcement-detail/announcement-deta
 })
 export class LocalNotificationListPage {
 
-  public announcements: Announcement[];
+  announcements: Announcement[];
+  campusDesign: CampusDesign;
 
   constructor(private navParams: NavParams,
     private navCtrl: NavController,
     private modalCtrl: ModalController,
     private viewCtrl: ViewController,
+    private storageService: StorageService,
     private announcementService: AnnouncementService) {
   }
 
@@ -28,6 +32,7 @@ export class LocalNotificationListPage {
   }
 
   ngOnInit(): void {
+    this.campusDesign = this.storageService.get(CAMPUS_DESIGN);
     this.getAnnouncements();
   }
 

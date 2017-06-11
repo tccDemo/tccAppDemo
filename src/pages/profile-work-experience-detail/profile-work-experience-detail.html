@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar class="headToolBar" [color]="campusDesign.header.color">
+    <ion-buttons right>
+      <button type="button" ion-button (click)="evSubmitForm()">Save</button>
+    </ion-buttons>
+    <ion-title class="title title-ios">Work Experience</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content [color]="campusDesign.theme.color">
+  <form [formGroup]="form" [ngClass]="{'form-is-submit': isSubmit}" (ngSubmit)="evSubmitForm()">
+    <ion-list class="settingList">
+      <ion-item-group>
+        <ion-item>
+          <ion-label class="settingLabel"><span class="highlight">*</span>Company</ion-label>
+          <ion-input type="text" formControlName="company" placeholder="Please enter company name" text-right></ion-input>
+        </ion-item>
+        <div class="msgValid" *ngIf="!form.controls.company.valid && form.controls.company.dirty">
+          <p *ngIf="form.controls.company.hasError('required')">This field is required.</p>
+          <p *ngIf="form.controls.company.hasError('maxlength')">Please enter no more than 64 characters.</p>
+        </div>
+        <button type="button" ion-item [ngClass]="{'ng-invalid': !form.controls.industry.valid, 'ng-dirty': form.controls.industry.dirty}" (click)="showSelectEdit('industry', form.controls.industry)">
+          <span class="settingLabel"><span class="highlight">*</span>Industry</span>
+          <ion-note class="settingContent" item-right>{{form.value.industry}}</ion-note>
+          <input type="hidden" formControlName="industry">
+        </button>
+        <div class="msgValid" *ngIf="!form.controls.industry.valid && form.controls.industry.dirty">
+          <p *ngIf="form.controls.industry.hasError('required')">This field is required.</p>
+        </div>
+        <ion-item>
+          <ion-label class="settingLabel"><span class="highlight">*</span>Title</ion-label>
+          <ion-input type="text" formControlName="title" placeholder="Your job title" text-right></ion-input>
+        </ion-item>
+        <div class="msgValid" *ngIf="!form.controls.title.valid && form.controls.title.dirty">
+          <p *ngIf="form.controls.title.hasError('required')">This field is required.</p>
+          <p *ngIf="form.controls.title.hasError('maxlength')">Please enter no more than 64 characters.</p>
+        </div>
+        <button type="button" ion-item (click)="showTextareaEdit('duty', form.controls.duty)">
+          <span class="settingLabel"><span class="highlight">*</span>Duties</span>
+          <ion-note class="settingContent" item-right>{{form.value.duty}}</ion-note>
+          <input type="hidden" formControlName="duty">
+        </button>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item-divider></ion-item-divider>
+        <ion-item>
+          <ion-label class="settingLabel">Location</ion-label>
+          <ion-input type="text" formControlName="location" placeholder="Your location" text-right></ion-input>
+        </ion-item>
+        <div class="msgValid" *ngIf="!form.controls.location.valid && form.controls.location.dirty">
+          <p *ngIf="form.controls.location.hasError('maxlength')">Please enter no more than 64 characters.</p>
+        </div>
+        <ion-item-sliding>
+          <ion-item>
+            <ion-label class="settingLabel">Start Time</ion-label>
+            <ion-datetime class="settingContent" formControlName="startTime" displayFormat="YYYY/MM" pickerFormat="YYYY/MM"></ion-datetime>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="danger" type="button" (click)="clearDateVal('startTime')">Clear</button>
+          </ion-item-options>
+        </ion-item-sliding>
+        <ion-item-sliding>
+          <ion-item>
+            <ion-label class="settingLabel">End Time</ion-label>
+            <ion-datetime class="settingContent" formControlName="endTime" displayFormat="YYYY/MM" pickerFormat="YYYY/MM"></ion-datetime>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="danger" type="button" (click)="clearDateVal('endTime')">Clear</button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-item-group>
+    </ion-list>
+  </form>
+</ion-content>

@@ -1,7 +1,9 @@
 import { Component, ViewChild, Renderer, ElementRef } from '@angular/core';
 import { NavController, NavParams, Searchbar, ViewController } from 'ionic-angular';
 import { BundleEvents } from '../../providers/bundleEvents';
-import { Keyboard } from 'ionic-native';
+import { Keyboard } from '@ionic-native/keyboard';
+import { CampusDesign } from '../../providers/campusDesign';
+import { StorageService, CAMPUS_DESIGN } from '../../providers/storage.service';
 
 @Component({
   selector: 'page-event-search',
@@ -12,6 +14,7 @@ export class EventSearchPage {
   bundleEvents: BundleEvents[];
   openDetailPage: Function = null;
   initListData: boolean = false;
+  campusDesign: CampusDesign;
   @ViewChild('searchBar') searchBarRef: Searchbar;
 
   constructor(
@@ -19,6 +22,8 @@ export class EventSearchPage {
     public navParams: NavParams,
     public viewCtrl: ViewController,
     private renderer: Renderer,
+    private keyboard: Keyboard,
+    private storageService: StorageService,
     private elementRef: ElementRef) {
     this.bundleEvents = navParams.get('bundleEvents');
     this.openDetailPage = navParams.get('openDetailPage');
@@ -33,17 +38,19 @@ export class EventSearchPage {
   }
 
   ngOnInit(): void {
-    var self = this;    
+    var self = this;
     setTimeout(() => {
-        self.searchBarRef.setFocus();
-        Keyboard.show();
-    },500);    
+      self.searchBarRef._fireFocus();
+      this.keyboard.show();
+    }, 500);
+    this.campusDesign = this.storageService.get(CAMPUS_DESIGN);
   }
 
   ionViewLoaded(): void {
   }
 
-  ionViewWillLeave(): void {
+  ionViewDidLeave() {
+    this.keyboard.close();
   }
 
   doSearch(ev): void {

@@ -1,0 +1,53 @@
+.profileImg {
+  color: #fff;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.settingList {
+  & > .item-block {
+    &:first-child {
+      border-top: none;
+    }
+  }
+}
+.item-divider {
+  background: color($colors,light);
+  border-bottom: 1px solid color($colors,divider);
+}
+.item {
+  .label {
+    color: #333;
+  }
+}
+.settingLabel {
+  text-align: center;
+  font-size: 1.7rem;
+  text-align: left;
+  margin-left: 0.5rem;
+  color: #333;
+  margin-left: 0;
+}
+.settingContent {
+  color: #aaa;
+  max-width: 40%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.highlight {
+  color: color($colors,danger);
+  padding-right:3px;
+}
+.settingTextarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  display: block;
+}
+.chCounter {
+  font-size: .8rem;
+  display: block;
+}
+
+@import "../../scss/pages/_form-validate";
